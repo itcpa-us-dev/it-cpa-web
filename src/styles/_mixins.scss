@@ -11,6 +11,7 @@ $breakpoint-xl: 1280px; // Extra large devices (e.g., large desktops)
 $breakpoint-2xl: 1440px; // Double extra large devices (e.g., large desktops, TVs)
 $breakpoint-3xl: 1536px; // Triple extra large devices
 $breakpoint-4xl: 1600px; // Extra extra large devices
+$breakpoint-5xl: 1920px; // Ultra large devices (e.g., 4K monitors)
 // ---------------------------------------------------
 // Mixin: respond-to
 // Usage: @include respond-to(md) { ... your styles ... }
@@ -52,9 +53,13 @@ $breakpoint-4xl: 1600px; // Extra extra large devices
 		@media (min-width: $breakpoint-4xl) {
 			@content;
 		}
+	} @else if $size == '5xl' {
+		@media (min-width: $breakpoint-5xl) {
+			@content;
+		}
 	} @else {
 		// Warn the developer if an invalid breakpoint name is used
-		@warn "Invalid breakpoint '#{$size}'. Please use 'xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl', or '4xl'.";
+		@warn "Invalid breakpoint '#{$size}'. Please use 'xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl', '4xl', or '5xl'.";
 	}
 }
 

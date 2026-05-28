@@ -1,4 +1,5 @@
 @use '/src/styles/variables' as *;
+@use '/src/styles/mixins' as *;
 
 footer.home-layout__footer {
 	display: flex;
@@ -8,7 +9,7 @@ footer.home-layout__footer {
 		&__content {
 			display: flex;
 			flex-direction: row;
-			padding: 100px 500px;
+			padding: 100px 400px;
 			&__group {
 				display: flex;
 				flex-direction: column;
@@ -46,6 +47,8 @@ footer.home-layout__footer {
 					display: flex;
 					flex-direction: column;
 					gap: 10px;
+					min-width: 180px;
+					cursor: pointer;
 					& h5 {
 						font-family: var(--font-mono);
 						font-size: 15px;
@@ -59,6 +62,7 @@ footer.home-layout__footer {
 						flex-direction: column;
 						gap: 10px;
 						& li {
+							text-align: left;
 							position: relative;
 							opacity: 0;
 							& a,
@@ -105,7 +109,7 @@ footer.home-layout__footer {
 		&__copyright {
 			display: flex;
 			height: 60px;
-			padding: 20px 500px;
+			padding: 20px 400px;
 			font-size: 12px;
 			color: var(--color-text-muted);
 			font-family: var(--font-mono);
@@ -125,6 +129,100 @@ footer.home-layout__footer {
 				opacity: 0;
 				&:nth-of-type(1) {
 					margin-right: auto;
+				}
+			}
+		}
+
+		@include respond-down-to('4xl') {
+			&__copyright {
+				padding: 20px 300px;
+			}
+		}
+
+		@include respond-down-to('3xl') {
+			&__content {
+				padding: 80px 300px;
+				&__group {
+					&__logo {
+						margin-right: 0;
+						&__description {
+							width: 100%;
+						}
+					}
+					&__navigation,
+					&__principals,
+					&__services {
+						margin: 0;
+					}
+				}
+			}
+			&__copyright {
+				padding: 20px 300px;
+				&::before {
+					width: 85% !important;
+				}
+			}
+		}
+
+		@include respond-down-to('2xl') {
+			&__content {
+				padding: 80px 100px;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				text-align: center;
+				&__group {
+					margin: 20px 0;
+					&__logo {
+						margin-right: 0;
+						&__description {
+							width: 100%;
+						}
+					}
+					&__navigation,
+					&__principals,
+					&__services {
+						margin: 0;
+					}
+				}
+			}
+			&__copyright {
+				padding: 20px 100px;
+			}
+		}
+
+		@include respond-down-to('sm') {
+			&__content {
+				padding: 50px 20px;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				text-align: center;
+				&__group {
+					margin: 20px 0;
+					&__logo {
+						margin-right: 0;
+						&__description {
+							width: 100%;
+						}
+					}
+					&__navigation,
+					&__principals {
+						margin: 0;
+					}
+				}
+			}
+			&__copyright {
+				padding: 20px;
+				flex-direction: column;
+				text-align: center;
+				justify-content: center;
+
+				& p {
+					margin: 5px 0;
+					&:nth-of-type(1) {
+						margin-right: 0;
+					}
 				}
 			}
 		}
@@ -177,7 +275,7 @@ footer.home-layout__footer {
 
 			&__copyright {
 				&::before {
-					width: 61%;
+					width: 69%;
 					transform: scale(1) translateX(-50%);
 				}
 				& p {

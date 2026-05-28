@@ -2,7 +2,7 @@
 #hero {
 	display: flex;
 	width: 100%;
-	height: 100vh;
+	height: auto;
 	position: relative;
 	background-repeat: no-repeat;
 	background-size: cover;
@@ -20,7 +20,6 @@
 				border-radius: $border-radius-default;
 				padding: 5px 10px;
 				margin: 0 0 20px 0;
-				justify-content: baseline;
 				align-items: center;
 				color: var(--color-primary);
 				background-color: rgba(#ff8c4b, 0.2);
@@ -393,16 +392,22 @@
 	}
 
 	@include respond-down-to('sm') {
+		overflow-x: hidden;
 		& .hero__content {
-			padding: 0 20px;
+			padding: 40px 50px;
 			&__inner {
 				margin-top: 50px;
 				&__subheadline {
+					& i {
+						width: 26px;
+						height: 26px;
+					}
 					& p {
 						font-size: 10px;
 					}
 				}
 				& h1 {
+					line-height: 55px;
 					margin: 10px;
 				}
 				&__subtitle {
@@ -467,6 +472,10 @@
 
 							& .hero__content__statistics__stats__icon {
 								margin-right: 20px;
+							}
+							& .hero__content__statistics__stats__text {
+								text-wrap: wrap;
+								width: 200px;
 							}
 							& h4 {
 								font-size: 22px;

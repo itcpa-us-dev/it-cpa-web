@@ -7,7 +7,7 @@ import { useInView } from 'react-intersection-observer';
 
 const Hero = () => {
 	const { ref, inView } = useInView({
-		threshold: 0.3,
+		threshold: 0.1,
 		triggerOnce: true,
 	});
 	const language = useAppSelector((state) => state.theme.language);
@@ -17,7 +17,7 @@ const Hero = () => {
 		e.preventDefault();
 
 		const section = document.getElementById(
-			e.currentTarget.getAttribute('aria-details') || '',
+			e.currentTarget.dataset.section || '',
 		);
 
 		if (section) {
@@ -66,13 +66,15 @@ const Hero = () => {
 				<div className="hero__content__cta">
 					<button
 						className="hero__content__cta__btn"
-						aria-details="contact-us"
+						type="button"
+						data-section="contact"
 						onClick={handleMoveToSection}>
 						{data.hero.cta}
 					</button>
 					<button
 						className="hero__content__cta__btn"
-						aria-details="services"
+						type="button"
+						data-section="services"
 						onClick={handleMoveToSection}>
 						<p>{data.hero.redirect}</p>
 					</button>

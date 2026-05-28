@@ -113,7 +113,7 @@ const Contact = () => {
 									id="email"
 									name="email"
 									required
-									placeholder="Email"
+									placeholder={contactData.formFields[1].label}
 									style={{ animationDelay: '2300ms' }}
 								/>
 							</div>

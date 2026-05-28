@@ -10,7 +10,7 @@ const About = () => {
 	const aboutData = language === 'vn' ? data.vn.about : data.en.about;
 
 	const { ref, inView } = useInView({
-		threshold: 0.3,
+		threshold: 0.1,
 		triggerOnce: true,
 	});
 	return (

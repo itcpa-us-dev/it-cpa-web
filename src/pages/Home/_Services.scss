@@ -2,7 +2,7 @@
 	display: flex;
 	flex-direction: column;
 	width: 100%;
-	height: 100vh;
+	height: auto;
 	text-align: center;
 	background-size: cover;
 	background-position: center;
@@ -452,6 +452,34 @@
 							letter-spacing: 2px;
 						}
 					}
+				}
+			}
+		}
+	}
+	@include respond-down-to('sm') {
+		& .services__popup {
+			width: 100%;
+			height: auto;
+			padding: 50px 30px;
+			& .services__details__description__container--service{
+				& .services__details__description__image{
+					margin: 10px 0;
+				}
+			}
+			&__content {
+				&__title {
+					font-size: 24px;
+				}
+				&__description {
+					font-size: 14px;
+					line-height: 20px;
+				}
+			}
+			& .services__details__description__cta {
+				width: 100%;
+				& a {
+					width: 100%;
+					font-size: 14px;
 				}
 			}
 		}

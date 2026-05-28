@@ -10,7 +10,7 @@ const Pricing = () => {
 	const [isExiting, setisExiting] = useState(false);
 
 	const { ref, inView } = useInView({
-		threshold: 0.3,
+		threshold: 0.1,
 		triggerOnce: true,
 	});
 	const dispatch = useAppDispatch();
@@ -63,9 +63,11 @@ const Pricing = () => {
 			<div className="pricing__select">
 				<div className="pricing__select__options">
 					{data.pricing.entitiesID.map((entity) => (
-						<div
+						<button
+							type="button"
 							key={entity}
 							className={`pricing__select__options__selection pricing__select__options__selection--${entity} ${selectedEntity === entity ? 'pricing__select__options__selection--active' : ''}`}
+							aria-pressed={selectedEntity === entity}
 							onClick={() => handleSelectEntity(entity)}>
 							{data.pricing.entities[data.pricing.entitiesID.indexOf(entity)]
 								.charAt(0)
@@ -73,7 +75,7 @@ const Pricing = () => {
 								data.pricing.entities[
 									data.pricing.entitiesID.indexOf(entity)
 								].slice(1)}
-						</div>
+						</button>
 					))}
 				</div>
 			</div>

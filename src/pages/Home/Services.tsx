@@ -8,7 +8,7 @@ import { useInView } from 'react-intersection-observer';
 
 const Services = () => {
 	const { ref, inView } = useInView({
-		threshold: 0.3,
+		threshold: 0.1,
 		triggerOnce: true,
 	});
 	const [isExiting, setIsExiting] = useState(false);
@@ -164,17 +164,14 @@ const Services = () => {
 							?.label.split(' ')
 							.map((word, index) =>
 								word.split('').map((letter, letterIndex) => (
-									<>
-										<span
-											key={`service-image-text-${index}-${letterIndex}`}
-											className={`services__image__text--${letterIndex + 1}`}
-											style={{
-												animation: `${isExiting ? 'fadeOut' : 'fadeIn'} 500ms ${index * 0.5 + letterIndex * 100}ms ease-out forwards`,
-												animationDelay: `${index * 0.5 + letterIndex * 100}ms`,
-											}}>
-											{letter.toUpperCase()}
-										</span>
-									</>
+									<span
+										key={`service-image-text-${letter}-${index}-${letterIndex}`}
+										className={`services__image__text--${letterIndex + 1}`}
+										style={{
+											animation: `${isExiting ? 'fadeOut' : 'fadeIn'} 500ms ${index * 0.5 + letterIndex * 100}ms ease-out forwards`,
+										}}>
+										{letter.toUpperCase()}
+									</span>
 								)),
 							)}
 					</div>
