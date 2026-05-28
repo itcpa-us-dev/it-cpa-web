@@ -1,0 +1,199 @@
+@use '/src/styles/variables' as *;
+
+footer.home-layout__footer {
+	display: flex;
+	flex-direction: column;
+	background: var(--color-bg-contrast);
+	& .home-layout__footer {
+		&__content {
+			display: flex;
+			flex-direction: row;
+			padding: 100px 500px;
+			&__group {
+				display: flex;
+				flex-direction: column;
+				gap: 20px;
+				&__logo {
+					display: flex;
+					flex-direction: column;
+					gap: 10px;
+					margin-right: 300px;
+					&__est {
+						font-family: var(--font-mono);
+						font-size: 14px;
+						color: var(--color-primary);
+						opacity: 0;
+					}
+					&__company-name {
+						font-family: var(--font-playfair);
+						font-size: 30px;
+						font-weight: 700;
+						color: var(--color-text-inverse);
+						opacity: 0;
+					}
+					&__description {
+						font-size: 14px;
+						font-weight: 500;
+						color: var(--color-text-muted);
+						line-height: 20px;
+						width: 300px;
+						opacity: 0;
+					}
+				}
+				&__services,
+				&__navigation,
+				&__principals {
+					display: flex;
+					flex-direction: column;
+					gap: 10px;
+					& h5 {
+						font-family: var(--font-mono);
+						font-size: 15px;
+						font-weight: 500;
+						color: var(--color-primary);
+						margin: 0 0 20px 0;
+						opacity: 0;
+					}
+					& ul {
+						display: flex;
+						flex-direction: column;
+						gap: 10px;
+						& li {
+							position: relative;
+							opacity: 0;
+							& a,
+							& p {
+								position: relative;
+								font-size: 14px;
+								color: var(--color-text-muted);
+								transition: $transition-medium;
+								backface-visibility: hidden;
+								padding: 0 0 0 26px;
+							}
+							&::before {
+								display: flex;
+								position: absolute;
+								bottom: 50%;
+								content: '';
+								width: 18px;
+								height: 0.5px;
+								background-color: var(--color-text-muted);
+								transition: $transition-medium;
+								transform-origin: left;
+								opacity: 0;
+							}
+							&:hover {
+								&::before {
+									transform: scaleX(1.5);
+									background-color: var(--color-primary);
+								}
+								& a,
+								& p {
+									color: var(--color-text-inverse);
+									padding: 0 0 0 38px;
+								}
+							}
+						}
+					}
+				}
+				&__navigation,
+				&__principals {
+					margin: 0 0 50px 300px;
+				}
+			}
+		}
+		&__copyright {
+			display: flex;
+			height: 60px;
+			padding: 20px 500px;
+			font-size: 12px;
+			color: var(--color-text-muted);
+			font-family: var(--font-mono);
+			position: relative;
+			&::before {
+				content: '';
+				display: flex;
+				position: absolute;
+				top: 0;
+				left: 50%;
+				transform: translateX(-50%);
+				width: 0%;
+				height: 1px;
+				background-color: var(--color-text-muted);
+			}
+			& p {
+				opacity: 0;
+				&:nth-of-type(1) {
+					margin-right: auto;
+				}
+			}
+		}
+	}
+	&.home-layout__footer--shown {
+		& .home-layout__footer {
+			&__content {
+				&__group {
+					&__logo {
+						&__est,
+						&__company-name,
+						&__description {
+							--translateYStart: 20px;
+							--translateYEnd: 0;
+							animation: fadeIn 600ms ease-out forwards;
+						}
+						&__est {
+							animation-delay: 0ms;
+						}
+						&__company-name {
+							animation-delay: 200ms;
+						}
+						&__description {
+							animation-delay: 400ms;
+						}
+					}
+					&__services,
+					&__navigation,
+					&__principals {
+						& h5 {
+							--translateYStart: -20px;
+							--translateYEnd: 0;
+							animation: fadeIn 600ms ease-out forwards;
+						}
+						& ul {
+							& li {
+								--translateXStart: 20px;
+								--translateXEnd: 0;
+								animation: fadeIn 600ms ease-out forwards;
+								&::before {
+									--translateXStart: 20px;
+									--translateXEnd: 0;
+									animation: fadeIn 600ms ease-out forwards;
+								}
+							}
+						}
+					}
+				}
+			}
+
+			&__copyright {
+				&::before {
+					width: 61%;
+					transform: scale(1) translateX(-50%);
+				}
+				& p {
+					animation: fadeIn 600ms ease-out forwards;
+					&:nth-of-type(1) {
+						--translateXStart: -20px;
+						--translateXEnd: 0;
+						animation-delay: 200ms;
+					}
+					&:nth-of-type(2) {
+						--translateXStart: 20px;
+						--translateXEnd: 0;
+						animation-delay: 400ms;
+					}
+				}
+			}
+		}
+	}
+}

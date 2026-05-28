@@ -1,0 +1,64 @@
+@use './../../../styles/variables' as *;
+
+.language-switch {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	width: 150px;
+	height: 40px;
+	cursor: pointer;
+	transition: $transition-default;
+	&:hover {
+		& i {
+			background-color: var(--color-text-hover);
+			transition: $transition-default;
+		}
+		& select {
+			color: var(--color-text-hover);
+		}
+	}
+	& select {
+		font-family: 'Inter', sans-serif;
+		border: none;
+		border-radius: 5px;
+		padding: 0.5rem 0.75rem;
+		transition-duration: 0.25s;
+		align-items: center;
+		transition: $transition-default;
+		color: var(--color-text-heading);
+		font-weight: 500;
+
+		&,
+		&::picker(select) {
+			-webkit-appearance: base-select;
+			-moz-appearance: base-select;
+			appearance: base-select;
+		}
+
+		& option::checkmark {
+			display: none;
+		}
+
+		&::picker-icon {
+			display: none;
+		}
+
+		& option {
+			padding: 10px 20px;
+			transition: $transition-default;
+		}
+
+		&::picker(select) {
+			border: none;
+			padding: 0.5rem 0;
+			overflow-x: hidden;
+			border-radius: 5px;
+			/*  resets from UA  */
+			min-inline-size: 0;
+			box-shadow:
+				0px 12.8px 28.8px rgba(0, 0, 0, 0.13),
+				0px 0px 9.2px rgba(0, 0, 0, 0.11);
+		}
+	}
+}

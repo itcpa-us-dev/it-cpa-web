@@ -1,0 +1,33 @@
+.card {
+	background: $color-white;
+	border: $border-subtle;
+	border-radius: $radius-lg;
+	padding: $space-lg;
+	transition: all 0.3s ease;
+
+	&--feature {
+		text-align: left;
+
+		&:hover {
+			box-shadow: $shadow-md;
+			border-color: transparent;
+		}
+	}
+
+	&__icon {
+		width: 48px;
+		height: 48px;
+		border-radius: 50%;
+		margin-bottom: $space-sm;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border: $border-subtle;
+	}
+
+	&__title {
+		font-size: $font-size-h3;
+		font-weight: $font-weight-medium;
+		margin-bottom: $space-xs;
+	}
+}

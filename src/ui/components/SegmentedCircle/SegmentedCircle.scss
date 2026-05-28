@@ -1,0 +1,47 @@
+@use '../../../styles/variables' as *;
+
+// Base state for the segments
+.arc-group {
+	transition:
+		transform 0.2s ease,
+		filter 0.2s ease;
+	cursor: pointer;
+	transform-origin: center;
+	transform-box: fill-box; // Ensures scaling happens from the center of the arc
+	
+	& text {
+		font-family: 'Inter', sans-serif;
+		font-size: 14px;
+	}
+	.arc-path {
+		fill: var(--color-primary);
+		filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 1))
+			drop-shadow(0 -2px 4px rgba(255, 255, 255, 1));
+		transition: all 300ms ease;
+	}
+
+	// Hover state: Lifted slightly
+	&:hover .arc-path {
+		// Lighter fill for hover
+		fill: var(--color-primary-light);
+		// Subtle shadow to create a 'lifted' effect
+		filter: drop-shadow(2px 2px 5px #bcbcbc) drop-shadow(-2px -2px 5px #ffffff);
+	}
+
+	& .arc-text {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		background-color: red !important;
+	}
+
+	// ACTIVE STATE: Sunk effect
+	&.active {
+		.arc-path {
+			// Darker fill for active state
+			fill: var(--color-primary-dark);
+			// Inset shadow to create a 'sunk' effect
+			filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.2));
+		}
+	}
+}

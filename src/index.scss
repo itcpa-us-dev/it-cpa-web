@@ -1,0 +1,82 @@
+@use './styles/variables' as *;
+
+/* Global Reset */
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+/* Root font & base layout */
+html {
+	font-size: 16px;
+	scroll-behavior: smooth;
+	font-family: var(--font-primary);
+}
+
+body,
+h1,
+h2,
+h3,
+p,
+figure,
+blockquote,
+dl,
+dd {
+	margin: 0;
+}
+
+/* Remove list styles */
+ul,
+ol {
+	list-style: none;
+}
+
+/* Remove link underlines */
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
+/* Images & media */
+img,
+picture,
+video,
+canvas,
+svg {
+	max-width: 100%;
+	display: block;
+}
+
+/* Forms */
+input,
+button,
+textarea,
+select {
+	font: inherit;
+	border: none;
+	background: none;
+	outline: none;
+}
+
+::selection {
+	color: #fff;
+	background-color: var(--color-primary);
+}
+
+/* Accessibility */
+[hidden] {
+	display: none !important;
+}
+
+body {
+	position: relative;
+}
+
+.prevent-select {
+	-webkit-user-select: none; /* Safari */
+	-ms-user-select: none; /* IE 10 and IE 11 */
+	user-select: none; /* Standard syntax */
+}

@@ -1,0 +1,138 @@
+@use './../../../styles/variables' as *;
+@use './../../../styles/mixins' as *;
+@use './../../../styles/animations' as *;
+.navbar {
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	height: 70px;
+	padding: 10px;
+	align-items: center;
+	justify-content: center;
+	z-index: 100;
+	background-color: var(--color-bg-main);
+	--translateYStart: -20px;
+	--translateYEnd: 0;
+	&__hamburger.hamburger-button {
+		display: none;
+	}
+	&__logo {
+		display: flex;
+		height: 70px;
+		width: 300px;
+		margin-right: 200px;
+		align-items: center;
+		justify-content: center;
+		opacity: 0;
+		animation: fadeIn 350ms ease-out 0s 1 normal forwards;
+		& img {
+			width: 48px;
+			height: 48px;
+		}
+		&__text {
+			font-size: 20px;
+			font-weight: 600;
+			color: var(--color-text-heading);
+			margin-left: 12px;
+			font-family: 'Inter', sans-serif;
+		}
+		&__link {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+	}
+	&__actions {
+		display: flex;
+		margin-left: 200px;
+	}
+	&__list {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		&__item {
+			display: flex;
+			width: 120px;
+			height: 50px;
+			justify-content: center;
+			align-items: center;
+			margin-left: 24px;
+			opacity: 0;
+			--translateYStart: -20px;
+			--translateYEnd: 0;
+			animation: fadeIn 350ms ease-out 0s 1 normal forwards;
+			backface-visibility: hidden;
+			&__link {
+				transition: $transition-default;
+				font-size: 18px;
+				font-weight: 500;
+				color: var(--color-text-heading);
+				&:hover {
+					color: var(--color-text-hover);
+				}
+			}
+		}
+	}
+	&__actions {
+		display: flex;
+		height: 100%;
+		align-items: center;
+		justify-content: space-between;
+		transition: $transition-default;
+		opacity: 0;
+		--translateXStart: 200px;
+		--translateXEnd: 0;
+		--translateYStart: 0px;
+		--translateYEnd: 0px;
+		animation: fadeIn 1000ms 300ms $cubic-bezier-ease-out forwards;
+		& > div {
+			margin: 0 10px;
+		}
+		&__button {
+			& button {
+				width: 120px;
+				height: 40px;
+				padding: 8px 16px;
+				border: none;
+				border-radius: $border-radius-default;
+				background-image: $gradient-primary;
+				color: var(--color-primary-subtle);
+				font-size: 16px;
+				cursor: pointer;
+				box-shadow: var(--shadow-sm);
+				font-weight: 500;
+				transition: $transition-medium;
+				&:hover {
+					box-shadow: var(--shadow-primary-glow);
+				}
+				&:active {
+					box-shadow: var(--shadow-primary-glow-active);
+				}
+			}
+		}
+	}
+
+	@include respond-down-to('3xl') {
+		width: 100%;
+
+		&__logo {
+			width: auto;
+			margin: 0 auto 0 0;
+			& span {
+				display: none;
+			}
+		}
+	}
+
+	@include respond-down-to('2xl') {
+		&__hamburger.hamburger-button {
+			display: flex;
+		}
+		&__list {
+			display: none;
+		}
+		&__actions {
+			display: none;
+		}
+	}
+}

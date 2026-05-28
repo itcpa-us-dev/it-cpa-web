@@ -1,0 +1,111 @@
+@use '../../styles/variables' as *;
+@use '../../styles/animations' as *;
+@import './Hero';
+@import './Services';
+@import './Contact';
+@import './About';
+@import './Pricing';
+
+[data-theme='dark'] {
+	--color-text-body: #a1a1aa; // Light gray for readability
+	#hero {
+		background-image:
+			linear-gradient(
+				to right bottom,
+				rgba(#2f2f2f, 0.1) 0%,
+				rgba(#2e2e2e, 0.9) 100%
+			),
+			url('../../assets/images/background.png');
+	}
+	#services {
+		background-image:
+			linear-gradient(
+				to right bottom,
+				rgba(#2f2f2f, 1) 0%,
+				rgba(#2e2e2e, 0.9) 100%
+			),
+			url('../../assets/images/services-background.png');
+	}
+	#pricing {
+		background-image:
+			radial-gradient(rgba(#2f2f2f, 0.9) 50%, rgba(#2e2e2e, 1) 100%),
+			url('../../assets/images/pricing-background.png');
+	}
+	#pricing {
+		& .pricing__cards {
+			&__card {
+				&--popular {
+					background-color: var(--color-bg-contrast);
+					& .pricing__cards__card__header {
+						&__label {
+							color: var(--color-text-body);
+						}
+						&__description {
+							color: var(--color-text-body);
+						}
+					}
+					& .pricing__cards__card__price {
+						& h2 {
+							color: var(--color-text-body);
+						}
+						& p {
+							color: var(--color-text-body);
+						}
+					}
+					& .pricing__cards__card__includes {
+						& h4 {
+							color: var(--color-text-body);
+						}
+						&__list {
+							& li {
+								& p {
+									color: var(--color-text-body);
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+[data-theme='light'] {
+	#hero {
+		background-image:
+			linear-gradient(
+				to right bottom,
+				rgba(#fefefe, 0.5) 0%,
+				rgba(#f2f2f2, 0.8) 100%
+			),
+			url('../../assets/images/background.png');
+	}
+	#services {
+		background-image:
+			linear-gradient(
+				to right bottom,
+				rgba(#fefefe, 1) 0%,
+				rgba(#f2f2f2, 0.9) 100%
+			),
+			url('../../assets/images/services-background.png');
+	}
+	#pricing {
+		background-image:
+			radial-gradient(rgba(#fefefe, 0.9) 50%, rgba(#f2f2f2, 1) 100%),
+			url('../../assets/images/pricing-background.png');
+	}
+}
+.home {
+	overflow: hidden;
+}
+
+@keyframes background-transition {
+	to {
+		background-image: linear-gradient(
+			to right bottom,
+			transparent 0%,
+			var(--color-primary-light) 50%,
+			var(--color-primary) 150%
+		);
+	}
+}

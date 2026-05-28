@@ -1,0 +1,113 @@
+// ==========================================
+// THEME VARIABLES (CSS Custom Properties)
+// ==========================================
+
+:root {
+	@import url('https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap');
+	@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+	@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+	// ==========================================
+	// Font
+	// ==========================================
+	--font-primary: 'Inter Tight', sans-serif;
+	--font-heading: 'Inter Tight', sans-serif;
+	--font-body: 'IBM Plex Sans', sans-serif;
+
+	--font-playfair: 'Playfair Display', serif;
+	--font-heading-playfair: 'Playfair Display', serif;
+	--font-body-playfair: 'Playfair Display', serif;
+
+	--font-mono: 'JetBrains Mono', monospace;
+	--font-heading-mono: 'JetBrains Mono', monospace;
+	--font-body-mono: 'JetBrains Mono', monospace;
+
+	// --- BRAND COLORS (Consistent across themes) ---
+	--color-primary: #ff5a36;
+	--color-primary-light: #ff8c4b;
+	--color-primary-dark: #e04825;
+	--color-accent-blue: #0057b7;
+	--color-accent-yellow: #ffdd00;
+
+	// --- LIGHT MODE (Default) ---
+	--color-primary-subtle: #fff4f0; // Very light peach behind cards
+
+	// Backgrounds
+	--color-bg-main: #fbfbf9; // Pure white canvas
+	--color-bg-contrast: #202020; // Light gray for contrast sections
+	--color-bg-secondary: #f8f9fa; // Off-white for section breaks
+	--color-surface: #ffffff; // Card backgrounds
+	--color-border: #f3f4f6; // Very light gray borders
+
+	// Typography
+	--color-text-heading: #1e1e1e; // Very dark slate/black
+	--color-text-body: #5d6a7b; // Medium gray
+	--color-text-body-light: #8b8b8f; // Lighter gray for secondary text
+	--color-text-muted: #9ca3af; // Light gray for charts/labels
+	--color-text-inverse: #ffffff; // White text on buttons
+	--color-text-hover: #737b8c; // For interactive elements
+
+	// Shadows
+	--shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+	--shadow-md: 0 8px 24px rgba(0, 0, 0, 0.06);
+	--shadow-primary-glow: 0 4px 12px rgba(255, 90, 54, 0.25);
+	--shadow-primary-glow-active: 0 4px 4px rgba(255, 90, 54, 0.25);
+	--grid-line: rgba(255, 255, 255, 0.03);
+}
+
+// --- DARK MODE ---
+// Attach this to a data attribute on your HTML or Body tag
+[data-theme='dark'] {
+	// Subtler primary background for dark mode to prevent eye strain
+	--color-primary-subtle: #2a1612;
+
+	// Backgrounds (Rich, deep slate instead of pure black)
+	--color-bg-main: #030710; // Deep background
+	--color-bg-contrast: #f2f2f2; // Slightly lighter for contrast sections
+	--color-bg-secondary: #14141a; // Slightly lighter for sections
+	--color-surface: #1c1c24; // Card backgrounds
+	--color-border: #2d2d3b; // Subtle dark borders
+
+	// Typography (Inverted)
+	--color-text-heading: #ffffff; // Pure white for headings
+	--color-text-body: #a1a1aa; // Light gray for readability
+	--color-text-body-light: #c4c4c4; // Lighter gray for secondary text
+	--color-text-muted: #71717a; // Darker gray for secondary info
+	--color-text-inverse: #f5f5f5; // Keeps button text white
+	--color-text-hover: #737b8c; // For interactive elements
+
+	// Shadows (Darker, harder shadows for dark mode depth)
+	--shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.4);
+	--shadow-md: 0 12px 32px rgba(0, 0, 0, 0.5);
+	// The neon glow looks amazing in dark mode, so we increase the opacity slightly
+	--shadow-primary-glow: 0 4px 12px rgba(255, 90, 54, 0.35);
+	--shadow-primary-glow-active: 0 4px 4px rgba(255, 90, 54, 0.35);
+}
+
+// ==========================================
+// SCSS HELPERS & GRADIENTS
+// ==========================================
+// We use standard SCSS variables here for things that don't need to change dynamically,
+// or for complex values like gradients that reference the CSS variables.
+
+$gradient-primary: linear-gradient(
+	135deg,
+	var(--color-primary-light) 0%,
+	var(--color-primary) 100%
+);
+$gradient-hero-shape: linear-gradient(to bottom right, #ffb75e, #ff512f);
+$cubic-bezier-ease-out: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+$transition-default: all 350ms $cubic-bezier-ease-out;
+$transition-slow: all 550ms $cubic-bezier-ease-out;
+$transition-medium: all 250ms $cubic-bezier-ease-out;
+$transition-fast: all 150ms $cubic-bezier-ease-out;
+
+$border-radius-default: 12px;
+.ripple {
+	position: absolute;
+	border-radius: 50%;
+	background: rgba(255, 255, 255, 0.5);
+	transform: scale(0);
+	animation: ripple-animation 600ms linear;
+	pointer-events: none;
+}

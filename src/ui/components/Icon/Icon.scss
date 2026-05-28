@@ -1,0 +1,232 @@
+@use './../../../styles/variables' as *;
+.icon {
+	display: flex;
+	mask-size: 100%;
+	mask-repeat: no-repeat;
+	background-color: var(--color-bg-contrast);
+	&--small {
+		width: 17.5px;
+		height: 17.5px;
+	}
+	&--medium {
+		width: 32px;
+		height: 32px;
+	}
+	&--large {
+		width: 40px;
+		height: 40px;
+	}
+}
+
+.icon {
+	&--paper-plane {
+		mask-image: url('../../../assets/svg/paper-plane.svg');
+	}
+	&--marker {
+		mask-image: url('../../../assets/svg/marker.svg');
+	}
+	&--sack-dollar {
+		mask-image: url('../../../assets/svg/sack-dollar.svg');
+	}
+	&--badge {
+		mask-image: url('../../../assets/svg/badge.svg');
+	}
+	&--lock {
+		mask-image: url('../../../assets/svg/lock.svg');
+	}
+	&--users {
+		mask-image: url('../../../assets/svg/users.svg');
+	}
+	&--comment {
+		mask-image: url('../../../assets/svg/comment.svg');
+	}
+	&--sparkles {
+		mask-image: url('../../../assets/svg/sparkles.svg');
+	}
+	&--mouse-pointer-click {
+		mask-image: url('../../../assets/svg/mouse-pointer-click.svg');
+	}
+	&--globe {
+		mask-image: url('../../../assets/svg/globe.svg');
+	}
+	&--eye {
+		mask-image: url('../../../assets/svg/eye.svg');
+	}
+	&--eye-crossed {
+		mask-image: url('../../../assets/svg/eye-crossed.svg');
+	}
+	&--ban {
+		mask-image: url('../../../assets/svg/ban.svg');
+	}
+	&--emergency {
+		mask-image: url('../../../assets/svg/emergency.svg');
+	}
+	&--check {
+		mask-image: url('../../../assets/svg/check.svg');
+	}
+	&--warning {
+		mask-image: url('../../../assets/svg/warning.svg');
+	}
+	&--info {
+		mask-image: url('../../../assets/svg/info.svg');
+	}
+	&--cross {
+		mask-image: url('../../../assets/svg/cross.svg');
+	}
+	&--pipe {
+		mask-image: url('../../../assets/svg/pipe.svg');
+	}
+	&--caret-up {
+		mask-image: url('../../../assets/svg/caret-up.svg');
+	}
+	&--caret-left {
+		mask-image: url('../../../assets/svg/caret-left.svg');
+	}
+	&--caret-right {
+		mask-image: url('../../../assets/svg/caret-right.svg');
+	}
+	&--caret-down {
+		mask-image: url('../../../assets/svg/caret-down.svg');
+	}
+	&--sun {
+		mask-image: url('../../../assets/svg/sun.svg');
+	}
+	&--moon {
+		mask-image: url('../../../assets/svg/moon.svg');
+	}
+	&--headset {
+		mask-image: url('../../../assets/svg/headset.svg');
+	}
+	&--shopping-cart {
+		mask-image: url('../../../assets/svg/shopping-cart.svg');
+	}
+	&--shopping-cart-added {
+		mask-image: url('../../../assets/svg/shopping-cart-added.svg');
+	}
+	&--user {
+		mask-image: url('../../../assets/svg/user.svg');
+	}
+	&--search {
+		mask-image: url('../../../assets/svg/search.svg');
+	}
+	&--settings {
+		mask-image: url('../../../assets/svg/settings.svg');
+	}
+	&--order-history {
+		mask-image: url('../../../assets/svg/order-history.svg');
+	}
+	&--file-user {
+		mask-image: url('../../../assets/svg/file-user.svg');
+	}
+	&--email {
+		mask-image: url('../../../assets/svg/envelope.svg');
+	}
+	&--email-open {
+		mask-image: url('../../../assets/svg/envelope-open.svg');
+	}
+	&--bell {
+		mask-image: url('../../../assets/svg/bell.svg');
+	}
+	&--trash {
+		mask-image: url('../../../assets/svg/trash.svg');
+	}
+	&--phone {
+		mask-image: url('../../../assets/svg/phone.svg');
+	}
+	&--x {
+		mask-image: url('../../../assets/svg/x.svg');
+	}
+	&--facebook {
+		mask-image: url('../../../assets/svg/facebook.svg');
+	}
+	&--instagram {
+		mask-image: url('../../../assets/svg/instagram.svg');
+	}
+	&--building {
+		mask-image: url('../../../assets/svg/building.svg');
+	}
+	&--home {
+		mask-image: url('../../../assets/svg/home.svg');
+	}
+	&--angle-right {
+		mask-image: url('../../../assets/svg/angle-right.svg');
+	}
+	&--angle-left {
+		mask-image: url('../../../assets/svg/angle-left.svg');
+	}
+	&--angle-up {
+		mask-image: url('../../../assets/svg/angle-up.svg');
+	}
+	&--angle-down {
+		mask-image: url('../../../assets/svg/angle-down.svg');
+	}
+	&--arrow-right {
+		mask-image: url('../../../assets/svg/arrow-right.svg');
+	}
+	&--arrow-left {
+		mask-image: url('../../../assets/svg/arrow-left.svg');
+	}
+	&--arrow-up {
+		mask-image: url('../../../assets/svg/arrow-up.svg');
+	}
+	&--arrow-down {
+		mask-image: url('../../../assets/svg/arrow-down.svg');
+	}
+	&--grid {
+		mask-image: url('../../../assets/svg/grid.svg');
+	}
+	&--list {
+		mask-image: url('../../../assets/svg/list.svg');
+	}
+	&--shield-check {
+		mask-image: url('../../../assets/svg/shield-check.svg');
+	}
+	&--hand-holding-usd {
+		mask-image: url('../../../assets/svg/hand-holding-usd.svg');
+	}
+	&--diamond {
+		mask-image: url('../../../assets/svg/diamond.svg');
+	}
+	&--user-headset {
+		mask-image: url('../../../assets/svg/user-headset.svg');
+	}
+	&--reward {
+		mask-image: url('../../../assets/svg/reward.svg');
+	}
+	&--buyer-request {
+		mask-image: url('../../../assets/svg/buyer-request.svg');
+	}
+	&--user-info {
+		mask-image: url('../../../assets/svg/user-info.svg');
+	}
+	&--dashboard {
+		mask-image: url('../../../assets/svg/dashboard.svg');
+	}
+	&--menu-dots {
+		mask-image: url('../../../assets/svg/menu-dots.svg');
+	}
+	&--box-open {
+		mask-image: url('../../../assets/svg/box-open.svg');
+	}
+	&--map-marker {
+		mask-image: url('../../../assets/svg/map-marker.svg');
+	}
+	&--edit {
+		mask-image: url('../../../assets/svg/edit.svg');
+	}
+	&--cancel {
+		mask-image: url('../../../assets/svg/cancel.svg');
+	}
+	&--detail {
+		mask-image: url('../../../assets/svg/detail.svg');
+	}
+	&--sign-out {
+		mask-image: url('../../../assets/svg/sign-out.svg');
+	}
+	&--archive {
+		mask-image: url('../../../assets/svg/archive.svg');
+	}
+	&--plus {
+		mask-image: url('../../../assets/svg/plus.svg');
+	}
+}
