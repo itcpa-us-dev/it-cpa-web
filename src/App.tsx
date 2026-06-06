@@ -5,6 +5,8 @@ import Home from './pages/Home';
 import { useEffect } from 'react';
 import { setHeadbarState } from './store/slice/displaySlice';
 import { useAppDispatch } from './store';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import TermsOfService from './pages/TermsOfService';
 
 const router = createBrowserRouter([
 	{
@@ -16,6 +18,14 @@ const router = createBrowserRouter([
 			},
 		],
 	},
+	{
+		path: '/privacy-policy',
+		element: <PrivacyPolicy />,
+	},
+	{
+		path: '/terms-of-service',
+		element: <TermsOfService />,
+	}
 ]);
 
 function App() {

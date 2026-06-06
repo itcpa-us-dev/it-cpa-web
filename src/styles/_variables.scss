@@ -6,7 +6,7 @@
 	@import url('https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap');
 	@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 	@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
-
+	@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 	// ==========================================
 	// Font
 	// ==========================================
@@ -21,6 +21,10 @@
 	--font-mono: 'JetBrains Mono', monospace;
 	--font-heading-mono: 'JetBrains Mono', monospace;
 	--font-body-mono: 'JetBrains Mono', monospace;
+
+	--font-cormorant: 'Cormorant Garamond', serif;
+	--font-heading-cormorant: 'Cormorant Garamond', serif;
+	--font-body-cormorant: 'Cormorant Garamond', serif;
 
 	// --- BRAND COLORS (Consistent across themes) ---
 	--color-primary: #ff5a36;

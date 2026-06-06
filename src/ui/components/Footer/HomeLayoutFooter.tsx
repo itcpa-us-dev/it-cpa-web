@@ -53,6 +53,12 @@ const HomeLayoutFooter = () => {
 									<a href={navItem.href}>{navItem.label}</a>
 								</li>
 							))}
+							<li key={`footer-nav-${footerData.navigation.length}`} style={{ animationDelay: `${footerData.navigation.length * 100}ms` }}>
+								<a href="/privacy-policy">{language === 'vn' ? 'Chính sách bảo mật' : 'Privacy Policy'}</a>
+							</li>
+							<li key={`footer-nav-${footerData.navigation.length + 1}`} style={{ animationDelay: `${(footerData.navigation.length + 1) * 100}ms` }}>
+								<a href="/terms-of-service">{language === 'vn' ? 'Điều khoản dịch vụ' : 'Terms of Service'}</a>
+							</li>
 						</ul>
 					</div>
 					<div className="home-layout__footer__content__group__principals">
