@@ -105,6 +105,10 @@ $breakpoint-5xl: 1920px; // Ultra large devices (e.g., 4K monitors)
 		@media (max-width: #{($breakpoint-4xl - 1px)}) {
 			@content;
 		}
+	} @else if $size == '5xl' {
+		@media (max-width: #{($breakpoint-5xl - 1px)}) {
+			@content;
+		}
 	} @else {
 		// Warn the developer if an invalid breakpoint name is used
 		@warn "Invalid breakpoint '#{$size}'. Please use 'xs', 'sm', 'md', 'lg', 'xl', '2xl', '3xl', or '4xl'.";

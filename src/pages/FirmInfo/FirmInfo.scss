@@ -1,9 +1,9 @@
 @use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
 .firm-info {
-	display: flex;
-	flex-direction: column;
-	position: relative;
-	height: 100%;
+	min-height: 100vh;
+	overflow-x: hidden;
 	&__hero {
 		display: flex;
 		flex-direction: column;
@@ -264,10 +264,155 @@
 				justify-content: center;
 				align-items: center;
 				color: var(--color-bg-contrast);
-                margin-right: 10px;
+				margin-right: 10px;
 			}
 			&__item {
 				display: flex;
+			}
+		}
+	}
+
+	@include respond-down-to('5xl') {
+		&__hero {
+			h1 {
+				font-size: 60px;
+			}
+			&__switch {
+				right: 70px;
+			}
+		}
+	}
+
+	@include respond-down-to('3xl') {
+		&__hero {
+			padding: 50px 100px;
+		}
+		&__content {
+			padding: 50px 50px;
+			&__navigation {
+				display: none;
+			}
+			&__main {
+				&__item {
+					&__title {
+						& h1 {
+							font-size: 30px;
+						}
+						& h2 {
+							font-size: 20px;
+						}
+					}
+					&__subtitle {
+						margin-left: 0;
+					}
+					&__paragraph {
+						margin-left: 0;
+					}
+					&__list {
+						margin-left: 20px;
+					}
+					&__additions {
+						margin-left: 0;
+					}
+					&__back-to-top {
+						margin-left: 0;
+					}
+				}
+			}
+		}
+	}
+
+	@include respond-to('2xl') {
+		&__hero {
+			padding: 30px 50px;
+			h1 {
+				font-size: 50px;
+			}
+			&__switch {
+				right: 50px;
+			}
+		}
+		&__content {
+			padding: 30px 50px;
+			&__main {
+				&__item {
+					&__title {
+						& h1 {
+							font-size: 30px;
+						}
+						& h2 {
+							font-size: 20px;
+						}
+					}
+					&__subtitle {
+						margin-left: 0;
+					}
+					&__paragraph {
+						margin-left: 0;
+					}
+					&__list {
+						margin-left: 20px;
+					}
+					&__additions {
+						margin-left: 0;
+					}
+					&__back-to-top {
+						margin-left: 0;
+					}
+				}
+			}
+		}
+	}
+
+	@include respond-down-to('sm') {
+		&__hero {
+			padding: 30px 20px;
+			h1 {
+				font-size: 40px;
+			}
+			p {
+				margin: 0;
+			}
+			&__switch {
+				position: static;
+				margin-top: 20px;
+				align-self: flex-end;
+			}
+		}
+		&__content {
+			padding: 30px 20px;
+			&__main {
+				&__item {
+					&__title {
+						& h1 {
+							font-size: 24px;
+						}
+						& h2 {
+							font-size: 16px;
+						}
+					}
+				}
+			}
+		}
+		&__footer {
+			height: auto;
+			padding: 20px;
+			justify-content: center;
+			align-items: center;
+			text-align: center;
+			&__contact {
+				flex-direction: column;
+				gap: 20px;
+				border-bottom: none;
+			}
+		}
+		&__back-button {
+			width: 50px;
+			left: 40px;
+			bottom: 50px;
+			transform: translateX(-50%);
+			& span {
+				display: none;
 			}
 		}
 	}
