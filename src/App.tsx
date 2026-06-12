@@ -7,6 +7,7 @@ import { setHeadbarState } from './store/slice/displaySlice';
 import { useAppDispatch } from './store';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsOfService from './pages/TermsOfService';
+import NotFound from './pages/NotFound';
 
 const router = createBrowserRouter([
 	{
@@ -25,7 +26,11 @@ const router = createBrowserRouter([
 	{
 		path: '/terms-of-service',
 		element: <TermsOfService />,
-	}
+	},
+	{
+		path: '*',
+		element: <NotFound />,
+	},
 ]);
 
 function App() {
