@@ -14,8 +14,8 @@ const NotFound = () => {
 			</p>
 			<button
 				className="not-found__button"
-				onClick={() => window.history.back()}>
-				Return to Previous Page
+				onClick={() => window.location.href = '/'}>
+				Return to Main Ledger
 			</button>
 			<div className="not-found__header">
 				<span className="not-found__header-coordinates">
