@@ -277,6 +277,12 @@ const pageData = {
 						amount: 500,
 						unit: 'khai báo thuế',
 					},
+					includes: [
+						'1 tờ khai thuế cá nhân (1040)',
+						'Nhiều nguồn thu nhập (W-2, 1099, v.v.)',
+						'Khấu trừ chi tiết',
+						'Mẫu bổ sung',
+					],
 					description:
 						'Dịch vụ chuẩn bị thuế cá nhân toàn diện cho các tình huống thuế phức tạp, bao gồm nhiều nguồn thu nhập, đầu tư và khấu trừ rộng rãi.',
 				},

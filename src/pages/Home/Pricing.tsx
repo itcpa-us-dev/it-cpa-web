@@ -5,6 +5,7 @@ import { setCurrentEntity } from '../../store/slice/displaySlice';
 import Card from '../../ui/components/Card';
 import Icon from '../../ui/components/Icon';
 import { useInView } from 'react-intersection-observer';
+import { scrollToWithBezier } from '../../utils/Scroll';
 
 const Pricing = () => {
 	const [isExiting, setisExiting] = useState(false);
@@ -33,6 +34,17 @@ const Pricing = () => {
 		} else {
 			dispatch(setCurrentEntity(entity));
 		}
+	};
+
+	const scrollTo = (href: string) => {
+		const el = document.querySelector(href);
+		if (el)
+			scrollToWithBezier(
+				window,
+				el ? el.getBoundingClientRect().top + window.scrollY : 0,
+				500,
+				[1, -0.078, 0.419, -0.21],
+			);
 	};
 
 	return (
@@ -88,7 +100,7 @@ const Pricing = () => {
 							{price.popular && (
 								<div className="pricing__cards__card__popular-label">
 									<Icon name="sparkles" size="small" />
-									<p>Most Popular</p>
+									<p>{language === 'vn' ? 'Phổ biến nhất' : 'Most Popular'}</p>
 								</div>
 							)}
 							<div className="pricing__cards__card__header">
@@ -109,14 +121,18 @@ const Pricing = () => {
 								`}</p>
 							</div>
 							<div className="pricing__cards__card__cta">
-								<button>
-									<span>Get Started</span>
+								<button onClick={() => scrollTo('#contact')}>
+									<span>{language === 'vn' ? 'Bắt đầu' : 'Get Started'}</span>
 									<Icon name="arrow-right" size="small" />
 								</button>
 							</div>
 							<br />
 							<div className="pricing__cards__card__includes">
-								<h4>WHAT'S INCLUDED:</h4>
+								<h4>
+									{language === 'vn'
+										? 'NHỮNG ĐIỀU ĐƯỢC BAO GỒM:'
+										: "WHAT'S INCLUDED:"}
+								</h4>
 							</div>
 							<ul className="pricing__cards__card__includes__list">
 								{price.includes?.map((item, index) => (
@@ -131,7 +147,7 @@ const Pricing = () => {
 			</div>
 			<div className="pricing__additional">
 				<h5>{data.pricing.additional_info.question}</h5>
-				<button>
+				<button onClick={() => scrollTo('#contact')}>
 					<Icon name="comment" size="small" />
 					<span>{data.pricing.additional_info.cta}</span>
 				</button>
