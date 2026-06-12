@@ -227,7 +227,7 @@ const Contact = () => {
 							</div>
 						</div>
 						<button className="contact__form__form__btn" type="submit">
-							<p>Send Message</p>
+							<p>{language === 'vn' ? 'Gửi tin nhắn' : 'Send Message'}</p>
 							<Icon name="paper-plane" size="small" />
 						</button>
 					</form>

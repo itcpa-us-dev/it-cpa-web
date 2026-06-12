@@ -1,14 +1,13 @@
 /**
- * Simple Cubic Bezier Easing Helper
- * Formula based on (1-t)^3*P0 + 3(1-t)^2*t*P1 + 3(1-t)*t^2*P2 + t^3*P3
+ * Cubic Bezier Easing Helper
  * For easing, P0 is (0,0) and P3 is (1,1).
  */
 const cubicBezier = (
-	t: number,
-	p1x: number,
-	p1y: number,
-	p2x: number,
-	p2y: number,
+	progress: number,
+	p1x: number = 0,
+	p1y: number = 0,
+	p2x: number = 1,
+	p2y: number = 1,
 ): number => {
 	const cx = 3 * p1x;
 	const bx = 3 * (p2x - p1x) - cx;
@@ -20,20 +19,57 @@ const cubicBezier = (
 
 	const sampleCurveX = (t: number) => ((ax * t + bx) * t + cx) * t;
 	const sampleCurveY = (t: number) => ((ay * t + by) * t + cy) * t;
+	const sampleCurveDerivativeX = (t: number) =>
+		(3 * ax * t + 2 * bx) * t + cx;
 
-	// Use Newton's method to solve for t given an x (time progress)
-	// For simplicity in a basic scroll, we can approximate with direct progress:
-	return sampleCurveY(t);
+	const solveCurveX = (x: number): number => {
+		let t = x;
+
+		// Newton-Raphson iteration
+		for (let i = 0; i < 8; i++) {
+			const xEstimate = sampleCurveX(t) - x;
+			const derivative = sampleCurveDerivativeX(t);
+
+			if (Math.abs(xEstimate) < 1e-6) return t;
+			if (Math.abs(derivative) < 1e-6) break;
+
+			t -= xEstimate / derivative;
+		}
+
+		// Fallback to bisection
+		let t0 = 0;
+		let t1 = 1;
+		t = x;
+
+		while (t0 < t1) {
+			const xEstimate = sampleCurveX(t);
+
+			if (Math.abs(xEstimate - x) < 1e-6) return t;
+
+			if (x > xEstimate) {
+				t0 = t;
+			} else {
+				t1 = t;
+			}
+
+			t = (t0 + t1) / 2;
+		}
+
+		return t;
+	};
+
+	return sampleCurveY(solveCurveX(progress));
 };
 
 export const scrollToWithBezier = (
 	element: HTMLElement | Window,
 	targetY: number,
 	duration: number = 500,
-	points: [number, number, number, number] = [1, -0.078, 0.419, 1.494], // "Custom Ease"
+	points: [number, number, number, number] = [1, -0.078, 0.419, 1.494],
 ) => {
 	const startY =
-		'scrollY' in element ? element.scrollY : (element as HTMLElement).scrollTop;
+		'scrollY' in element ? element.scrollY : element.scrollTop;
+
 	const distance = targetY - startY;
 	const startTime = performance.now();
 
@@ -41,7 +77,6 @@ export const scrollToWithBezier = (
 		const elapsed = currentTime - startTime;
 		const progress = Math.min(elapsed / duration, 1);
 
-		// Calculate eased progress
 		const easedProgress = cubicBezier(progress, ...points);
 		const nextY = startY + distance * easedProgress;
 
