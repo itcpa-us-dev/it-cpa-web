@@ -61,7 +61,7 @@
 		align-items: flex-start;
 		justify-content: center;
 		position: relative;
-		padding: 50px 400px;
+		padding: 50px 200px;
 
 		&__wheel {
 			display: flex;
@@ -403,7 +403,7 @@
 
 	@include respond-down-to('2xl') {
 		& .services__details {
-			padding: 50px 100px;
+			padding: 50px 0;
 			&__description {
 				margin: 0 20px;
 			}
@@ -461,8 +461,8 @@
 			width: 100%;
 			height: auto;
 			padding: 50px 30px;
-			& .services__details__description__container--service{
-				& .services__details__description__image{
+			& .services__details__description__container--service {
+				& .services__details__description__image {
 					margin: 10px 0;
 				}
 			}

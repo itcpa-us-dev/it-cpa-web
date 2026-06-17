@@ -34,6 +34,10 @@ const Navbar = () => {
 	const language = useAppSelector((state) => state.theme.language);
 	const data = language === 'vn' ? pageData.vn : pageData.en;
 
+	const gotoPortal = () => {
+		window.open('https://itcpa-us.taxdome.com', '_blank');
+	};
+
 	return (
 		<nav className={classes}>
 			<div className="navbar__logo prevent-select">
@@ -84,7 +88,7 @@ const Navbar = () => {
 				<ThemeSwitch id="select-theme" />
 				<LanguageSwitch id="select-language" />
 				<div className="navbar__actions__button">
-					<button id="login-client-portal">
+					<button id="login-client-portal" onClick={gotoPortal}>
 						{language === 'en' ? 'Login' : 'Đăng Nhập'}
 					</button>
 				</div>
