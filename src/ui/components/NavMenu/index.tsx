@@ -26,6 +26,11 @@ const NavMenu = () => {
 				[1, -0.078, 0.419, -0.21],
 			);
 	};
+
+	const gotoPortal = () => {
+		window.open('https://itcpa-us.taxdome.com', '_blank');
+	};
+
 	return (
 		<div
 			className={`nav-menu ${headbarOpen ? 'nav-menu--shown' : ''} ${`nav-menu--${theme}`}`}>
@@ -74,7 +79,9 @@ const NavMenu = () => {
 					<div className="nav-menu__list__item__actions">
 						<ThemeSwitch className="nav-menu__list__item__actions__item nav-menu__list__item__actions__item--theme-switch" />
 						<LanguageSwitch className="nav-menu__list__item__actions__item nav-menu__list__item__actions__item--language-switch" />
-						<button className="nav-menu__list__item__actions__item nav-menu__list__item__actions__item--login">
+						<button
+							className="nav-menu__list__item__actions__item nav-menu__list__item__actions__item--login"
+							onClick={gotoPortal}>
 							{language === 'vn' ? 'Đăng Nhập' : 'Login'}
 						</button>
 					</div>
