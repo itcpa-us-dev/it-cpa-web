@@ -2,41 +2,31 @@
 @use '/src/styles/mixins' as *;
 
 footer.home-layout__footer {
-	display: flex;
-	flex-direction: column;
-	background: var(--color-bg-contrast);
 	& .home-layout__footer {
 		&__content {
-			display: flex;
-			flex-direction: row;
 			padding: 100px 400px;
 			&__group {
-				display: flex;
-				flex-direction: column;
 				gap: 20px;
 				&__logo {
-					display: flex;
-					flex-direction: column;
 					gap: 10px;
 					margin-right: 300px;
 					&__est {
 						font-family: var(--font-mono);
 						font-size: 14px;
-						color: var(--color-primary);
 						opacity: 0;
 					}
 					&__company-name {
-						font-family: var(--font-playfair);
 						font-size: 30px;
 						font-weight: 700;
-						color: var(--color-text-inverse);
+						margin: 10px 0;
 						opacity: 0;
 					}
 					&__description {
+						letter-spacing: 1px;
 						font-size: 14px;
 						font-weight: 500;
-						color: var(--color-text-muted);
 						line-height: 20px;
+						margin: 10px 0;
 						width: 300px;
 						opacity: 0;
 					}
@@ -44,44 +34,37 @@ footer.home-layout__footer {
 				&__services,
 				&__navigation,
 				&__principals {
-					display: flex;
-					flex-direction: column;
-					gap: 10px;
-					min-width: 180px;
 					cursor: pointer;
-					& h5 {
+					& h4 {
 						font-family: var(--font-mono);
 						font-size: 15px;
 						font-weight: 500;
-						color: var(--color-primary);
 						margin: 0 0 20px 0;
 						opacity: 0;
 					}
 					& ul {
-						display: flex;
-						flex-direction: column;
 						gap: 10px;
 						& li {
 							text-align: left;
 							position: relative;
 							opacity: 0;
+							margin: 10px 0;
 							& a,
 							& p {
 								position: relative;
 								font-size: 14px;
-								color: var(--color-text-muted);
 								transition: $transition-medium;
 								backface-visibility: hidden;
 								padding: 0 0 0 26px;
 							}
 							&::before {
 								display: flex;
+								content: '';
 								position: absolute;
 								bottom: 50%;
-								content: '';
 								width: 18px;
 								height: 0.5px;
-								background-color: var(--color-text-muted);
+								background-color: hsl(var(--muted-foreground));
 								transition: $transition-medium;
 								transform-origin: left;
 								opacity: 0;
@@ -89,11 +72,11 @@ footer.home-layout__footer {
 							&:hover {
 								&::before {
 									transform: scaleX(1.5);
-									background-color: var(--color-primary);
+									background-color: var(--background-citron);
 								}
 								& a,
 								& p {
-									color: var(--color-text-inverse);
+									color: var(--text-alabaster);
 									padding: 0 0 0 38px;
 								}
 							}
@@ -107,12 +90,9 @@ footer.home-layout__footer {
 			}
 		}
 		&__copyright {
-			display: flex;
 			height: 60px;
 			padding: 20px 400px;
 			font-size: 12px;
-			color: var(--color-text-muted);
-			font-family: var(--font-mono);
 			position: relative;
 			&::before {
 				content: '';
@@ -123,7 +103,7 @@ footer.home-layout__footer {
 				transform: translateX(-50%);
 				width: 0%;
 				height: 1px;
-				background-color: var(--color-text-muted);
+				background-color: hsl(var(--muted-foreground));
 			}
 			& p {
 				opacity: 0;
@@ -167,7 +147,6 @@ footer.home-layout__footer {
 		@include respond-down-to('2xl') {
 			&__content {
 				padding: 80px 100px;
-				flex-direction: column;
 				justify-content: center;
 				align-items: center;
 				text-align: center;
@@ -244,7 +223,6 @@ footer.home-layout__footer {
 						}
 						&__company-name {
 							animation-delay: 200ms;
-							color: var(--color-text-muted);
 						}
 						&__description {
 							animation-delay: 400ms;
@@ -253,7 +231,7 @@ footer.home-layout__footer {
 					&__services,
 					&__navigation,
 					&__principals {
-						& h5 {
+						& h4 {
 							--translateYStart: -20px;
 							--translateYEnd: 0;
 							animation: fadeIn 600ms ease-out forwards;

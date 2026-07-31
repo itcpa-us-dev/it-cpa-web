@@ -1,35 +1,47 @@
-import TAXPREP from '../assets/images/tax-prep.png';
-import BOOKKEEPING from '../assets/images/bookkeeping.png';
-import PAYROLL from '../assets/images/payroll.png';
-import FORMATION from '../assets/images/formation.png';
-import REPRESENTATION from '../assets/images/represent-taxpayer.png';
-import ADVISORY from '../assets/images/advisory.png';
+const version = 'v2.0.0';
+
 const pageData = {
+	languages: [
+		{
+			code: 'en',
+			label: 'English',
+			en: 'English',
+			vn: 'Tiếng Anh',
+		},
+		{
+			code: 'vn',
+			label: 'Tiếng Việt',
+			vn: 'Tiếng Việt',
+			en: 'Vietnamese',
+		},
+	],
 	vn: {
 		navbar: {
 			home: 'Trang Chủ',
 			services: 'Dịch Vụ',
 			pricing: 'Bảng Giá',
 			about: 'Về Chúng Tôi',
+			insights: 'Tin Tức',
 			contact: 'Liên Hệ',
 		},
 		hero: {
-			subheadline:
-				'Được Tin Cậy Bởi Các Chủ Doanh Nghiệp Và Cá Nhân. Tập Trung Vào Thành Công Của Bạn.',
+			trusted: 'Được Tin Cậy Bởi Các Chủ Doanh Nghiệp Và Cá Nhân.',
 			title: {
-				first: 'Sổ Sách Rõ Ràng',
-				second: 'Tự Tin Khai Báo',
-				third: 'Tăng Trưởng Thông Minh',
+				title1Line1: 'Sổ Sách',
+				title1Line2: 'Rõ Ràng',
+				title2Line1: 'Tự Tin',
+				title2Line2: 'Với Thuế',
 			},
-			subtitle:
+			paragraph:
 				'IT CPA & Advisory, PLLC giúp chủ doanh nghiệp và cá nhân tuân thủ luật thuế, tiết kiệm tối đa thuế, và xây dựng nền tảng tài chính vững mạnh mà không căng thẳng.',
 			cta: 'Đặt Lịch Tư Vấn',
+			redirect: 'Khám Phá Dịch Vụ',
 			trust_badges: [
 				{
 					id: 'trust-badge-1',
 					icon: 'shield-check',
-					headline: 'Tuân Thủ IRS',
-					text: 'Luôn sẵn sàng kiểm toán',
+					headline: 'Tuân Thủ Luật Thuế IRS',
+					text: 'Luôn sẵn sàng cho việc kiểm toán',
 				},
 				{
 					id: 'trust-badge-2',
@@ -44,57 +56,61 @@ const pageData = {
 					text: 'Trên nhiều ngành nghề và lĩnh vực',
 				},
 			],
-			statistics: {
-				subheading: 'Số Liệu Bạn Có Thể Tin Cậy.',
-				heading: 'Kết Quả Nói Lên Tất Cả.',
-				description: `Chúng tôi không chỉ là kế toán. Chúng tôi là đối tác của bạn trong việc xây dựng một tương lai mạnh mẽ hơn, có lợi nhuận hơn.`,
-				stats: [
-					{
-						id: 'stat-1',
-						icon: 'users',
-						sign: '',
-						value: 99,
-						unit: '%',
-						label: 'Khách Hàng Hài Lòng',
-					},
-					{
-						id: 'stat-2',
-						icon: 'check',
-						sign: '',
-						value: 100,
-						unit: '+',
-						label: 'Dự Án Hoàn Thành',
-					},
-					{
-						id: 'stat-3',
-						icon: 'sack-dollar',
-						sign: '$',
-						value: 100,
-						unit: 'K+',
-						label: 'Tiết Kiệm Thuế Cho Khách Hàng',
-					},
-					{
-						id: 'stat-4',
-						icon: 'badge',
-						sign: '',
-						value: 7,
-						unit: '+',
-						label: 'Năm Kinh Nghiệm',
-					},
-				],
-			},
-			redirect: 'Khám Phá Dịch Vụ',
+		},
+		achievements: {
+			heading: 'Số Liệu Bạn Có Thể Tin Cậy.',
+			titleLine1: 'Kết Quả',
+			titleLine2: 'Nói Lên',
+			titleLine3: 'Tất Cả.',
+			description: `Chúng tôi không chỉ là kế toán. Chúng tôi là đối tác của bạn trong việc xây dựng một tương lai mạnh mẽ hơn, có lợi nhuận hơn.`,
+			stats: [
+				{
+					id: 'stat-1',
+					icon: 'users',
+					sign: '',
+					value: 99,
+					unit: '%',
+					label: 'Khách Hàng Hài Lòng',
+				},
+				{
+					id: 'stat-2',
+					icon: 'check',
+					sign: '',
+					value: 100,
+					unit: '+',
+					label: 'Dự Án Hoàn Thành',
+				},
+				{
+					id: 'stat-3',
+					icon: 'sack-dollar',
+					sign: '$',
+					value: 100,
+					unit: 'K+',
+					label: 'Tiết Kiệm Thuế Cho Khách Hàng',
+				},
+				{
+					id: 'stat-4',
+					icon: 'badge',
+					sign: '',
+					value: 7,
+					unit: '+',
+					label: 'Năm Kinh Nghiệm',
+				},
+			],
 		},
 		services: {
-			subHeadline: 'CHUYÊN MÔN CỦA CHÚNG TÔI',
-			title: 'Hơn Cả Việc Chuẩn Bị Thuế',
+			label: 'CHUYÊN MÔN CỦA CHÚNG TÔI',
+			title1: 'Hơn Cả',
+			title2: 'Việc',
+			title3: 'Chuẩn Bị Thuế.',
 			description:
 				'Chúng tôi điều phối tài chính cá nhân và doanh nghiệp của bạn nhằm phát hiện những khoản tiết kiệm mà người khác thường bỏ sót, đồng thời bảo vệ tài sản dài hạn của bạn.',
 			services: [
 				{
 					id: 'service-1',
-					image: FORMATION,
-					label: 'Thành Lập',
+					icon: 'building',
+					label: 'Khởi Tạo',
+					title: 'Thành Lập và Cấu Trúc Doanh Nghiệp',
 					description: [
 						'Xây dựng nền tảng vững chắc cho doanh nghiệp. Chúng tôi hỗ trợ chọn mô hình, đăng ký pháp lý và tối ưu hóa thuế—đảm bảo tính tuân thủ để bạn yên tâm tập trung tăng trưởng.',
 					],
@@ -117,8 +133,9 @@ const pageData = {
 				},
 				{
 					id: 'service-2',
-					image: BOOKKEEPING,
-					label: 'Kế Toán',
+					icon: 'book',
+					label: 'Bút Toán',
+					title: 'Bút Toán Chính Xác',
 					description: [
 						'Tài chính minh bạch. Quyết định chuẩn xác. Từ việc ghi chép giao dịch đến đối soát tài khoản, chúng tôi giữ cho sổ sách luôn hoàn hảo để bạn tập trung vào tầm nhìn chiến lược.',
 					],
@@ -128,21 +145,22 @@ const pageData = {
 						'Báo cáo tài chính',
 						'Theo dõi chi phí',
 						'Hỗ trợ chuẩn bị thuế',
-						'Lựa chọn kế toán dựa trên đám mây',
-						'Giải pháp kế toán tùy chỉnh',
+						'Lựa chọn bút toán dựa trên đám mây',
+						'Giải pháp bút toán tùy chỉnh',
 						'Đánh giá tài chính định kỳ',
 						'Dịch vụ đóng sổ cuối năm',
-						'Lựa chọn gói kế toán',
+						'Lựa chọn gói bút toán',
 					],
 					problem:
-						'Nhiều chủ doanh nghiệp nhỏ thấy kế toán tốn thời gian và khó hiểu, dẫn đến hồ sơ tài chính lộn xộn và các vấn đề tuân thủ tiềm ẩn.',
+						'Nhiều chủ doanh nghiệp nhỏ thấy bút toán tốn thời gian và khó hiểu, dẫn đến hồ sơ tài chính lộn xộn và các vấn đề tuân thủ tiềm ẩn.',
 					solution:
-						'Dịch vụ kế toán của chúng tôi cung cấp hồ sơ tài chính chính xác và tổ chức, giúp bạn có cái nhìn rõ ràng về sức khỏe tài chính của doanh nghiệp và đảm bảo tuân thủ các tiêu chuẩn kế toán.',
+						'Dịch vụ bút toán của chúng tôi cung cấp hồ sơ tài chính chính xác và tổ chức, giúp bạn có cái nhìn rõ ràng về sức khỏe tài chính của doanh nghiệp và đảm bảo tuân thủ các tiêu chuẩn kế toán và bút toán.',
 				},
 				{
 					id: 'service-3',
-					image: PAYROLL,
+					icon: 'users',
 					label: 'Bảng Lương',
+					title: 'Quản Lý Bảng Lương',
 					description: [
 						'Trả lương chính xác, đúng hạn và tuân thủ tuyệt đối. Chúng tôi xử lý mọi tính toán, trích thuế và báo cáo chính phủ để bạn tập trung dẫn dắt đội ngũ.',
 					],
@@ -164,8 +182,9 @@ const pageData = {
 				},
 				{
 					id: 'service-4',
-					image: TAXPREP,
-					label: 'Chuẩn Bị Thuế',
+					icon: 'file-tax',
+					label: 'Khai Thuế',
+					title: 'Chuẩn Bị và Khai Thuế',
 					description: [
 						'Khai thuế chuyên nghiệp, kết quả tối ưu. Từ các khoản khấu trừ phức tạp đến quy trình nộp thuế nhanh chóng, chúng tôi quản lý hồ sơ của bạn một cách chuyên nghiệp để đảm bảo lợi ích cao nhất.',
 					],
@@ -186,8 +205,9 @@ const pageData = {
 				},
 				{
 					id: 'service-5',
-					image: REPRESENTATION,
-					label: 'Đại Diện Trước IRS',
+					icon: 'user-shield',
+					label: 'Đại diện Trước IRS',
+					title: 'Đại Diện và Giải Quyết Tranh Chấp Thuế Trước IRS',
 					description: [
 						'Đừng đối mặt với IRS một mình. Đội ngũ của chúng tôi quản lý các phức tạp của các cuộc kiểm tra và đàm phán thay mặt bạn, cung cấp sự bảo vệ chuyên nghiệp mà bạn cần để giải quyết các vấn đề thuế với sự tự tin hoàn toàn.',
 					],
@@ -204,8 +224,9 @@ const pageData = {
 				},
 				{
 					id: 'service-6',
-					image: ADVISORY,
-					label: 'Tư Vấn Thuế',
+					icon: 'growth-chart-invest',
+					label: 'Tư Vấn',
+					title: 'Tư Vấn Chiến Lược Thuế',
 					description: [
 						'Định hướng chiến lược thuế thông minh. Chúng tôi cung cấp tư vấn chuyên sâu để giúp bạn tối ưu hóa tình hình thuế của mình, từ lập kế hoạch thuế đến các chiến lược tiết kiệm thuế phức tạp.',
 					],
@@ -225,17 +246,21 @@ const pageData = {
 			],
 		},
 		pricing: {
-			subheadline: 'TÀI CHÍNH RÕ RÀNG, GIẢI PHÁP LINH HOẠT',
-			title: 'Giá Cả Minh Bạch',
+			label: 'Sự Minh Bạch Đã Được Kiểm Chứng',
+			title1: 'Tài Chính',
+			title2: 'Minh Bạch,',
+			title3: 'Linh Hoạt.',
 			description:
 				'Dịch vụ chuyên nghiệp được thiết kế để phát triển cùng cá nhân và doanh nghiệp của bạn.',
-			entitiesID: ['individual', 'business'],
-			entities: ['cá nhân', 'doanh nghiệp'],
+			entities: [
+				{ id: 'individual', label: 'cá nhân' },
+				{ id: 'business', label: 'doanh nghiệp' },
+			],
 			individual_price: [
 				{
 					id: 'individual-1',
 					subheadline: 'Cơ Bản',
-					label: 'Dịch Vụ Cơ Bản',
+					label: 'Cơ Bản',
 					price: {
 						currency: '$',
 						amount: 200,
@@ -253,7 +278,7 @@ const pageData = {
 					id: 'individual-2',
 					popular: true,
 					subheadline: 'Tiêu Chuẩn',
-					label: 'Dịch Vụ Tiêu Chuẩn',
+					label: 'Tiêu Chuẩn',
 					price: {
 						currency: '$',
 						amount: 350,
@@ -271,7 +296,7 @@ const pageData = {
 				{
 					id: 'individual-3',
 					subheadline: 'Cao Cấp',
-					label: 'Dịch Vụ Cao Cấp',
+					label: 'Cao Cấp',
 					price: {
 						currency: '$',
 						amount: 500,
@@ -291,7 +316,7 @@ const pageData = {
 				{
 					id: 'business-1',
 					subheadline: 'Cơ Bản',
-					label: 'Dịch Vụ Cơ Bản',
+					label: 'Cơ Bản',
 					price: {
 						currency: '$',
 						amount: 500,
@@ -310,7 +335,7 @@ const pageData = {
 					id: 'business-2',
 					popular: true,
 					subheadline: 'Tiêu Chuẩn',
-					label: 'Dịch Vụ Tiêu Chuẩn',
+					label: 'Tiêu Chuẩn',
 					price: {
 						currency: '$',
 						amount: 1000,
@@ -329,7 +354,7 @@ const pageData = {
 				{
 					id: 'business-3',
 					subheadline: 'Cao Cấp',
-					label: 'Dịch Vụ Cao Cấp',
+					label: 'Cao Cấp',
 					price: {
 						currency: '$',
 						amount: 2000,
@@ -354,9 +379,9 @@ const pageData = {
 			},
 		},
 		about: {
-			subheadline: 'NHỮNG NGƯỜI SÁNG LẬP',
-			headlineOne: 'Kiến Trúc Sư Của',
-			headlineTwo: 'Sự Minh Bạch Trong Tài Chính',
+			label: 'NHỮNG NGƯỜI SÁNG LẬP',
+			title1: 'Kiến Trúc Sư Của',
+			title2: 'Sự Minh Bạch Trong Tài Chính',
 			ivy: {
 				name: 'Ivy Truong',
 				title: 'KIẾN TRÚC SƯ CHÍNH CỦA SỰ TĂNG TRƯỞNG',
@@ -373,29 +398,63 @@ const pageData = {
 			},
 			slogan: 'IT CPA & Advisory, PLLC — Chính Xác Trong Mọi Con Số',
 		},
-		contact: {
-			subheadline: 'LIÊN HỆ',
-			headlineOne: 'Hãy nói chuyện về',
-			headlineTwo: 'những con số',
-			headlineDescription:
-				'Sẵn sàng tối ưu hóa chiến lược thuế của bạn hoặc giải quyết một vấn đề IRS phức tạp? Chúng tôi chỉ cách một cuộc trò chuyện.',
-			contactMethods: [
+		insights: {
+			label: 'Kho Kiến Thức',
+			title1: 'Phân Tích Kỹ Thuật,',
+			title2: 'Về Khía Cạnh Thuế.',
+			description:
+				'Phân tích chuyên sâu về chiến lược thuế, tuân thủ và cấu trúc tài chính. Khẳng định uy tín nhờ chuyên môn sâu rộng.',
+			items: [
 				{
-					type: 'phone',
-					label: 'Điện Thoại',
-					value: '+1 (346) 475 - 5148',
+					id: 'tax-article-001',
+					title: 'Lựa chọn Mô hình Doanh nghiệp để Tối ưu Thuế: LLC và S-Corp',
+					category: 'Chiến lược Thuế',
+					complexity: 'trung bình',
+					readTime: '8 phút',
+					summary:
+						'Việc chọn đúng mô hình doanh nghiệp là rất quan trọng để tối ưu hóa nghĩa vụ thuế của bạn. Hướng dẫn này cung cấp một phân tích so sánh toàn diện về các cấu trúc doanh nghiệp, đặc biệt tập trung vào Công ty Trách nhiệm Hữu hạn (LLC) và S-Corporations. Chúng tôi đi sâu vào cách mỗi cấu trúc tác động đến nghĩa vụ thuế tự kinh doanh, tính linh hoạt trong hoạt động và sức khỏe tài chính tổng thể. Bằng cách hiểu những khác biệt này, chủ doanh nghiệp có thể đưa ra quyết định sáng suốt để giảm thiểu thuế.',
+					link: '/#',
 				},
 				{
-					type: 'email',
-					label: 'Email',
-					value: 'info@itcpa-us.com',
+					id: 'tax-article-002',
+					title: 'Thuế Ước tính Hàng quý: Tránh các Khoản Phạt',
+					category: 'Tuân thủ',
+					complexity: 'cơ bản',
+					readTime: '5 phút',
+					summary:
+						'Việc xử lý các khoản thuế ước tính hàng quý là điều cần thiết đối với các nhà thầu độc lập, người làm nghề tự do và chủ doanh nghiệp nhỏ. Tài liệu này giúp bạn hiểu các quy định an toàn (safe harbor) quan trọng và cung cấp các mẹo thực tế để tối ưu hóa lịch thanh toán hàng quý. Bằng cách tính toán chính xác số thuế ước tính và tuân thủ các thời hạn quan trọng, bạn có thể tránh được các khoản phạt tốn kém do nộp thiếu từ IRS. Hãy đảm bảo dòng tiền của bạn luôn ổn định.',
+					link: '/#',
 				},
 				{
-					type: 'office',
-					label: 'Văn Phòng',
-					value: 'Missouri City, Texas',
+					id: 'tax-article-003',
+					title:
+						'Các Yếu tố Kích hoạt Kiểm toán IRS: Điều Chủ Doanh nghiệp Cần Biết',
+					category: 'Phòng vệ Kiểm toán',
+					complexity: 'nâng cao',
+					readTime: '12 phút',
+					summary:
+						'Đối mặt với kiểm toán từ IRS là một viễn cảnh đáng lo ngại. Bài viết này nêu bật các hạng mục khấu trừ rủi ro cao và các dấu hiệu cảnh báo thường thu hút sự chú ý của cơ quan thuế. Chúng tôi phác thảo các yêu cầu về tài liệu chứng minh và chia sẻ các chiến lược chủ động để giúp bạn luôn sẵn sàng trước mọi đợt kiểm tra. Hãy tìm hiểu cách tổ chức hồ sơ tài chính một cách tỉ mỉ, minh chứng cho các khoản khấu trừ và bảo vệ doanh nghiệp khỏi các khoản nợ thuế bất ngờ.',
+					link: '/#',
+				},
+				{
+					id: 'tax-article-004',
+					title: 'Mối Liên hệ Thuế Đa bang Trong Kỷ nguyên Làm việc Từ xa',
+					category: 'Tư vấn',
+					complexity: 'nâng cao',
+					readTime: '10 phút',
+					summary:
+						'Sự chuyển dịch sang làm việc từ xa đã làm thay đổi hoàn toàn bối cảnh thuế cấp tiểu bang. Hướng dẫn này tập trung vào việc xử lý các nghĩa vụ thuế phức tạp khi nhân viên và nhà thầu của bạn hoạt động trên nhiều khu vực pháp lý khác nhau. Chúng tôi phân tích khái niệm mối liên hệ thuế (tax nexus), giải thích cách nhân sự từ xa có thể vô tình tạo ra các nghĩa vụ thuế thu nhập, thuế lương và thuế bán hàng mới cho công ty. Hãy trang bị kiến thức để quản lý việc tuân thủ đa bang hiệu quả.',
+					link: '/#',
 				},
 			],
+		},
+		contact: {
+			label: 'LIÊN HỆ',
+			title1: 'Hãy nói chuyện về',
+			title2: 'những con số.',
+			formLabel: 'GỬI TIN NHẮN',
+			headlineDescription:
+				'Sẵn sàng tối ưu hóa chiến lược thuế của bạn hoặc giải quyết một vấn đề IRS phức tạp? Chúng tôi chỉ cách một cuộc trò chuyện.',
 			formSubheadline: 'GỬI TIN NHẮN',
 			formHeadline: 'Chúng tôi phản hồi trong vòng 24 giờ.',
 			formDescription:
@@ -420,10 +479,15 @@ const pageData = {
 					placeholder: 'Hãy cho chúng tôi biết tình huống của bạn...',
 				},
 			],
+			formCta: {
+				label: 'Gửi Tin Nhắn',
+				type: 'submit',
+				icon: 'arrow-small-right',
+			},
 		},
 		footer: {
 			titles: ['DỊCH VỤ', 'ĐIỀU HƯỚNG', 'NGƯỜI SÁNG LẬP'],
-			logoDescription:
+			tagline:
 				'Dịch vụ thuế và tư vấn ưu tiên sự chính xác dành cho cá nhân và doanh nghiệp tìm kiếm sự rõ ràng, bảo vệ và tăng trưởng.',
 
 			services: [
@@ -435,11 +499,12 @@ const pageData = {
 				'Tư Vấn Thuế',
 			],
 			navigation: [
+				{ label: 'Trang Chủ', href: '/' },
 				{ label: 'Dịch Vụ', href: '#services' },
 				{ label: 'Bảng Giá', href: '#pricing' },
 				{ label: 'Về Chúng Tôi', href: '#about' },
+				{ label: 'Tin Tức', href: '#insights' },
 				{ label: 'Liên Hệ', href: '#contact' },
-				{ label: 'Trang Chủ', href: '/' },
 			],
 			principals: [
 				{
@@ -711,11 +776,6 @@ Nếu có bất kỳ điểm không nhất quán nào giữa phiên bản tiến
 					additions: [],
 				},
 			],
-			contact: {
-				email: `info@itcpa-us.com`,
-				phone: `+1 (346) 475 - 5148`,
-				website: `itcpa-us.com`,
-			},
 		},
 		termAndConditions: {
 			contentList: [
@@ -1146,10 +1206,52 @@ Nếu có bất kỳ điểm không nhất quán nào giữa phiên bản tiến
 				},
 			],
 		},
-		firmContact: {
-			email: `info@itcpa-us.com`,
-			phone: `+1 (346) 475 - 5148`,
-			website: `itcpa-us.com`,
+		firmContact: [
+			{
+				id: 'firm-contact-email',
+				type: 'email',
+				label: 'email',
+				value: `info@itcpa-us.com`,
+				icon: 'email',
+			},
+			{
+				id: 'firm-contact-website',
+				type: 'website',
+				label: 'website',
+				value: `https://www.itcpa-us.com`,
+				icon: 'globe',
+			},
+			{
+				id: 'firm-contact-phone',
+				type: 'phone',
+				label: 'phone',
+				value: `+1 (346) 475 - 5148`,
+				icon: 'phone',
+			},
+		],
+		stickyCta: {
+			bookConsultation: 'Đặt Lịch Tư Vấn',
+		},
+		notFound: {
+			title1: '4',
+			title2: '0',
+			title3: '4',
+			error: 'Error 404',
+			tagline1: 'Trang Này',
+			tagline2: 'Không Tồn Tại.',
+			requestedUrl: 'Đường Dẫn Bạn Yêu Cầu:',
+			description:
+				'Xin lỗi, trang bạn đang tìm kiếm không tồn tại hoặc đã bị xóa. Vui lòng kiểm tra lại URL hoặc quay lại trang chủ.',
+			ctaBack: {
+				label: 'Quay Lại Trang Chủ',
+				href: '/',
+				icon: 'arrow-small-left',
+			},
+			ctaExplore: {
+				label: 'Khám Phá Dịch Vụ',
+				href: '/#services',
+				icon: 'arrow-small-right',
+			},
 		},
 	},
 	en: {
@@ -1157,20 +1259,22 @@ Nếu có bất kỳ điểm không nhất quán nào giữa phiên bản tiến
 			home: 'Home',
 			services: 'Services',
 			pricing: 'Pricing',
+			insights: 'Insights',
 			about: 'About Us',
 			contact: 'Contact',
 		},
 		hero: {
-			subheadline:
-				'Trusted by Business Owners and Individuals. Forcused on Your Success.',
+			trusted: 'Trusted by Business Owners and Individuals.',
 			title: {
-				first: 'Clean Books',
-				second: 'Confident Taxes',
-				third: 'Smarter Growth',
+				title1Line1: 'Clean',
+				title1Line2: 'Books',
+				title2Line1: 'Confident',
+				title2Line2: 'Taxes',
 			},
-			subtitle:
+			paragraph:
 				'IT CPA & Advisory, PLLC helps business owners and individuals stay compliant, maximize tax savings, and build a stronger financial foundation without the stress.',
 			cta: 'Book a Consultation',
+			redirect: 'Explore Our Services',
 			trust_badges: [
 				{
 					id: 'trust-badge-1',
@@ -1191,57 +1295,61 @@ Nếu có bất kỳ điểm không nhất quán nào giữa phiên bản tiến
 					text: 'Across industries and professions',
 				},
 			],
-			statistics: {
-				subheading: 'Numbers You Can Trust.',
-				heading: 'Results That Speak for Themselves.',
-				description: `We're more than accountants. We're your partners in building a stronger, more profitable future.`,
-				stats: [
-					{
-						id: 'stat-1',
-						icon: 'users',
-						sign: '',
-						value: 99,
-						unit: '%',
-						label: 'Satisfied Clients',
-					},
-					{
-						id: 'stat-2',
-						icon: 'check',
-						sign: '',
-						value: 100,
-						unit: '+',
-						label: 'Projects Completed',
-					},
-					{
-						id: 'stat-3',
-						icon: 'sack-dollar',
-						sign: '$',
-						value: 100,
-						unit: 'K+',
-						label: 'Tax Savings for Clients',
-					},
-					{
-						id: 'stat-4',
-						icon: 'badge',
-						sign: '',
-						value: 7,
-						unit: '+',
-						label: 'Years of Experience',
-					},
-				],
-			},
-			redirect: 'Explore Our Services',
+		},
+		achievements: {
+			heading: 'Numbers You Can Trust.',
+			titleLine1: 'Results That',
+			titleLine2: 'Speak for',
+			titleLine3: 'Themselves.',
+			description: `We're more than accountants. We're your partners in building a stronger, more profitable future.`,
+			stats: [
+				{
+					id: 'stat-1',
+					icon: 'users',
+					sign: '',
+					value: 99,
+					unit: '%',
+					label: 'Satisfied Clients',
+				},
+				{
+					id: 'stat-2',
+					icon: 'check',
+					sign: '',
+					value: 100,
+					unit: '+',
+					label: 'Projects Completed',
+				},
+				{
+					id: 'stat-3',
+					icon: 'sack-dollar',
+					sign: '$',
+					value: 100,
+					unit: 'K+',
+					label: 'Tax Savings for Clients',
+				},
+				{
+					id: 'stat-4',
+					icon: 'badge',
+					sign: '',
+					value: 7,
+					unit: '+',
+					label: 'Years of Experience',
+				},
+			],
 		},
 		services: {
-			subHeadline: 'OUR EXPERTISE',
-			title: 'More Than Just Tax Prep',
+			label: 'OUR EXPERTISE',
+			title1: 'More Than',
+			title2: 'Just Tax',
+			title3: 'Prep.',
 			description:
 				'We align your personal and business finances to find the savings others miss and secure your long-term assets.',
 			services: [
 				{
 					id: 'service-1',
-					image: FORMATION,
+					icon: 'building',
 					label: 'Formation',
+					title: 'Entity Formation & Structuring',
 					description: [
 						'Build your business on a solid foundation. We handle entity selection, legal filings, and tax optimization—ensuring you stay compliant while you focus on growth.',
 					],
@@ -1264,8 +1372,9 @@ Nếu có bất kỳ điểm không nhất quán nào giữa phiên bản tiến
 				},
 				{
 					id: 'service-2',
-					image: BOOKKEEPING,
+					icon: 'book',
 					label: 'Bookkeeping',
+					title: 'Precision Bookkeeping',
 					description: [
 						'Clear financials. Better decisions. From recording transactions to full account reconciliation, we keep your books immaculate so you can stay focused on the big picture.',
 					],
@@ -1288,8 +1397,9 @@ Nếu có bất kỳ điểm không nhất quán nào giữa phiên bản tiến
 				},
 				{
 					id: 'service-3',
-					image: PAYROLL,
+					icon: 'users',
 					label: 'Payroll',
+					title: 'Payroll Administration',
 					description: [
 						'Accurate, on-time payroll with total compliance. We handle calculations, tax withholdings, and government reporting so you can focus on leading your team.',
 					],
@@ -1311,8 +1421,9 @@ Nếu có bất kỳ điểm không nhất quán nào giữa phiên bản tiến
 				},
 				{
 					id: 'service-4',
-					image: TAXPREP,
-					label: 'Preparation',
+					icon: 'file-tax',
+					label: 'Tax Preparation',
+					title: 'Tax Preparation & Filing',
 					description: [
 						'Our tax preparation services ensure that your tax returns are accurate, compliant, and optimized for maximum savings.',
 					],
@@ -1333,8 +1444,9 @@ Nếu có bất kỳ điểm không nhất quán nào giữa phiên bản tiến
 				},
 				{
 					id: 'service-5',
-					image: REPRESENTATION,
-					label: 'Representation',
+					icon: 'user-shield',
+					label: 'IRS Representation',
+					title: 'IRS Representation & Resolution',
 					description: [
 						'Don’t face the IRS alone. Our team manages the complexities of audits and negotiations on your behalf, providing the expert defense you need to resolve tax issues with total confidence.',
 					],
@@ -1356,8 +1468,9 @@ Nếu có bất kỳ điểm không nhất quán nào giữa phiên bản tiến
 				},
 				{
 					id: 'service-6',
-					image: ADVISORY,
-					label: 'Advisory',
+					icon: 'growth-chart-invest',
+					label: 'Tax Advisory',
+					title: 'Strategic Tax Advisory',
 					description: [
 						'Smart tax strategy guidance. We provide in-depth advice to help you optimize your tax situation, from tax planning to complex tax-saving strategies.',
 					],
@@ -1377,17 +1490,27 @@ Nếu có bất kỳ điểm không nhất quán nào giữa phiên bản tiến
 			],
 		},
 		pricing: {
-			subheadline: 'FINANCIAL CLARITY, SCALED SOLUTIONS',
-			title: 'Proven Transparency',
+			label: 'Proven Transparency',
+			title1: 'Financial',
+			title2: 'Clarity,',
+			title3: 'Scaled.',
 			description:
 				'Professional services designed to evolve alongside your personal and business needs.',
-			entitiesID: ['individual', 'business'],
-			entities: ['individual', 'business'],
+			entities: [
+				{
+					id: 'individual',
+					label: 'Individual',
+				},
+				{
+					id: 'business',
+					label: 'Business',
+				},
+			],
 			individual_price: [
 				{
 					id: 'individual-1',
 					subheadline: 'Basic',
-					label: 'Basic Service',
+					label: 'Basic',
 					price: {
 						currency: '$',
 						amount: 200,
@@ -1405,7 +1528,7 @@ Nếu có bất kỳ điểm không nhất quán nào giữa phiên bản tiến
 					id: 'individual-2',
 					popular: true,
 					subheadline: 'Standard',
-					label: 'Standard Service',
+					label: 'Standard',
 					price: {
 						currency: '$',
 						amount: 350,
@@ -1423,7 +1546,7 @@ Nếu có bất kỳ điểm không nhất quán nào giữa phiên bản tiến
 				{
 					id: 'individual-3',
 					subheadline: 'Premium',
-					label: 'Premium Service',
+					label: 'Premium',
 					price: {
 						currency: '$',
 						amount: 500,
@@ -1443,7 +1566,7 @@ Nếu có bất kỳ điểm không nhất quán nào giữa phiên bản tiến
 				{
 					id: 'business-1',
 					subheadline: 'Basic',
-					label: 'Basic Service',
+					label: 'Basic',
 					price: {
 						currency: '$',
 						amount: 500,
@@ -1462,7 +1585,7 @@ Nếu có bất kỳ điểm không nhất quán nào giữa phiên bản tiến
 					id: 'business-2',
 					popular: true,
 					subheadline: 'Standard',
-					label: 'Standard Service',
+					label: 'Standard',
 					price: {
 						currency: '$',
 						amount: 1000,
@@ -1481,7 +1604,7 @@ Nếu có bất kỳ điểm không nhất quán nào giữa phiên bản tiến
 				{
 					id: 'business-3',
 					subheadline: 'Premium',
-					label: 'Premium Service',
+					label: 'Premium',
 					price: {
 						currency: '$',
 						amount: 2000,
@@ -1504,10 +1627,59 @@ Nếu có bất kỳ điểm không nhất quán nào giữa phiên bản tiến
 				cta: 'Talk to an Advisor',
 			},
 		},
+		insights: {
+			label: 'The Advisory Vault',
+			title1: 'Latest',
+			title2: 'Insights',
+			description:
+				'Stay updated with the latest trends, tips, and strategies in tax and advisory services.',
+			items: [
+				{
+					id: 'tax-article-001',
+					title: 'Entity Selection for Tax Efficiency: LLC vs S-Corp',
+					category: 'Tax Strategy',
+					complexity: 'intermediate',
+					readTime: '8 min',
+					summary:
+						'Choosing the right business entity is crucial for optimizing your tax obligations. This guide provides a comprehensive comparative analysis of pass-through entity structures, specifically focusing on Limited Liability Companies (LLCs) and S-Corporations. We delve into how each structure uniquely impacts your self-employment tax liability, operational flexibility, and overall financial health. By understanding these key differences, business owners can make informed decisions that align with their long-term growth and tax minimization goals.',
+					link: '/#',
+				},
+				{
+					id: 'tax-article-002',
+					title: 'Quarterly Estimated Taxes: Avoiding Penalties',
+					category: 'Compliance',
+					complexity: 'easy',
+					readTime: '5 min',
+					summary:
+						'Navigating the complexities of quarterly estimated taxes is essential for independent contractors, freelancers, and small business owners. This resource helps you understand crucial safe harbor rules and provides actionable tips for optimizing your quarterly payment schedules. By accurately calculating your estimated tax burden and meeting key deadlines, you can effectively avoid costly underpayment penalties from the IRS. Ensure your cash flow remains steady and your business stays fully compliant throughout the fiscal year.',
+					link: '/#',
+				},
+				{
+					id: 'tax-article-003',
+					title: 'IRS Audit Triggers: What Business Owners Must Know',
+					category: 'Audit Defense',
+					complexity: 'advanced',
+					readTime: '12 min',
+					summary:
+						'Facing an IRS audit is a daunting prospect for any business. This detailed overview highlights the most common high-risk deduction categories and red flags that typically trigger IRS scrutiny. We outline strict documentation requirements and share proactive, preventative strategies to help you maintain continuous audit readiness. Learn how to meticulously organize your financial records, substantiate your claims, and protect your enterprise from unexpected tax liabilities and stressful compliance examinations.',
+					link: '/#',
+				},
+				{
+					id: 'tax-article-004',
+					title: 'Multi-State Tax Nexus in the Remote Work Era',
+					category: 'Advisory',
+					complexity: 'advanced',
+					readTime: '10 min',
+					summary:
+						'The rapid shift towards remote work has fundamentally altered the landscape of state-level taxation. This guide focuses on navigating complex state tax obligations when your employees and independent contractors operate across multiple jurisdictions. We break down the evolving concept of a tax nexus, explaining how remote staff can unintentionally create new income, payroll, and sales tax liabilities for your company. Equip yourself with the knowledge to manage cross-border compliance efficiently and avoid unexpected state tax burdens.',
+					link: '/#',
+				},
+			],
+		},
 		about: {
-			subheadline: 'THE PRINCIPALS',
-			headlineOne: 'Architects of',
-			headlineTwo: 'Fiscal Clarity',
+			label: 'The Principals',
+			title1: 'Architects of',
+			title2: 'Fiscal Clarity',
 			ivy: {
 				title: 'PRINCIPAL ARCHITECT OF GROWTH',
 				name: 'Ivy Truong',
@@ -1525,29 +1697,12 @@ Nếu có bất kỳ điểm không nhất quán nào giữa phiên bản tiến
 			slogan: 'IT CPA & Advisory, PLLC — Precision in Every Number',
 		},
 		contact: {
-			subheadline: 'GET IN TOUCH',
-			headlineOne: 'Let’s talk',
-			headlineTwo: 'numbers',
+			label: 'GET IN TOUCH',
+			title1: 'Let’s talk',
+			title2: 'numbers.',
 			headlineDescription:
 				"Ready to optimize your tax strategy or resolve a complex IRS matter? We're one conversation away.",
-			contactMethods: [
-				{
-					type: 'phone',
-					label: 'Phone',
-					value: '+1 (346) 475 - 5148',
-				},
-				{
-					type: 'email',
-					label: 'Email',
-					value: 'info@itcpa-us.com',
-				},
-				{
-					type: 'office',
-					label: 'Office',
-					value: 'Missouri City, Texas',
-				},
-			],
-			formSubheadline: 'SEND A MESSAGE',
+			formLabel: 'SEND A MESSAGE',
 			formHeadline: 'We respond within 24 hours.',
 			formDescription:
 				"All inquiries are treated with full confidentiality. Whether you're an individual or enterprise, our team is prepared to deliver clarity.",
@@ -1571,10 +1726,15 @@ Nếu có bất kỳ điểm không nhất quán nào giữa phiên bản tiến
 					placeholder: 'Let us know your situation...',
 				},
 			],
+			formCta: {
+				label: 'Send Message',
+				type: 'submit',
+				icon: 'arrow-small-right',
+			},
 		},
 		footer: {
 			titles: ['SERVICES', 'NAVIGATION', 'PRINCIPALS'],
-			logoDescription:
+			tagline:
 				'Precision-first tax and advisory services for individuals and enterprises seeking clarity, protection, and growth.',
 			services: [
 				'Formation',
@@ -1585,11 +1745,12 @@ Nếu có bất kỳ điểm không nhất quán nào giữa phiên bản tiến
 				'Tax Advisory',
 			],
 			navigation: [
+				{ label: 'Home', href: '/' },
 				{ label: 'Services', href: '#services' },
 				{ label: 'Pricing', href: '#pricing' },
 				{ label: 'About Us', href: '#about' },
+				{ label: 'Insights', href: '#insights' },
 				{ label: 'Contact', href: '#contact' },
-				{ label: 'Home', href: '/' },
 			],
 			principals: [
 				{
@@ -1864,12 +2025,6 @@ If there is any inconsistency between the English and Vietnamese versions of thi
 					additions: [],
 				},
 			],
-
-			contact: {
-				email: `info@itcpa-us.com`,
-				phone: `+1 (346) 475 - 5148`,
-				website: `itcpa-us.com`,
-			},
 		},
 		termsAndConditions: {
 			contentList: [
@@ -2297,12 +2452,109 @@ If there is any inconsistency between the English and Vietnamese versions of thi
 				},
 			],
 		},
-		firmContact: {
-			email: `info@itcpa-us.com`,
-			phone: `+1 (346) 475 - 5148`,
-			website: `itcpa-us.com`,
+		firmContact: [
+			{
+				id: 'firm-contact-phone',
+				type: 'phone',
+				label: 'phone',
+				value: `+1 (346) 475 - 5148`,
+				icon: 'phone',
+			},
+			{
+				id: 'firm-contact-website',
+				type: 'website',
+				label: 'website',
+				value: `https://www.itcpa-us.com`,
+				icon: 'globe',
+			},
+			{
+				id: 'firm-contact-email',
+				type: 'email',
+				label: 'email',
+				value: `info@itcpa-us.com`,
+				icon: 'email',
+			},
+		],
+		stickyCta: {
+			bookConsultation: 'Book Consultation',
+		},
+		notFound: {
+			title1: '4',
+			title2: '0',
+			title3: '4',
+			error: 'Error 404',
+			tagline1: 'Page Not',
+			tagline2: ' Found.',
+			requestedUrl: 'Requested Path:',
+			description:
+				'Sorry, the page you are looking for does not exist or has been removed. Please check the URL or return to the homepage.',
+			ctaBack: { label: 'Back to Home', icon: 'arrow-small-left', href: '/' },
+			ctaExplore: {
+				label: 'Explore Services',
+				icon: 'arrow-small-right',
+				href: '/#services',
+			},
 		},
 	},
 };
 
-export default pageData;
+const states = [
+	{ name: 'Alabama', abbreviation: 'AL' },
+	{ name: 'Alaska', abbreviation: 'AK' },
+	{ name: 'Arizona', abbreviation: 'AZ' },
+	{ name: 'Arkansas', abbreviation: 'AR' },
+	{ name: 'California', abbreviation: 'CA' },
+	{ name: 'Colorado', abbreviation: 'CO' },
+	{ name: 'Connecticut', abbreviation: 'CT' },
+	{ name: 'Delaware', abbreviation: 'DE' },
+	{ name: 'Florida', abbreviation: 'FL' },
+	{ name: 'Georgia', abbreviation: 'GA' },
+	{ name: 'Hawaii', abbreviation: 'HI' },
+	{ name: 'Idaho', abbreviation: 'ID' },
+	{ name: 'Illinois', abbreviation: 'IL' },
+	{ name: 'Indiana', abbreviation: 'IN' },
+	{ name: 'Iowa', abbreviation: 'IA' },
+	{ name: 'Kansas', abbreviation: 'KS' },
+	{ name: 'Kentucky', abbreviation: 'KY' },
+	{ name: 'Louisiana', abbreviation: 'LA' },
+	{ name: 'Maine', abbreviation: 'ME' },
+	{ name: 'Maryland', abbreviation: 'MD' },
+	{ name: 'Massachusetts', abbreviation: 'MA' },
+	{ name: 'Michigan', abbreviation: 'MI' },
+	{ name: 'Minnesota', abbreviation: 'MN' },
+	{ name: 'Mississippi', abbreviation: 'MS' },
+	{ name: 'Missouri', abbreviation: 'MO' },
+	{ name: 'Montana', abbreviation: 'MT' },
+	{ name: 'Nebraska', abbreviation: 'NE' },
+	{ name: 'Nevada', abbreviation: 'NV' },
+	{ name: 'New Hampshire', abbreviation: 'NH' },
+	{ name: 'New Jersey', abbreviation: 'NJ' },
+	{ name: 'New Mexico', abbreviation: 'NM' },
+	{ name: 'New York', abbreviation: 'NY' },
+	{ name: 'North Carolina', abbreviation: 'NC' },
+	{ name: 'North Dakota', abbreviation: 'ND' },
+	{ name: 'Ohio', abbreviation: 'OH' },
+	{ name: 'Oklahoma', abbreviation: 'OK' },
+	{ name: 'Oregon', abbreviation: 'OR' },
+	{ name: 'Pennsylvania', abbreviation: 'PA' },
+	{ name: 'Rhode Island', abbreviation: 'RI' },
+	{ name: 'South Carolina', abbreviation: 'SC' },
+	{ name: 'South Dakota', abbreviation: 'SD' },
+	{ name: 'Tennessee', abbreviation: 'TN' },
+	{ name: 'Texas', abbreviation: 'TX' },
+	{ name: 'Utah', abbreviation: 'UT' },
+	{ name: 'Vermont', abbreviation: 'VT' },
+	{ name: 'Virginia', abbreviation: 'VA' },
+	{ name: 'Washington', abbreviation: 'WA' },
+	{ name: 'West Virginia', abbreviation: 'WV' },
+	{ name: 'Wisconsin', abbreviation: 'WI' },
+	{ name: 'Wyoming', abbreviation: 'WY' },
+];
+
+const emailAPI = {
+	service_id: 'service_dq2ebcn',
+	template_id: 'template_7wrvfaq',
+	user_id: '48HA0c_1G1YwKYuSn',
+};
+
+export { pageData, states, version, emailAPI };

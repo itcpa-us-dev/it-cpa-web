@@ -1,0 +1,114 @@
+.button {
+	display: flex;
+	font-family: var(--font-mono);
+	color: var(--text-obsidian);
+	padding: 10px 20px;
+	cursor: pointer;
+	text-align: center;
+	justify-content: center;
+	align-items: center;
+	transition: all 250ms ease;
+}
+
+.button.button--icon-left,
+.button.button--icon-right {
+	& i {
+		background-color: var(--background-obsidian);
+	}
+	&:hover {
+		background-color: var(--background-obsidian);
+		color: var(--text-citron);
+		& i {
+			background-color: var(--background-citron);
+		}
+	}
+}
+.button.button--icon-left {
+	& i {
+		margin-right: 10px;
+	}
+}
+
+.button.button--icon-right {
+	& i {
+		margin-left: 10px;
+	}
+}
+
+.button.button--citron {
+	background-color: var(--background-citron);
+	color: var(--text-obsidian);
+	&:hover {
+		background-color: var(--background-obsidian);
+		color: var(--text-citron);
+	}
+}
+
+.button.button--citron-contrast {
+	background-color: var(--background-citron);
+	color: var(--text-obsidian);
+	&:hover {
+		background-color: var(--background-alabaster);
+		color: var(--text-citron);
+		& i {
+			background-color: var(--background-citron);
+		}
+	}
+}
+
+.button.button--contrast {
+	background-color: var(--background-obsidian-contrast);
+	color: var(--text-obsidian-contrast);
+	&:hover {
+		background-color: var(--background-citron);
+		color: var(--text-obsidian);
+	}
+}
+
+.button.button--hollow {
+	border: 1px solid var(--border-graphite);
+	&:hover {
+		background-color: var(--background-obsidian);
+		color: var(--text-alabaster);
+		& i {
+			background-color: var(--background-alabaster);
+		}
+	}
+}
+
+.button.button--hollow-contrast {
+	border: 1px solid var(--border-graphite);
+	color: var(--text-alabaster);
+	& i {
+		background-color: var(--background-alabaster);
+	}
+	&:hover {
+		border: 1px solid var(--border-citron);
+		& i {
+			background-color: var(--background-citron);
+		}
+	}
+}
+
+[data-theme='dark'] {
+	& button.button.button--icon-left,
+	& button.button.button--icon-right {
+		& i {
+			background-color: var(--background-obsidian-contrast);
+		}
+	}
+	& button.button.button--citron-contrast {
+		&:hover {
+			& i {
+				background-color: var(--background-citron);
+			}
+		}
+	}
+	& button.button.button--hollow-contrast {
+		&:hover {
+			& i {
+				background-color: var(--background-citron);
+			}
+		}
+	}
+}

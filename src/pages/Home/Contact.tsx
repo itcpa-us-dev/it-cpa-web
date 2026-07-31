@@ -1,24 +1,29 @@
 import { useRef, useState } from 'react';
 import { useInView } from 'react-intersection-observer';
-import Card from '../../ui/components/Card';
 import Icon from '../../ui/components/Icon';
-import data from '../../data';
+import { pageData, emailAPI } from '../../data';
 import { useAppSelector } from '../../store';
-import { toast, ToastContainer } from 'react-toastify';
+import StringUtil from '../../utils/String';
+import Button from '../../ui/components/Button/Button';
+import { toast } from 'react-toastify';
 
 const Contact = () => {
+	const { ref, inView } = useInView({
+		triggerOnce: true,
+		threshold: 0.4,
+	});
+
 	const language = useAppSelector(
 		(state: { theme: { language: string } }) => state.theme.language,
 	);
-	const contactData = language === 'vn' ? data.vn.contact : data.en.contact;
+	const contactData =
+		language === 'vn' ? pageData.vn.contact : pageData.en.contact;
+	const firmContact =
+		language === 'vn' ? pageData.vn.firmContact : pageData.en.firmContact;
+
 	const [fullNameValue, setFullNameValue] = useState('');
 	const [emailValue, setEmailValue] = useState('');
 	const [messageValue, setMessageValue] = useState('');
-
-	const { ref, inView } = useInView({
-		triggerOnce: true,
-		threshold: 0.1,
-	});
 
 	const fullName = useRef<HTMLInputElement>(null);
 	const email = useRef<HTMLInputElement>(null);
@@ -40,20 +45,20 @@ const Contact = () => {
 	const handleSubmit = async (e: React.FormEvent) => {
 		e.preventDefault();
 		console.log('Submitting form with values:', {
-			fullName: fullName.current?.value,
-			email: email.current?.value,
-			message: message.current?.value,
+			fullName: fullNameValue,
+			email: emailValue,
+			message: messageValue,
 		});
-		if (!fullName.current || !email.current || !message.current) return;
+		if (!fullNameValue || !emailValue || !messageValue) return;
 
 		const submitData = {
-			service_id: 'service_dq2ebcn',
-			template_id: 'template_7wrvfaq',
-			user_id: '48HA0c_1G1YwKYuSn',
+			service_id: emailAPI.service_id,
+			template_id: emailAPI.template_id,
+			user_id: emailAPI.user_id,
 			template_params: {
-				fullName: fullName.current?.value,
-				email: email.current?.value,
-				message: message.current?.value,
+				fullName: fullNameValue,
+				email: emailValue,
+				message: messageValue,
 			},
 		};
 		try {
@@ -97,143 +102,122 @@ const Contact = () => {
 		}
 	};
 
+	let classes = `flex flex-row gap-8 relative contact ${inView ? 'contact--shown' : ''}`;
+	classes = StringUtil.removeDoubleAndTrailingSpace(classes);
+
 	return (
-		<section
-			id="contact"
-			className={`contact ${inView ? 'contact--shown' : ''}`}
-			ref={ref}>
-			<div className="contact__content">
-				<div className="contact__content__detail contact__content__detail--left">
-					<h5>{contactData.subheadline}</h5>
-					<h2>{contactData.headlineOne}</h2>
-					<h2>{contactData.headlineTwo}</h2>
-					<p>{contactData.headlineDescription}</p>
+		<section id="contact" className={classes} ref={ref}>
+			<div className="flex flex-column contact__left">
+				<div className="contact__left__header">
+					<h4 className="font-mono text--muted font-weight-400">
+						{contactData.label}
+					</h4>
+					<div className="font-heading font-weight-1000 contact__left__header__titles">
+						<h1 className="text--obsidian" style={{ animationDelay: '200ms' }}>
+							{contactData.title1}
+						</h1>
+						<h1 className="text--citron" style={{ animationDelay: '300ms' }}>
+							{contactData.title2}
+						</h1>
+					</div>
+					<p className="font-heading text--muted">
+						{contactData.headlineDescription}
+					</p>
 				</div>
-				<div className="contact__content__detail contact__content__detail--right">
-					<Card
-						className="contact__content__detail__card contact__content__detail__card--1"
-						style={{ animationDelay: '200ms' }}>
-						<div className="contact__content__detail__card__icon">
-							<Icon name="phone" size="small" />
-						</div>
+				<div className="flex flex-column contact__left__contact">
+					{firmContact.map((method, index) => (
 						<div
-							className="contact__content__detail__card__info"
-							style={{ animationDelay: '400ms' }}>
-							<h4>{contactData.contactMethods[0].label}</h4>
-							<p>{contactData.contactMethods[0].value}</p>
+							key={index}
+							className="flex flex-row items-center font-mono contact__left__contact__method"
+							style={{ animationDelay: `${index * 200}ms` }}>
+							<div className="contact__left__contact__method__icon-wrapper">
+								<Icon name={method.icon} size="small" />
+							</div>
+							<div className="contact__left__contact__method__value">
+								<span className="font-mono text--muted font-weight-400 uppercase contact__left__contact__method__value__label">
+									{method.label}
+								</span>
+								<h4 className="font-heading text--obsidian">{method.value}</h4>
+							</div>
 						</div>
-						<div
-							className="contact__content__detail__card__arrow"
-							style={{ animationDelay: '600ms' }}>
-							<Icon name="arrow-right" size="small" />
-						</div>
-					</Card>
-					<Card
-						className="contact__content__detail__card contact__content__detail__card--2"
-						style={{ animationDelay: '400ms' }}>
-						<div className="contact__content__detail__card__icon">
-							<Icon name="email" size="small" />
-						</div>
-						<div
-							className="contact__content__detail__card__info"
-							style={{ animationDelay: '600ms' }}>
-							<h4>{contactData.contactMethods[1].label}</h4>
-							<p>{contactData.contactMethods[1].value}</p>
-						</div>
-						<div
-							className="contact__content__detail__card__arrow"
-							style={{ animationDelay: '800ms' }}>
-							<Icon name="arrow-right" size="small" />
-						</div>
-					</Card>
-					<Card
-						className="contact__content__detail__card contact__content__detail__card--3"
-						style={{ animationDelay: '600ms' }}>
-						<div className="contact__content__detail__card__icon">
-							<Icon name="marker" size="small" />
-						</div>
-						<div
-							className="contact__content__detail__card__info"
-							style={{ animationDelay: '800ms' }}>
-							<h4>{contactData.contactMethods[2].label}</h4>
-							<p>{contactData.contactMethods[2].value}</p>
-						</div>
-						<div
-							className="contact__content__detail__card__arrow"
-							style={{ animationDelay: '1000ms' }}>
-							<Icon name="arrow-right" size="small" />
-						</div>
-					</Card>
+					))}
 				</div>
 			</div>
-			<span className="contact__divider"></span>
-			<div className="contact__form">
-				<div className="contact__form__description">
-					<h4>{contactData.formSubheadline}</h4>
-					<h2>{contactData.formHeadline}</h2>
-					<p>{contactData.formDescription}</p>
+			<div className="flex flex-column contact__right">
+				<div className="contact__right__header">
+					<h4 className="font-mono text--muted font-weight-400 contact__right__header__label">
+						{contactData.formLabel}
+					</h4>
+					<div className="contact__right__header__content">
+						<p className="font-heading text--obsidian">
+							{contactData.formHeadline}
+						</p>
+						<p className="font-heading text--muted">
+							{contactData.formDescription}
+						</p>
+					</div>
 				</div>
-				<div className="contact__form__form">
-					<form ref={form} onSubmit={handleSubmit}>
-						<div className="contact__form__form__group">
-							<div className="contact__form__form__group__field">
-								<label htmlFor="name" style={{ animationDelay: '2000ms' }}>
-									{contactData.formFields[0].label}
-								</label>
-								<input
-									type="text"
-									id="name"
-									name="name"
-									required
-									placeholder={contactData.formFields[0].label}
-									style={{ animationDelay: '2000ms' }}
-									onChange={onChangeFullName}
-									value={fullNameValue}
-									ref={fullName}
-								/>
-							</div>
-							<div className="contact__form__form__group__field">
-								<label htmlFor="email" style={{ animationDelay: '2300ms' }}>
-									{contactData.formFields[1].label}
-								</label>
-								<input
-									type="email"
-									id="email"
-									name="email"
-									required
-									placeholder={contactData.formFields[1].label}
-									style={{ animationDelay: '2300ms' }}
-									onChange={onChangeEmail}
-									value={emailValue}
-									ref={email}
-								/>
-							</div>
-						</div>
-						<div className="contact__form__form__group">
-							<div className="contact__form__form__group__field">
-								<label htmlFor="message" style={{ animationDelay: '2600ms' }}>
-									{contactData.formFields[2].label}
-								</label>
+				<form
+					ref={form}
+					onSubmit={handleSubmit}
+					className="flex flex-column contact__right__form">
+					{contactData.formFields.map((field, index) => (
+						<div
+							key={index}
+							className="flex flex-column font-heading contact__right__form__field"
+							style={{ animationDelay: `${index * 300}ms` }}>
+							<label
+								className="text--obsidian font-weight-400 font-mono"
+								htmlFor={field.id}>
+								{field.label}
+							</label>
+							{field.type === 'textarea' ? (
 								<textarea
-									id="message"
-									name="message"
-									rows={5}
-									required
-									placeholder={contactData.formFields[2].label}
-									style={{ animationDelay: '2600ms' }}
-									onChange={onChangeMessage}
+									id={field.id}
+									ref={message}
 									value={messageValue}
-									ref={message}></textarea>
-							</div>
+									onChange={onChangeMessage}
+									placeholder={field.placeholder}
+									required></textarea>
+							) : (
+								<input
+									type={field.type}
+									id={field.id}
+									ref={
+										field.id === 'fullName'
+											? fullName
+											: field.id === 'email'
+												? email
+												: null
+									}
+									value={
+										field.id === 'fullName'
+											? fullNameValue
+											: field.id === 'email'
+												? emailValue
+												: ''
+									}
+									onChange={
+										field.id === 'fullName'
+											? onChangeFullName
+											: field.id === 'email'
+												? onChangeEmail
+												: undefined
+									}
+									placeholder={field.placeholder}
+									required
+								/>
+							)}
 						</div>
-						<button className="contact__form__form__btn" type="submit">
-							<p>{language === 'vn' ? 'Gửi tin nhắn' : 'Send Message'}</p>
-							<Icon name="paper-plane" size="small" />
-						</button>
-					</form>
-				</div>
+					))}
+					<Button
+						className="button button--icon-right button--citron contact__right__form__field__button"
+						type={contactData.formCta.type as 'button' | 'submit' | 'reset'}>
+						<span>{contactData.formCta.label}</span>
+						<Icon name={contactData.formCta.icon} size="small" />
+					</Button>
+				</form>
 			</div>
-			<ToastContainer />
 		</section>
 	);
 };

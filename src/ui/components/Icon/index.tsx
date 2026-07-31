@@ -25,7 +25,7 @@ const Icon = ({
 	const handleClick = (e: React.MouseEvent<HTMLElement>) => {
 		if (onClick) onClick(e);
 	};
-	let classes = `icon ${size ? 'icon--' + size : ''} ${
+	let classes = `icon ${className?.includes('background') ? '' : 'icon--default-color'} ${size ? 'icon--' + size : ''} ${
 		name ? 'icon--' + name : ''
 	} ${className ? className : ''}`;
 

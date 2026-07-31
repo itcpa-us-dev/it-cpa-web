@@ -5,8 +5,8 @@ import Home from './pages/Home';
 import { useEffect } from 'react';
 import { setHeadbarState } from './store/slice/displaySlice';
 import { useAppDispatch } from './store';
-import PrivacyPolicy from './pages/PrivacyPolicy';
-import TermsOfService from './pages/TermsOfService';
+import PrivacyPolicy from './pages/Policy/PrivacyPolicy';
+import TermsOfService from './pages/Policy/TermsOfService';
 import NotFound from './pages/NotFound';
 
 const router = createBrowserRouter([

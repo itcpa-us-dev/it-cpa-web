@@ -13,7 +13,7 @@ type ThemeSwitchProps = {
 const ThemeSwitch = ({ id, className }: ThemeSwitchProps): JSX.Element => {
 	const theme = useAppSelector((state) => state.theme.theme);
 	const dispatch = useAppDispatch();
-	let classes = `theme-switch ${className ? className : ''} ${theme === 'dark' ? 'theme-switch--dark' : 'theme-switch--light'}`;
+	let classes = `border border--graphite theme-switch ${className ? className : ''} ${theme === 'dark' ? 'theme-switch--dark' : 'theme-switch--light'}`;
 
 	classes = StringUtil.removeDoubleAndTrailingSpace(classes);
 

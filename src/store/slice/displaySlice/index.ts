@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-	headbarOpen: localStorage.getItem('headbarOpen') === 'true',
+	headbarOpen: false,
 	language: localStorage.getItem('language') || 'en',
 	currentSegment: null as string | null,
 	currentEntity: 'individual' as string | null,

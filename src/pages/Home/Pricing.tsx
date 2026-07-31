@@ -1,15 +1,14 @@
-import { useState } from 'react';
-import pageData from '../../data';
+import { pageData } from '../../data';
 import { useAppSelector, useAppDispatch } from '../../store';
 import { setCurrentEntity } from '../../store/slice/displaySlice';
 import Card from '../../ui/components/Card';
 import Icon from '../../ui/components/Icon';
 import { useInView } from 'react-intersection-observer';
-import { scrollToWithBezier } from '../../utils/Scroll';
+import { NavLink } from 'react-router-dom';
+import Button from '../../ui/components/Button/Button';
+import StringUtil from '../../utils/String';
 
 const Pricing = () => {
-	const [isExiting, setisExiting] = useState(false);
-
 	const { ref, inView } = useInView({
 		threshold: 0.1,
 		triggerOnce: true,
@@ -18,139 +17,116 @@ const Pricing = () => {
 	const selectedEntity = useAppSelector((state) => state.display.currentEntity);
 	const language = useAppSelector((state) => state.theme.language);
 	const data = language === 'vn' ? pageData.vn : pageData.en;
-
 	const pricing =
 		selectedEntity === 'individual'
 			? data.pricing.individual_price
 			: data.pricing.business_price;
-
 	const handleSelectEntity = (entity: string) => {
 		if (selectedEntity !== null) {
-			setisExiting(true);
-			setTimeout(() => {
-				dispatch(setCurrentEntity(entity));
-				setisExiting(false);
-			}, 500);
+			dispatch(setCurrentEntity(entity));
 		} else {
 			dispatch(setCurrentEntity(entity));
 		}
 	};
 
-	const scrollTo = (href: string) => {
-		const el = document.querySelector(href);
-		if (el)
-			scrollToWithBezier(
-				window,
-				el ? el.getBoundingClientRect().top + window.scrollY : 0,
-				500,
-				[1, -0.078, 0.419, -0.21],
-			);
-	};
+	let classes = `flex flex-column background--obsidian pricing ${inView ? 'pricing--shown' : ''}`;
+	classes = StringUtil.removeDoubleAndTrailingSpace(classes);
 
 	return (
 		<section
 			id="pricing"
-			className={`pricing ${inView ? 'pricing--shown' : ''}`}
+			className={classes}
 			ref={ref}>
 			<div className="pricing__content">
-				<div className="pricing__content__subheadline">
-					{data.pricing.subheadline.split(' ').map((word, index) => {
-						if (word) {
-							return (
-								<h3
-									key={`subheadline-word-${index}`}
-									className={`pricing__content__subheadline__word pricing__content__subheadline__word--${index}`}
-									style={{ animationDelay: `${index * 100}ms` }}>
-									{word}
-								</h3>
-							);
-						}
-					})}
+				<div className="font-mono uppercase text--citron pricing__content__header">
+					{data.pricing.label}
 				</div>
-				<h1 className="pricing__content__title">{data.pricing.title}</h1>
-				<p className="pricing__content__description">
-					{data.pricing.description}
-				</p>
-			</div>
-			<div className="pricing__select">
-				<div className="pricing__select__options">
-					{data.pricing.entitiesID.map((entity) => (
-						<button
-							type="button"
-							key={entity}
-							className={`pricing__select__options__selection pricing__select__options__selection--${entity} ${selectedEntity === entity ? 'pricing__select__options__selection--active' : ''}`}
-							aria-pressed={selectedEntity === entity}
-							onClick={() => handleSelectEntity(entity)}>
-							{data.pricing.entities[data.pricing.entitiesID.indexOf(entity)]
-								.charAt(0)
-								.toUpperCase() +
-								data.pricing.entities[
-									data.pricing.entitiesID.indexOf(entity)
-								].slice(1)}
-						</button>
-					))}
+				<div className="flex font-heading text--alabaster pricing__content__titles">
+					<div className="pricing__content__titles__titles">
+						<h1 style={{animationDelay: '0ms'}}>{data.pricing.title1}</h1>
+						<h1 style={{animationDelay: '100ms'}}>{data.pricing.title2}</h1>
+						<h1 style={{animationDelay: '200ms'}}>{data.pricing.title3}</h1>
+					</div>
+					<div className="pricing__content__titles__description">
+						<p>{data.pricing.description}</p>
+					</div>
 				</div>
 			</div>
-			<div className="pricing__cards">
-				{selectedEntity !== null &&
-					pricing.map((price, index) => (
-						<Card
-							className={`pricing__cards__card ${`pricing__cards__card--${index + 1}`} ${price.popular ? 'pricing__cards__card--popular' : ''} ${isExiting ? 'pricing__cards__card--exiting' : ''}`}
-							key={price.id}>
-							{price.popular && (
-								<div className="pricing__cards__card__popular-label">
-									<Icon name="sparkles" size="small" />
-									<p>{language === 'vn' ? 'Phổ biến nhất' : 'Most Popular'}</p>
-								</div>
-							)}
-							<div className="pricing__cards__card__header">
-								<h3 className="pricing__cards__card__header__title">
-									{price.subheadline}
-								</h3>
-								<h1 className="pricing__cards__card__header__label">
-									{price.label}
-								</h1>
-								<p className="pricing__cards__card__header__description">
-									{price.description}
-								</p>
+			<div className="flex flex-row pricing__entities">
+				{data.pricing.entities.map((entity) => (
+					<div
+						key={entity.id}
+						className={`flex flex-row font-mono justify-center items-center text--alabaster uppercase pricing__entities__item ${selectedEntity === entity.id ? 'pricing__entities__item--selected' : ''}`}
+						onClick={() => handleSelectEntity(entity.id)}>
+						{entity.label}
+					</div>
+				))}
+			</div>
+			<div className="flex flex-row justify-center pricing__tiers">
+				{pricing.map((tier, i) => (
+					<Card
+						key={tier.id}
+						className={`flex flex-column relative pricing__tiers__item ${tier.popular ? 'pricing__tiers__item--popular' : ''}`}
+						style={{ animationDelay: `${i * 100}ms` }}>
+						{tier.popular && (
+							<div className="font-mono uppercase top-0 right-0 absolute pricing__tiers__item__popular-badge">
+								{language === 'vn' ? 'Phổ Biến Nhất' : 'Most Popular'}
 							</div>
-							<div className="pricing__cards__card__price">
-								<h2>{`${price.price.currency}${price.price.amount}`}</h2>
-								<p>{`
-								 / ${price.price.unit}
-								`}</p>
-							</div>
-							<div className="pricing__cards__card__cta">
-								<button onClick={() => scrollTo('#contact')}>
-									<span>{language === 'vn' ? 'Bắt đầu' : 'Get Started'}</span>
-									<Icon name="arrow-right" size="small" />
-								</button>
-							</div>
-							<br />
-							<div className="pricing__cards__card__includes">
-								<h4>
-									{language === 'vn'
-										? 'NHỮNG ĐIỀU ĐƯỢC BAO GỒM:'
-										: "WHAT'S INCLUDED:"}
-								</h4>
-							</div>
-							<ul className="pricing__cards__card__includes__list">
-								{price.includes?.map((item, index) => (
-									<li key={`${price.id}-include-${index}`}>
-										<Icon name="shield-check" size="small" />
-										<p>{item}</p>
+						)}
+						<div className="font-mono text--alabaster pricing__tiers__item__header">
+							<h3 className="font-mono uppercase pricing__tiers__item__header__label">
+								{tier.label}
+							</h3>
+							<p className="font-mono font-weight-1000 pricing__tiers__item__header__price">
+								<span className="font-heading">{tier.price.currency}</span>
+								<span className="font-heading">{tier.price.amount}</span>
+								<span>{tier.price.unit && `/ ${tier.price.unit}`}</span>
+							</p>
+							<p className="font-heading pricing__tiers__item__header__description">
+								{tier.description}
+							</p>
+						</div>
+						<div className="text--alabaster pricing__tiers__item__details">
+							<h4 className="font-mono uppercase">
+								{language === 'vn' ? 'Gói Dịch Vụ Bao Gồm' : "What's Included"}
+							</h4>
+							<ul className="font-mono">
+								{tier.includes.map((item, index) => (
+									<li className="flex flex-row items-center" key={index}>
+										<Icon
+											className="background--citron"
+											name="check"
+											size="small"
+										/>
+										<span>{item}</span>
 									</li>
 								))}
 							</ul>
-						</Card>
-					))}
+						</div>
+						<div className="flex flex-row justify-center pricing__tiers__item__cta">
+							<Button
+								className={`button ${tier.popular ? 'button--citron-contrast' : 'button--hollow-contrast'} button--icon-right uppercase`}>
+								<span>{language === 'vn' ? 'Bắt Đầu' : 'Get Started'}</span>
+								<Icon name="arrow-small-up" size="small" />
+							</Button>
+						</div>
+					</Card>
+				))}
 			</div>
-			<div className="pricing__additional">
-				<h5>{data.pricing.additional_info.question}</h5>
-				<button onClick={() => scrollTo('#contact')}>
-					<Icon name="comment" size="small" />
+			<div className="flex font-mono justify-center text--alabaster pricing__additional-info">
+				<p className="pricing__additional-info__question">
+					{data.pricing.additional_info.question}
+				</p>
+				<NavLink
+					className="flex items-center font-mono text--citron uppercase font-weight-700 pricing__additional-info__cta"
+					to={'#contact'}>
 					<span>{data.pricing.additional_info.cta}</span>
-				</button>
+					<Icon
+						className="background--citron"
+						name="arrow-small-right"
+						size="small"
+					/>
+				</NavLink>
 			</div>
 		</section>
 	);
