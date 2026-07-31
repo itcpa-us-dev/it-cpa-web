@@ -1,9 +1,10 @@
 import './Home.scss';
-import pageData from '../../data';
+import { pageData, states } from '../../data';
 import { useAppSelector } from '../../store';
 import Icon from '../../ui/components/Icon';
-import { CountUp } from 'use-count-up';
 import { useInView } from 'react-intersection-observer';
+import Button from '../../ui/components/Button/Button';
+import HERO_BACKGROUND from '../../assets/images/background_2.png';
 
 const Hero = () => {
 	const { ref, inView } = useInView({
@@ -12,116 +13,85 @@ const Hero = () => {
 	});
 	const language = useAppSelector((state) => state.theme.language);
 	const data = language === 'vn' ? pageData.vn : pageData.en;
-
-	const handleMoveToSection = (e: React.MouseEvent<HTMLButtonElement>) => {
-		e.preventDefault();
-
-		const section = document.getElementById(
-			e.currentTarget.dataset.section || '',
-		);
-
-		if (section) {
-			section.scrollIntoView({ behavior: 'smooth' });
-		}
-	};
+	const heroData = data.hero;
 
 	return (
 		<section
 			id="hero"
-			className={`hero ${inView ? 'hero--shown' : ''}`}
+			className={`flex flex-column font-mono hero overflow-hidden ${inView ? 'hero--shown' : ''}`}
 			ref={ref}>
-			<div className="hero__content">
-				<div className="hero__content__inner">
-					<div className="hero__content__inner__subheadline">
-						<Icon name="shield-check" size={'small'} />
-						<p>{data.hero.subheadline}</p>
-					</div>
-					<div className="hero__content__inner__container hero__content__inner__container--1">
-						<h1
-							className="hero__content__inner__title"
-							style={{ animationDelay: '100ms' }}>
-							{data.hero.title.first}
+			<div className="flex uppercase hero__trusted">
+				<Icon name="shield-check" size="small" />
+				<span>{heroData.trusted}</span>
+			</div>
+			<div className="flex flex-row hero__content">
+				<div className="flex flex-column hero__content__left">
+					<div className="flex flex-column font-heading title-style title-style title-style--large hero__content__left__titles">
+						<h1 style={{ animationDelay: '0ms' }}>
+							{heroData.title.title1Line1}
+						</h1>
+						<h1 style={{ animationDelay: '100ms' }}>
+							{heroData.title.title1Line2}
+						</h1>
+						<h1 style={{ animationDelay: '200ms' }}>
+							{heroData.title.title2Line1}
+						</h1>
+						<h1 style={{ animationDelay: '300ms' }}>
+							{heroData.title.title2Line2}
 						</h1>
 					</div>
-					<div className="hero__content__inner__container hero__content__inner__container--2">
-						<h1
-							className="hero__content__inner__title"
-							style={{ animationDelay: '300ms' }}>
-							{data.hero.title.second}
-						</h1>
+					<div className="flex flex-column hero__content__left__subtitle">
+						<p style={{ animationDelay: '500ms' }}>{heroData.paragraph}</p>
 					</div>
-					<div className="hero__content__inner__container hero__content__inner__container--3">
-						<h1
-							className="hero__content__inner__title"
-							style={{ animationDelay: '500ms' }}>
-							{data.hero.title.third}
-						</h1>
-					</div>
-					<div className="hero__content__inner__container hero__content__inner__container--4">
-						<p className="hero__content__inner__subtitle">
-							{data.hero.subtitle}
-						</p>
+					<div className="flex flex-row  hero__content__left__cta">
+						<Button
+							className="button button--citron button--icon-right uppercase"
+							data-section="contact" style={{ animationDelay: '600ms' }}>
+							<span>{heroData.cta}</span>
+							<Icon name="arrow-small-up" size="small" />
+						</Button>
+						<Button
+							className="button button--hollow uppercase"
+							data-section="service" style={{ animationDelay: '700ms' }}>
+							<span>{heroData.redirect}</span>
+						</Button>
 					</div>
 				</div>
-				<div className="hero__content__cta">
-					<button
-						className="hero__content__cta__btn"
-						type="button"
-						data-section="contact"
-						onClick={handleMoveToSection}>
-						{data.hero.cta}
-					</button>
-					<button
-						className="hero__content__cta__btn"
-						type="button"
-						data-section="services"
-						onClick={handleMoveToSection}>
-						<p>{data.hero.redirect}</p>
-					</button>
-				</div>
-				<div className="hero__content__trust-badges">
-					{data.hero.trust_badges.map((badge, index) => (
-						<div className="hero__content__trust-badges__item" key={index}>
-							<div className="hero__content__trust-badges__item__icon">
-								<Icon name={badge.icon} size="large" />
-							</div>
-							<div className="hero__content__trust-badges__item__text">
-								<h4>{badge.headline}</h4>
-								<p>{badge.text}</p>
-							</div>
-						</div>
-					))}
-				</div>
-				<div className="hero__content__statistics">
-					<div className="hero__content__statistics__heading">
-						<div className="hero__content__statistics__heading__left">
-							<h4>{data.hero.statistics.subheading}</h4>
-							<h2>{data.hero.statistics.heading}</h2>
-						</div>
-						<div className="hero__content__statistics__heading__right">
-							<p>{data.hero.statistics.description}</p>
-						</div>
+				<div className="flex flex-column hero__content__right">
+					<div className="hero__content__right__image">
+						<img src={HERO_BACKGROUND} alt="Hero Background" />
 					</div>
-					<div className="hero__content__statistics__stats">
-						<ul>
-							{data.hero.statistics.stats.map((item) => (
-								<li key={item.id}>
-									<div className="hero__content__statistics__stats__icon">
-										<Icon name={item.icon} size="medium" />
-									</div>
-									<div className="hero__content__statistics__stats__text">
-										<h4>
-											{item.sign}
-											<CountUp isCounting end={item.value} duration={5} />
-											{item.unit}
-										</h4>
-										<p>{item.label}</p>
-									</div>
-								</li>
+					<div className="flex flex-column hero__content__right__states">
+						<h4 className="flex font-mono hero__content__right__states__title">
+							{language == 'en' ? 'States Served' : 'Đã Phục Vụ Các Tiểu Bang'}
+						</h4>
+						<div className="flex flex-column font-mono gap-4 font-heading text--obsidian hero__content__right__states__list">
+							{states.map((state, index) => (
+								<span
+									className="font-mono"
+									key={`state-${state.name}-${index}`}>
+									{state.name}
+								</span>
 							))}
-						</ul>
+						</div>
 					</div>
 				</div>
+			</div>
+			<div className="flex flex-row justify-between relative hero__content__trust_badges">
+				{heroData.trust_badges.map((badge, index) => (
+					<div
+						className="text--obsidian flex flex-row hero__content__trust_badges__item"
+						key={index}>
+						<Icon key={index} name={badge.icon} size="large" />
+						<div className="font-mono">
+							<h4>{badge.headline}</h4>
+							<p>{badge.text}</p>
+						</div>
+					</div>
+				))}
+			</div>
+			<div className="flex flex-row indicator">
+				<Icon name="arrow-small-down" size="medium" />
 			</div>
 		</section>
 	);

@@ -1,0 +1,46 @@
+@use './../../../styles/variables' as *;
+@use './../../../styles/mixins' as *;
+
+.news-item {
+	width: 700px;
+	padding: 20px;
+	border: 1px solid var(--border-graphite);
+	margin: 20px;
+	transition: $transition-medium;
+	opacity: 0;
+	&__header {
+		margin: 0 0 20px 0;
+		&__category {
+			letter-spacing: 2px;
+		}
+		&__time,
+		&__complexity {
+			display: flex;
+			align-items: center;
+			gap: 4px;
+		}
+		&__indicator {
+			margin-left: auto;
+			transform: rotate(-45deg);
+		}
+	}
+	&__content {
+		&__title {
+			font-size: 24px;
+			margin: 0 0 10px 0;
+		}
+		&__summary {
+			font-size: 16px;
+			color: var(--text-secondary);
+		}
+	}
+	&:hover {
+		border-color: var(--border-citron);
+		& .news-item__header {
+			&__indicator {
+				transform: translate(10px, -10px) rotate(-45deg);
+				background-color: var(--background-citron);
+			}
+		}
+	}
+}

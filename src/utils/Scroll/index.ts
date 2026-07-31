@@ -89,3 +89,14 @@ export const scrollToWithBezier = (
 
 	requestAnimationFrame(step);
 };
+
+export const scrollTo = (href: string) => {
+	const el = document.querySelector(href);
+	if (el)
+		scrollToWithBezier(
+			window,
+			el ? el.getBoundingClientRect().top + window.scrollY : 0,
+			500,
+			[1, -0.078, 0.419, -0.21],
+		);
+};
