@@ -1,6 +1,5 @@
 import './Policy.scss';
 import LanguageSwitch from '../../ui/components/LanguageSwitch';
-import Button from '../../ui/components/Button/Button';
 type PolicyHeaderProps = {
 	policyData: {
 		generalCompanyName: string;

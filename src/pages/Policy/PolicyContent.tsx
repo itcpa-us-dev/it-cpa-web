@@ -1,9 +1,28 @@
 import Button from '../../ui/components/Button/Button';
 import Icon from '../../ui/components/Icon';
 
+type ContentListItem = {
+	href: string;
+	label: string;
+};
+
+type ContentParagraphSection = {
+	id: string;
+	title: string;
+	subtitle: string;
+	contentParagraphs: string[];
+	contentItems?: string[];
+	additions?: string[];
+};
+
+type PolicyData = {
+	contentList: ContentListItem[];
+	content: ContentParagraphSection[];
+};
+
 type PolicyContentProps = {
 	language: string;
-	policyData: unknown;
+	policyData: PolicyData;
 };
 
 const PolicyContent = ({ language, policyData }: PolicyContentProps) => {

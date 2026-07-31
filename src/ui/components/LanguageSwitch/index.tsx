@@ -33,8 +33,10 @@ const LanguageSwitch = ({
 
 	return (
 		<div
+			id={id}
 			className={`font-mono relative language-switch border border--graphite ${className ? className : ''}`}
-			title="Switch Language" onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
+			title="Switch Language"
+			onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
 			<Icon className="language-switch__icon" name="globe" size="small" />
 			<div className="language-switch__label">
 				<span>

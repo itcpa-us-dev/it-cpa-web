@@ -1,25 +1,38 @@
+import { type JSX } from 'react';
 import './NotFound.scss';
 import StringUtil from '../../utils/String';
 import { pageData } from '../../data';
 import { useAppSelector } from '../../store';
 import Button from '../../ui/components/Button/Button';
 import Icon from '../../ui/components/Icon';
-import './NotFound.scss';
 import { useNavigate } from 'react-router-dom';
+import type { NavigateFunction } from 'react-router-dom';
 
-const NotFound = () => {
-	const navigate = useNavigate();
-	const language = useAppSelector((state) => state.theme.language);
+interface RootState {
+	theme: {
+		language: string;
+	};
+}
+
+interface NavigateState {
+	scrollToId: string;
+}
+
+const NotFound = (): JSX.Element => {
+	const navigate: NavigateFunction = useNavigate();
+	const language: string = useAppSelector(
+		(state: RootState) => state.theme.language,
+	);
 	const notFoundData =
 		language === 'en' ? pageData.en.notFound : pageData.vn.notFound;
-	let classes = `flex flex-column not-found`;
+	let classes: string = `flex flex-column not-found`;
 	classes = StringUtil.removeDoubleAndTrailingSpace(classes);
 
-	const requestedUrl = window.location;
+	const requestedUrl: Location = window.location;
 
-	const handleNavClick = (sectionId) => {
+	const handleNavClick = (sectionId: string): void => {
 		// Navigate home and pass the target element ID in the router state
-		navigate('/', { state: { scrollToId: sectionId } });
+		navigate('/', { state: { scrollToId: sectionId } as NavigateState });
 	};
 	return (
 		<div className={classes}>
