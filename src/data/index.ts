@@ -1259,8 +1259,8 @@ Nếu có bất kỳ điểm không nhất quán nào giữa phiên bản tiến
 			home: 'Home',
 			services: 'Services',
 			pricing: 'Pricing',
-			insights: 'Insights',
 			about: 'About Us',
+			insights: 'Insights',
 			contact: 'Contact',
 		},
 		hero: {

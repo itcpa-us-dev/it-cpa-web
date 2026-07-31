@@ -8,7 +8,7 @@ import { useInView } from 'react-intersection-observer';
 const Insights = () => {
 	const { ref, inView } = useInView({
 		triggerOnce: true,
-		threshold: 0.4,
+		threshold: 0.2,
 	});
 	let classes = `flex flex-column insights ${inView ? 'insights--shown' : ''}`;
 	classes = StringUtil.removeDoubleAndTrailingSpace(classes);
@@ -24,10 +24,14 @@ const Insights = () => {
 						<p className="text--muted">{insightsContent.label}</p>
 					</div>
 					<div className="font-heading  insights__header__left__titles">
-						<h1 className="font-heading text--obsidian font-weight-1000" style={{ animationDelay: '0ms' }}>
+						<h1
+							className="font-heading text--obsidian font-weight-1000"
+							style={{ animationDelay: '0ms' }}>
 							{insightsContent.title1}
 						</h1>
-						<h1 className="font-heading text--obsidian font-weight-1000" style={{ animationDelay: '100ms' }}>
+						<h1
+							className="font-heading text--obsidian font-weight-1000"
+							style={{ animationDelay: '100ms' }}>
 							{insightsContent.title2}
 						</h1>
 					</div>

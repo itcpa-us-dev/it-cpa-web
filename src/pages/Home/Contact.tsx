@@ -10,7 +10,7 @@ import { toast } from 'react-toastify';
 const Contact = () => {
 	const { ref, inView } = useInView({
 		triggerOnce: true,
-		threshold: 0.4,
+		threshold: 0.2,
 	});
 
 	const language = useAppSelector(

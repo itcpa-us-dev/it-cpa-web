@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const Services = () => {
 	const { ref, inView } = useInView({
-		threshold: 0.1,
+		threshold: 0.2,
 		triggerOnce: true,
 	});
 	const [hoveringItem, setHoveringItem] = useState<string | null>(null);

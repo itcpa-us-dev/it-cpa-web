@@ -8,7 +8,7 @@ import StringUtil from '../../../utils/String';
 const HomeLayoutFooter = () => {
 	const language = useAppSelector((state) => state.theme.language);
 	const { ref, inView } = useInView({
-		threshold: 0.3,
+		threshold: 0.2,
 		triggerOnce: true,
 	});
 	const footerData =

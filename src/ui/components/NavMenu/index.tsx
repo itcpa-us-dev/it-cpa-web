@@ -39,7 +39,9 @@ const NavMenu = () => {
 						className="nav-menu__list__item"
 						style={{ animationDelay: `${(index + 1) * 100}ms` }}
 						key={`nav-menu__list__item-${key}`}>
-						<NavLink to={`#${key === 'home' ? 'hero' : key}`} onClick={() => scrollTo(`#${key === 'home' ? 'hero' : key}`)}>
+						<NavLink
+							to={`#${key === 'home' ? 'hero' : key}`}
+							onClick={() => scrollTo(`#${key === 'home' ? 'hero' : key}`)}>
 							<span className="nav-menu__list__item__link__text">{value}</span>
 						</NavLink>
 					</li>
@@ -54,7 +56,9 @@ const NavMenu = () => {
 							onClick={gotoPortal}>
 							{language === 'vn' ? 'Đăng Nhập' : 'Login'}
 						</Button>
-						<Button className="button--contrast nav-menu__list__item__actions__item nav-menu__list__item__actions__item--book-consultation">
+						<Button
+							className="button--contrast nav-menu__list__item__actions__item nav-menu__list__item__actions__item--book-consultation"
+							onClick={() => scrollTo('#contact')}>
 							{language === 'vn' ? 'Đặt Lịch Tư Vấn' : 'Book Consultation'}
 						</Button>
 					</div>

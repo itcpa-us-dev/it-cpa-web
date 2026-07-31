@@ -33,13 +33,15 @@
 		flex-grow: 1;
 		flex-wrap: wrap;
 	}
-
 	@include respond-down-to('sm') {
 		&__header {
 			flex-direction: column;
 			&__right {
 				margin: 30px 0;
 			}
+		}
+		&__content{
+			
 		}
 	}
 	&--shown {

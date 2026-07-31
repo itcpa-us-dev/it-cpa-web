@@ -5,10 +5,11 @@ import Icon from '../../ui/components/Icon';
 import { useInView } from 'react-intersection-observer';
 import Button from '../../ui/components/Button/Button';
 import HERO_BACKGROUND from '../../assets/images/background_2.png';
+import { scrollTo } from '../../utils/Scroll';
 
 const Hero = () => {
 	const { ref, inView } = useInView({
-		threshold: 0.1,
+		threshold: 0.2,
 		triggerOnce: true,
 	});
 	const language = useAppSelector((state) => state.theme.language);
@@ -46,13 +47,17 @@ const Hero = () => {
 					<div className="flex flex-row  hero__content__left__cta">
 						<Button
 							className="button button--citron button--icon-right uppercase"
-							data-section="contact" style={{ animationDelay: '600ms' }}>
+							data-section="contact"
+							style={{ animationDelay: '600ms' }}
+							onClick={() => scrollTo('#contact')}>
 							<span>{heroData.cta}</span>
 							<Icon name="arrow-small-up" size="small" />
 						</Button>
 						<Button
 							className="button button--hollow uppercase"
-							data-section="service" style={{ animationDelay: '700ms' }}>
+							data-section="service"
+							style={{ animationDelay: '700ms' }}
+							onClick={() => scrollTo('#services')}>
 							<span>{heroData.redirect}</span>
 						</Button>
 					</div>

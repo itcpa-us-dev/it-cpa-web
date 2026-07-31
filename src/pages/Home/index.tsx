@@ -58,6 +58,7 @@ const Home = () => {
 			<ToastContainer />
 			<Button
 				className="button button--citron-contrast button--icon-right home--consultation"
+				type="button"
 				onClick={() => scrollTo('#contact')}>
 				<span>
 					{language === 'vn' ? 'Đặt lịch tư vấn' : 'Book Consultation'}

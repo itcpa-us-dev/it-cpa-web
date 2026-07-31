@@ -11,7 +11,7 @@ import { scrollTo } from '../../utils/Scroll';
 
 const Pricing = () => {
 	const { ref, inView } = useInView({
-		threshold: 0.1,
+		threshold: 0.2,
 		triggerOnce: true,
 	});
 	const dispatch = useAppDispatch();

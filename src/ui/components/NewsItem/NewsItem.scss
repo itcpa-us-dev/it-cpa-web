@@ -43,4 +43,13 @@
 			}
 		}
 	}
+
+	@include respond-down-to('sm') {
+		&__header {
+			flex-wrap: wrap;
+		}
+		&__content {
+			flex-wrap: wrap;
+		}
+	}
 }

@@ -8,105 +8,186 @@
 	justify-content: center;
 	align-items: center;
 	transition: all 250ms ease;
-}
 
-.button.button--icon-left,
-.button.button--icon-right {
-	& i {
-		background-color: var(--background-obsidian);
+	/* Global fix: Prevent the button from looking stuck if it retains focus after a click */
+	&:focus:not(:focus-visible) {
+		outline: none;
 	}
-	&:hover {
-		background-color: var(--background-obsidian);
-		color: var(--text-citron);
+
+	/* --- ICON POSITIONING --- */
+	&--icon-left,
+	&--icon-right {
 		& i {
-			background-color: var(--background-citron);
+			background-color: var(--background-obsidian);
+			transition: all 250ms ease;
+		}
+
+		@media (hover: hover) {
+			&:hover {
+				background-color: var(--background-obsidian);
+				color: var(--text-citron);
+				& i {
+					background-color: var(--background-citron);
+				}
+			}
 		}
 	}
-}
-.button.button--icon-left {
-	& i {
+
+	&--icon-left i {
 		margin-right: 10px;
 	}
-}
 
-.button.button--icon-right {
-	& i {
+	&--icon-right i {
 		margin-left: 10px;
 	}
-}
 
-.button.button--citron {
-	background-color: var(--background-citron);
-	color: var(--text-obsidian);
-	&:hover {
-		background-color: var(--background-obsidian);
-		color: var(--text-citron);
-	}
-}
-
-.button.button--citron-contrast {
-	background-color: var(--background-citron);
-	color: var(--text-obsidian);
-	&:hover {
-		background-color: var(--background-alabaster);
-		color: var(--text-citron);
-		& i {
-			background-color: var(--background-citron);
-		}
-	}
-}
-
-.button.button--contrast {
-	background-color: var(--background-obsidian-contrast);
-	color: var(--text-obsidian-contrast);
-	&:hover {
+	/* --- COLOR VARIANTS --- */
+	&--citron {
 		background-color: var(--background-citron);
 		color: var(--text-obsidian);
-	}
-}
 
-.button.button--hollow {
-	border: 1px solid var(--border-graphite);
-	&:hover {
-		background-color: var(--background-obsidian);
+		@media (hover: hover) {
+			&:hover {
+				background-color: var(--background-obsidian);
+				color: var(--text-citron);
+			}
+		}
+	}
+
+	&--citron-contrast {
+		background-color: var(--background-citron);
+		color: var(--text-obsidian);
+
+		@media (hover: hover) {
+			&:hover {
+				background-color: var(--background-alabaster);
+				color: var(--text-citron);
+				& i {
+					background-color: var(--background-citron);
+				}
+			}
+		}
+
+		/* Ensure active state resets properly */
+		&:active {
+			background-color: var(--background-citron);
+			color: var(--text-obsidian);
+			& i {
+				background-color: var(--background-obsidian);
+			}
+		}
+	}
+
+	&--contrast {
+		background-color: var(--background-obsidian-contrast);
+		color: var(--text-obsidian-contrast);
+
+		@media (hover: hover) {
+			&:hover {
+				background-color: var(--background-citron);
+				color: var(--text-obsidian);
+			}
+		}
+	}
+
+	&--hollow {
+		border: 1px solid var(--border-graphite);
+		background-color: transparent;
+
+		@media (hover: hover) {
+			&:hover {
+				background-color: var(--background-obsidian);
+				color: var(--text-alabaster);
+				& i {
+					background-color: var(--background-alabaster);
+				}
+			}
+		}
+
+		&:active {
+			background-color: var(--background-obsidian);
+			color: var(--text-alabaster);
+			& i {
+				background-color: var(--background-alabaster);
+			}
+		}
+	}
+
+	&--hollow-contrast {
+		border: 1px solid var(--border-graphite);
 		color: var(--text-alabaster);
+		background-color: transparent;
+
 		& i {
 			background-color: var(--background-alabaster);
 		}
-	}
-}
 
-.button.button--hollow-contrast {
-	border: 1px solid var(--border-graphite);
-	color: var(--text-alabaster);
-	& i {
-		background-color: var(--background-alabaster);
-	}
-	&:hover {
-		border: 1px solid var(--border-citron);
-		& i {
-			background-color: var(--background-citron);
+		@media (hover: hover) {
+			&:hover {
+				border-color: var(--border-citron);
+				& i {
+					background-color: var(--background-citron);
+				}
+			}
 		}
-	}
-}
 
-[data-theme='dark'] {
-	& button.button.button--icon-left,
-	& button.button.button--icon-right {
-		& i {
-			background-color: var(--background-obsidian-contrast);
-		}
-	}
-	& button.button.button--citron-contrast {
-		&:hover {
+		&:active {
+			border-color: var(--border-citron);
 			& i {
 				background-color: var(--background-citron);
 			}
 		}
 	}
-	& button.button.button--hollow-contrast {
-		&:hover {
+}
+
+/* --- DARK MODE OVERRIDES --- */
+[data-theme='dark'] {
+	.button {
+		&--icon-left,
+		&--icon-right {
 			& i {
+				background-color: var(--background-obsidian-contrast);
+			}
+			&:active i {
+				background-color: var(--background-obsidian-contrast);
+			}
+		}
+		&--citron {
+			@media (hover: hover) {
+				&:hover i {
+					background-color: var(--background-citron);
+				}
+			}
+
+			&:active i {
+				background-color: var(--background-citron);
+			}
+		}
+		&--hollow {
+			color: var(--text-alabaster);
+			& i {
+				background-color: var(--background-alabaster);
+			}
+		}
+		&--hollow-contrast {
+			@media (hover: hover) {
+				&:hover i {
+					background-color: var(--background-citron);
+				}
+			}
+
+			&:active i {
+				background-color: var(--background-citron);
+			}
+		}
+		&--citron-contrast {
+			@media (hover: hover) {
+				&:hover i {
+					background-color: var(--background-citron);
+				}
+			}
+
+			&:active i {
 				background-color: var(--background-citron);
 			}
 		}
