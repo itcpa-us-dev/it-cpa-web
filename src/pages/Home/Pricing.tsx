@@ -7,6 +7,7 @@ import { useInView } from 'react-intersection-observer';
 import { NavLink } from 'react-router-dom';
 import Button from '../../ui/components/Button/Button';
 import StringUtil from '../../utils/String';
+import { scrollTo } from '../../utils/Scroll';
 
 const Pricing = () => {
 	const { ref, inView } = useInView({
@@ -33,19 +34,16 @@ const Pricing = () => {
 	classes = StringUtil.removeDoubleAndTrailingSpace(classes);
 
 	return (
-		<section
-			id="pricing"
-			className={classes}
-			ref={ref}>
+		<section id="pricing" className={classes} ref={ref}>
 			<div className="pricing__content">
 				<div className="font-mono uppercase text--citron pricing__content__header">
 					{data.pricing.label}
 				</div>
 				<div className="flex font-heading text--alabaster pricing__content__titles">
 					<div className="pricing__content__titles__titles">
-						<h1 style={{animationDelay: '0ms'}}>{data.pricing.title1}</h1>
-						<h1 style={{animationDelay: '100ms'}}>{data.pricing.title2}</h1>
-						<h1 style={{animationDelay: '200ms'}}>{data.pricing.title3}</h1>
+						<h1 style={{ animationDelay: '0ms' }}>{data.pricing.title1}</h1>
+						<h1 style={{ animationDelay: '100ms' }}>{data.pricing.title2}</h1>
+						<h1 style={{ animationDelay: '200ms' }}>{data.pricing.title3}</h1>
 					</div>
 					<div className="pricing__content__titles__description">
 						<p>{data.pricing.description}</p>
@@ -105,7 +103,8 @@ const Pricing = () => {
 						</div>
 						<div className="flex flex-row justify-center pricing__tiers__item__cta">
 							<Button
-								className={`button ${tier.popular ? 'button--citron-contrast' : 'button--hollow-contrast'} button--icon-right uppercase`}>
+								className={`button ${tier.popular ? 'button--citron-contrast' : 'button--hollow-contrast'} button--icon-right uppercase`}
+								onClick={() => scrollTo('#contact')}>
 								<span>{language === 'vn' ? 'Bắt Đầu' : 'Get Started'}</span>
 								<Icon name="arrow-small-up" size="small" />
 							</Button>

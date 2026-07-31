@@ -1,6 +1,5 @@
 import { pageData } from '../../data';
 import { useAppSelector } from '../../store';
-import Button from '../../ui/components/Button/Button';
 import Icon from '../../ui/components/Icon';
 import '../Home/Home.scss';
 import './Policy.scss';
