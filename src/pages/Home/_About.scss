@@ -126,6 +126,21 @@
 		}
 	}
 	@include respond-down-to('sm') {
+		&__header {
+			&__label {
+				font-size: 60px;
+			}
+		}
+		&__content{
+			&__title{
+				&__titles{
+					& h1 {
+						font-size: 60px;
+						letter-spacing: -5px;
+					}
+				}
+			}
+		}
 		&__people {
 			flex-direction: column;
 			&__person {
@@ -133,10 +148,15 @@
 				&:first-of-type {
 					border-right: none;
 				}
+				&__title {
+					font-size: 18px;
+					margin-left: 50px;
+				}
 				&__info {
 					&__name {
 						width: auto;
 						font-size: 40px;
+						letter-spacing: -3px;
 						padding: 0 0 0 50px;
 					}
 					&__designation {
@@ -224,7 +244,6 @@
 							--translateYEnd: 0px;
 							animation: fadeIn 500ms 500ms forwards;
 						}
-						
 					}
 					&__description {
 						--translateXStart: 0px;

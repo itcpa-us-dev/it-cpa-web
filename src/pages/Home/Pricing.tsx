@@ -118,7 +118,7 @@ const Pricing = () => {
 				</p>
 				<NavLink
 					className="flex items-center font-mono text--citron uppercase font-weight-700 pricing__additional-info__cta"
-					to={'#contact'}>
+					to={'#contact'} onClick={() => scrollTo('#contact')}>
 					<span>{data.pricing.additional_info.cta}</span>
 					<Icon
 						className="background--citron"

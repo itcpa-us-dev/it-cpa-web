@@ -107,13 +107,18 @@
 	@include respond-down-to('md') {
 		padding: 150px 10px;
 		&__left {
+			width: 100%;
 			&__header {
 				&__titles {
 					& h1 {
+						line-height: 1.2;
 						font-size: 80px;
 					}
 				}
 			}
+		}
+		&__right {
+			width: 100%;
 		}
 	}
 
