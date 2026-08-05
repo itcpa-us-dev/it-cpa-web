@@ -162,6 +162,37 @@
 				padding: 0;
 			}
 		}
+		&__tiers {
+			&__item {
+				margin: 20px 0;
+				&__header {
+					margin: 10px 0;
+					&__description {
+						font-size: 14px;
+					}
+				}
+				&__details {
+					& ul {
+						& li {
+							font-size: 14px;
+						}
+					}
+				}
+			}
+		}
+	}
+	@include respond-down-to('lg') {
+		padding: 0 10px;
+		&__tiers {
+			&__item {
+				padding: 30px 10px 5px 10px;
+				&__header {
+					&__description {
+						font-size: 16px;
+					}
+				}
+			}
+		}
 	}
 	@include respond-down-to('sm') {
 		padding: 0 10px;

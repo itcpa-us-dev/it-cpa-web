@@ -147,6 +147,7 @@ footer.home-layout__footer {
 		@include respond-down-to('2xl') {
 			&__content {
 				padding: 80px 100px;
+				flex-direction: column;
 				justify-content: center;
 				align-items: center;
 				text-align: center;
