@@ -1,0 +1,28 @@
+# robots.txt for itcpa-us.com
+# Everything on the public site may be crawled by search engines and AI assistants.
+# (The client portal lives on itcpa-us.taxdome.com, which has its own rules.)
+
+User-agent: *
+Allow: /
+
+# AI assistant crawlers, listed explicitly so the choice is on record.
+# To opt out of any one of them later, change its "Allow: /" to "Disallow: /".
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+Sitemap: https://itcpa-us.com/sitemap.xml
