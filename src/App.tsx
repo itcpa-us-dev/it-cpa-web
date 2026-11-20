@@ -2,7 +2,7 @@ import './App.scss';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import HomeLayout from './ui/layout/HomeLayout';
 import Home from './pages/Home';
-import { useEffect } from 'react';
+import { useEffect, useLayoutEffect } from 'react';
 import { setHeadbarState } from './store/slice/displaySlice';
 import { useAppDispatch } from './store';
 import PrivacyPolicy from './pages/Policy/PrivacyPolicy';
@@ -35,6 +35,12 @@ const router = createBrowserRouter([
 
 function App() {
 	const dispatch = useAppDispatch();
+
+	// The build saves each page's HTML for search engines (scripts/prerender.mjs)
+	// and keeps it hidden until React has rendered over it. Reveal the page now.
+	useLayoutEffect(() => {
+		document.getElementById('root')?.removeAttribute('data-prerendered');
+	}, []);
 
 	useEffect(() => {
 		const handleTabClose = (e: Event) => {

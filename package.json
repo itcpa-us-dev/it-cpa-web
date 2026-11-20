@@ -7,6 +7,7 @@
 	"scripts": {
 		"dev": "vite",
 		"build": "tsc -b && vite build && copy dist\\index.html dist\\404.html",
+		"postbuild": "node scripts/prerender.mjs dist",
 		"lint": "eslint .",
 		"preview": "vite preview",
 		"deploy": "bash ./scripts/deploy-main.sh"
@@ -37,6 +38,7 @@
 		"eslint-plugin-react-hooks": "^7.0.1",
 		"eslint-plugin-react-refresh": "^0.5.2",
 		"globals": "^17.4.0",
+		"puppeteer": "^25.18.1",
 		"sass-embedded": "^1.89.2",
 		"scss": "^0.2.4",
 		"typescript": "~5.9.3",
