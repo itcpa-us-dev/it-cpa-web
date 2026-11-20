@@ -509,7 +509,7 @@ const pageData = {
 			principals: [
 				{
 					name: 'Ivy Truong, CPA',
-					href: 'https://www.linkedin.com/in/ivytruong01//',
+					href: 'https://www.linkedin.com/in/ivytruong01/',
 				},
 				{
 					name: 'Tony Hoang, EA',
@@ -517,7 +517,7 @@ const pageData = {
 				},
 			],
 			copyright: {
-				text: '© 2024 IT CPA & Advisory, PLLC. BẢN QUYỀN ĐÃ ĐƯỢC BẢO LƯU.',
+				text: `© ${new Date().getFullYear()} IT CPA & Advisory, PLLC. BẢN QUYỀN ĐÃ ĐƯỢC BẢO LƯU. GIẤY PHÉP CÔNG TY CPA TEXAS SỐ C12382.`,
 				slogan: 'CHÍNH XÁC TRONG MỌI CON SỐ',
 			},
 		},
@@ -1228,6 +1228,20 @@ Nếu có bất kỳ điểm không nhất quán nào giữa phiên bản tiến
 				value: `+1 (346) 475 - 5148`,
 				icon: 'phone',
 			},
+			{
+				id: 'firm-contact-office',
+				type: 'office',
+				label: 'office',
+				value: `Missouri City, TX 77459`,
+				icon: 'marker',
+			},
+			{
+				id: 'firm-contact-languages',
+				type: 'languages',
+				label: 'languages',
+				value: `Tiếng Anh · Tiếng Việt`,
+				icon: 'comment',
+			},
 		],
 		stickyCta: {
 			bookConsultation: 'Đặt Lịch Tư Vấn',
@@ -1763,7 +1777,7 @@ Nếu có bất kỳ điểm không nhất quán nào giữa phiên bản tiến
 				},
 			],
 			copyright: {
-				text: `© ${new Date().getFullYear()} IT CPA & Advisory, PLLC. All rights reserved.`,
+				text: `© ${new Date().getFullYear()} IT CPA & Advisory, PLLC. All rights reserved. Texas CPA Firm License No. C12382.`,
 				slogan: 'PRECISION IN EVERY NUMBER',
 			},
 		},
@@ -2473,6 +2487,20 @@ If there is any inconsistency between the English and Vietnamese versions of thi
 				label: 'email',
 				value: `info@itcpa-us.com`,
 				icon: 'email',
+			},
+			{
+				id: 'firm-contact-office',
+				type: 'office',
+				label: 'office',
+				value: `Missouri City, TX 77459`,
+				icon: 'marker',
+			},
+			{
+				id: 'firm-contact-languages',
+				type: 'languages',
+				label: 'languages',
+				value: `English · Tiếng Việt`,
+				icon: 'comment',
 			},
 		],
 		stickyCta: {
