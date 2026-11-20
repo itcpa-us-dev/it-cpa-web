@@ -1,6 +1,6 @@
 import { useInView } from 'react-intersection-observer';
-import IVYTRUONG from '../../assets/images/ivy-transparent.png';
-import TONYHOANG from '../../assets/images/tony-transparent.png';
+import IVYTRUONG from '../../assets/images/ivy-transparent.webp';
+import TONYHOANG from '../../assets/images/tony-transparent.webp';
 import { pageData } from '../../data';
 import { useAppSelector } from '../../store';
 import './_About.scss';

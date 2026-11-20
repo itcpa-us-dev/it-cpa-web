@@ -4,7 +4,7 @@ import { useAppSelector } from '../../store';
 import Icon from '../../ui/components/Icon';
 import { useInView } from 'react-intersection-observer';
 import Button from '../../ui/components/Button/Button';
-import HERO_BACKGROUND from '../../assets/images/background_2.png';
+import HERO_BACKGROUND from '../../assets/images/background_2.webp';
 import { scrollTo } from '../../utils/Scroll';
 
 const Hero = () => {
@@ -64,7 +64,7 @@ const Hero = () => {
 				</div>
 				<div className="flex flex-column hero__content__right">
 					<div className="hero__content__right__image">
-						<img src={HERO_BACKGROUND} alt="Hero Background" />
+						<img src={HERO_BACKGROUND} alt="" />
 					</div>
 					<div className="flex flex-column hero__content__right__states">
 						<h4 className="flex font-mono hero__content__right__states__title">
