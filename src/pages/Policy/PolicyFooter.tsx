@@ -6,8 +6,9 @@ import './Policy.scss';
 
 const PolicyFooter = () => {
 	const language = useAppSelector((state) => state.theme.language);
-	const contact =
-		language === 'vn' ? pageData.vn.firmContact : pageData.en.firmContact;
+	const contact = (
+		language === 'vn' ? pageData.vn.firmContact : pageData.en.firmContact
+	).filter((method) => ['phone', 'website', 'email'].includes(method.type));
 	return (
 		<section className="flex flex-column gap-10 font-mono items-center justify-center policy__footer">
 			<div className="flex items-center policy__footer__contact">
@@ -23,7 +24,7 @@ const PolicyFooter = () => {
 				})}
 			</div>
 			<div className="flex text--obsidian policy__footer__copyright">
-				{`© ${new Date().getFullYear()} IT CPA & Advisory, PLLC. All rights reserved.`}
+				{`© ${new Date().getFullYear()} IT CPA & Advisory, PLLC. All rights reserved. Texas CPA Firm License No. C12382.`}
 			</div>
 		</section>
 	);

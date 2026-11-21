@@ -17,7 +17,7 @@
 		background-color: var(--background-graphite);
 		background-image:
 			linear-gradient(to top, rgba(#fefefe, 1), rgba(254, 254, 254, 0.6)),
-			url('../../assets/images/policy-header.png');
+			url('../../assets/images/policy-header.webp');
 		background-repeat: no-repeat;
 		background-size: cover;
 		h3 {
@@ -133,7 +133,7 @@
 	&__footer {
 		background-image:
 			linear-gradient(to bottom, rgba(#fefefe, 1), rgba(#f2f2f2, 0.9)),
-			url('../../assets/images/policy-footer.png');
+			url('../../assets/images/policy-footer.webp');
 		background-repeat: no-repeat;
 		background-size: cover;
 		&__contact {
