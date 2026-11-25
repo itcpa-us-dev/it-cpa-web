@@ -90,12 +90,15 @@ export const scrollToWithBezier = (
 	requestAnimationFrame(step);
 };
 
+// Height of the fixed header, so a section's heading doesn't land underneath it
+const HEADER_OFFSET = 80;
+
 export const scrollTo = (href: string) => {
 	const el = document.querySelector(href);
 	if (el)
 		scrollToWithBezier(
 			window,
-			el ? el.getBoundingClientRect().top + window.scrollY : 0,
+			Math.max(0, el.getBoundingClientRect().top + window.scrollY - HEADER_OFFSET),
 			500,
 			[1, -0.078, 0.419, -0.21],
 		);

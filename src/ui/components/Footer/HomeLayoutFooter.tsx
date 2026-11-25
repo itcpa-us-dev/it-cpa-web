@@ -1,112 +1,90 @@
-import { useInView } from 'react-intersection-observer';
 import { useAppSelector } from '../../../store';
 import './Footer.scss';
 import '../../../pages/Home/Home.scss';
-import { pageData } from '../../../data';
-import StringUtil from '../../../utils/String';
+import { pageData, firmPhone, firmEmail } from '../../../data';
+import { useReveal } from '../../../utils/Reveal';
 
 const HomeLayoutFooter = () => {
 	const language = useAppSelector((state) => state.theme.language);
-	const { ref, inView } = useInView({
-		threshold: 0.2,
-		triggerOnce: true,
-	});
-	const footerData =
-		language === 'vn' ? pageData.vn.footer : pageData.en.footer;
-
-	let classes = `flex flex-column home-layout__footer ${inView ? 'home-layout__footer--shown' : ''}`;
-	classes = StringUtil.removeDoubleAndTrailingSpace(classes);
+	const { ref, inView } = useReveal();
+	const footerData = language === 'vn' ? pageData.vn.footer : pageData.en.footer;
+	const legalLinks = [
+		{ label: language === 'vn' ? 'Chính sách bảo mật' : 'Privacy Policy', href: '/privacy-policy' },
+		{ label: language === 'vn' ? 'Điều khoản dịch vụ' : 'Terms of Service', href: '/terms-of-service' },
+	];
 
 	return (
-		<footer className={classes} ref={ref}>
-			<div className="flex background--obsidian home-layout__footer__content">
-				<div className="home-layout__footer__content__group">
-					<div className="home-layout__footer__content__group__logo">
-						<span className="text--citron home-layout__footer__content__group__logo__est">
-							EST. 2025
-						</span>
-						<h2 className="text--muted home-layout__footer__content__group__logo__company-name">
-							IT CPA &<br /> Advisory, PLLC
-						</h2>
-						<span className="flex text--muted home-layout__footer__content__group__logo__description">
-							{footerData.tagline}
-						</span>
+		<footer className={`background--obsidian site-footer ${inView ? 'is-shown' : ''}`} ref={ref}>
+			<div className="site-footer__inner">
+				<div className="site-footer__brand reveal">
+					<p className="font-mono text--citron site-footer__est">EST. 2025</p>
+					<p className="font-heading site-footer__name">
+						IT CPA &amp;
+						<br /> Advisory, PLLC
+					</p>
+					<p className="font-heading site-footer__tagline">{footerData.tagline}</p>
+					<div className="flex flex-column font-mono site-footer__contact">
+						<a href={firmPhone.href}>{firmPhone.display}</a>
+						<a href={firmEmail.href}>{firmEmail.display}</a>
 					</div>
 				</div>
-				<div className="home-layout__footer__content__group">
-					<div className="home-layout__footer__content__group__services">
-						<h4 className="text--citron font-mono">{footerData.titles[0]}</h4>
-						<ul>
-							{footerData.services.map((service, index) => (
-								<li
-									key={`footer-service-${index}`}
-									style={{ animationDelay: `${index * 100}ms` }}>
-									<p className="font-mono text--alabaster">{service}</p>
-								</li>
-							))}
-						</ul>
-					</div>
-				</div>
-				<div className="home-layout__footer__content__group">
-					<div className="home-layout__footer__content__group__navigation">
-						<h4 className="text--citron font-mono">{footerData.titles[1]}</h4>
-						<ul>
-							{footerData.navigation.map((navItem, index) => (
-								<li
-									key={`footer-nav-${index}`}
-									style={{ animationDelay: `${index * 100}ms` }}>
-									<a className="font-mono text--alabaster" href={navItem.href}>
-										{navItem.label}
-									</a>
-								</li>
-							))}
-							<li
-								key={`footer-nav-${footerData.navigation.length}`}
-								style={{
-									animationDelay: `${footerData.navigation.length * 100}ms`,
-								}}>
-								<a className="font-mono text--alabaster" href="/privacy-policy">
-									{language === 'vn' ? 'Chính sách bảo mật' : 'Privacy Policy'}
+
+				<nav
+					className="site-footer__col reveal"
+					style={{ '--d': '80ms' } as React.CSSProperties}
+					aria-labelledby="footer-services">
+					<h2 id="footer-services" className="font-mono text--citron site-footer__heading">
+						{footerData.titles[0]}
+					</h2>
+					<ul>
+						{footerData.services.map((service) => (
+							<li key={service}>
+								<a href="#services">{service}</a>
+							</li>
+						))}
+					</ul>
+				</nav>
+
+				<nav
+					className="site-footer__col reveal"
+					style={{ '--d': '160ms' } as React.CSSProperties}
+					aria-labelledby="footer-navigation">
+					<h2 id="footer-navigation" className="font-mono text--citron site-footer__heading">
+						{footerData.titles[1]}
+					</h2>
+					<ul>
+						{footerData.navigation.map((navItem) => (
+							<li key={navItem.href}>
+								<a href={navItem.href}>{navItem.label}</a>
+							</li>
+						))}
+						{legalLinks.map((link) => (
+							<li key={link.href}>
+								<a href={link.href}>{link.label}</a>
+							</li>
+						))}
+					</ul>
+				</nav>
+
+				<div
+					className="site-footer__col reveal"
+					style={{ '--d': '240ms' } as React.CSSProperties}>
+					<h2 className="font-mono text--citron site-footer__heading">{footerData.titles[2]}</h2>
+					<ul>
+						{footerData.principals.map((principal) => (
+							<li key={principal.href}>
+								<a href={principal.href} target="_blank" rel="noopener noreferrer">
+									{principal.name} ↗
 								</a>
 							</li>
-							<li
-								key={`footer-nav-${footerData.navigation.length + 1}`}
-								style={{
-									animationDelay: `${(footerData.navigation.length + 1) * 100}ms`,
-								}}>
-								<a
-									className="font-mono text--alabaster"
-									href="/terms-of-service">
-									{language === 'vn'
-										? 'Điều khoản dịch vụ'
-										: 'Terms of Service'}
-								</a>
-							</li>
-						</ul>
-					</div>
-					<div className="home-layout__footer__content__group__principals">
-						<h4 className="text--citron font-mono">{footerData.titles[2]}</h4>
-						<ul>
-							{footerData.principals.map((principal, index) => (
-								<li
-									key={`footer-principal-${index}`}
-									style={{ animationDelay: `${index * 100}ms` }}>
-									<a
-										className="font-mono text--alabaster"
-										href={principal.href}
-										target="_blank"
-										rel="noopener noreferrer">
-										{principal.name}
-									</a>
-								</li>
-							))}
-						</ul>
-					</div>
+						))}
+					</ul>
 				</div>
 			</div>
-			<div className="flex font-mono background--obsidian home-layout__footer__copyright">
-				<p className="text--muted">{footerData.copyright.text}</p>
-				<p className="text--muted">{footerData.copyright.slogan}</p>
+
+			<div className="font-mono site-footer__bottom">
+				<p>{footerData.copyright.text}</p>
+				<p>{footerData.copyright.slogan}</p>
 			</div>
 		</footer>
 	);

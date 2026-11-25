@@ -1,25 +1,31 @@
 import './Hamburger.scss';
 import { useAppDispatch, useAppSelector } from '../../../../store';
 import { toggleHeadbar } from '../../../../store/slice/displaySlice';
+import { pageData } from '../../../../data';
 
 interface HamburgerProps {
 	className?: string;
 }
 
 const HamburgerButton = ({ className }: HamburgerProps) => {
-	let classes = `hamburger-button ${className ? className : ''}`;
-	classes = classes.trim();
+	const classes = `hamburger-button ${className ? className : ''}`.trim();
 	const dispatch = useAppDispatch();
 	const headbarOpen = useAppSelector((state) => state.display.headbarOpen);
+	const language = useAppSelector((state) => state.theme.language);
+	const labels = language === 'vn' ? pageData.vn.stickyCta : pageData.en.stickyCta;
 
-	const handleClickHamburgerButton = () => {
-		dispatch(toggleHeadbar());
-	};
 	return (
-		<div className={classes} onClick={handleClickHamburgerButton}>
+		<button
+			type="button"
+			className={classes}
+			aria-label={headbarOpen ? labels.closeMenu : labels.openMenu}
+			aria-expanded={headbarOpen}
+			aria-controls="nav-menu"
+			onClick={() => dispatch(toggleHeadbar())}>
 			<svg
 				className={`bars ${headbarOpen ? 'active' : ''}`}
-				viewBox="0 0 100 100">
+				viewBox="0 0 100 100"
+				aria-hidden="true">
 				<path
 					className="line top"
 					d="m 30,33 h 40 c 13.100415,0 14.380204,31.80258 6.899646,33.421777 -24.612039,5.327373 9.016154,-52.337577 -12.75751,-30.563913 l -28.284272,28.284272"></path>
@@ -30,7 +36,7 @@ const HamburgerButton = ({ className }: HamburgerProps) => {
 					className="line bottom"
 					d="m 69.575405,67.073826 h -40 c -13.100415,0 -14.380204,-31.80258 -6.899646,-33.421777 24.612039,-5.327373 -9.016154,52.337577 12.75751,30.563913 l 28.284272,-28.284272"></path>
 			</svg>
-		</div>
+		</button>
 	);
 };
 

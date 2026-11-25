@@ -1,103 +1,113 @@
 import './Home.scss';
-import { pageData, states } from '../../data';
+import { pageData, states, firmPhone } from '../../data';
 import { useAppSelector } from '../../store';
 import Icon from '../../ui/components/Icon';
-import { useInView } from 'react-intersection-observer';
-import Button from '../../ui/components/Button/Button';
-import HERO_BACKGROUND from '../../assets/images/background_2.webp';
+import HERO_IMAGE from '../../assets/images/background_2.webp';
 import { scrollTo } from '../../utils/Scroll';
+import { useReveal } from '../../utils/Reveal';
 
 const Hero = () => {
-	const { ref, inView } = useInView({
-		threshold: 0.2,
-		triggerOnce: true,
-	});
+	const { ref, inView } = useReveal();
 	const language = useAppSelector((state) => state.theme.language);
-	const data = language === 'vn' ? pageData.vn : pageData.en;
-	const heroData = data.hero;
+	const heroData = (language === 'vn' ? pageData.vn : pageData.en).hero;
+	const { title } = heroData;
 
 	return (
 		<section
 			id="hero"
-			className={`flex flex-column font-mono hero overflow-hidden ${inView ? 'hero--shown' : ''}`}
-			ref={ref}>
-			<div className="flex uppercase hero__trusted">
-				<Icon name="shield-check" size="small" />
-				<span>{heroData.trusted}</span>
-			</div>
-			<div className="flex flex-row hero__content">
-				<div className="flex flex-column hero__content__left">
-					<div className="flex flex-column font-heading title-style title-style title-style--large hero__content__left__titles">
-						<h1 style={{ animationDelay: '0ms' }}>
-							{heroData.title.title1Line1}
-						</h1>
-						<h1 style={{ animationDelay: '100ms' }}>
-							{heroData.title.title1Line2}
-						</h1>
-						<h1 style={{ animationDelay: '200ms' }}>
-							{heroData.title.title2Line1}
-						</h1>
-						<h1 style={{ animationDelay: '300ms' }}>
-							{heroData.title.title2Line2}
-						</h1>
-					</div>
-					<div className="flex flex-column hero__content__left__subtitle">
-						<p style={{ animationDelay: '500ms' }}>{heroData.paragraph}</p>
-					</div>
-					<div className="flex flex-row  hero__content__left__cta">
-						<Button
-							className="button button--citron button--icon-right uppercase"
-							data-section="contact"
-							style={{ animationDelay: '600ms' }}
+			className={`hero ${inView ? 'is-shown' : ''}`}
+			ref={ref}
+			aria-labelledby="hero-title">
+			<div className="hero__grid">
+				<div className="hero__copy">
+					<p className="flex items-center font-mono uppercase hero__trusted reveal">
+						<Icon name="shield-check" size="small" className="background--citron" />
+						<span>{heroData.trusted}</span>
+					</p>
+					<h1 id="hero-title" className="hero__title">
+						<span className="reveal" style={{ '--d': '80ms' } as React.CSSProperties}>
+							{title.title1Line1} {title.title1Line2}
+						</span>
+						<span className="reveal" style={{ '--d': '160ms' } as React.CSSProperties}>
+							{title.title2Line1}{' '}
+							<span className="hero__title__accent">{title.title2Line2}</span>
+						</span>
+					</h1>
+					<p
+						className="font-heading hero__lead reveal"
+						style={{ '--d': '260ms' } as React.CSSProperties}>
+						{heroData.paragraph}
+					</p>
+					<div
+						className="flex flex-wrap hero__cta reveal"
+						style={{ '--d': '340ms' } as React.CSSProperties}>
+						<button
+							type="button"
+							className="button button--citron button--icon-right hero__cta__primary"
 							onClick={() => scrollTo('#contact')}>
 							<span>{heroData.cta}</span>
-							<Icon name="arrow-small-up" size="small" />
-						</Button>
-						<Button
-							className="button button--hollow uppercase"
-							data-section="service"
-							style={{ animationDelay: '700ms' }}
-							onClick={() => scrollTo('#services')}>
-							<span>{heroData.redirect}</span>
-						</Button>
+							<Icon name="arrow-small-right" size="small" />
+						</button>
+						<a className="button button--hollow hero__cta__secondary" href={firmPhone.href}>
+							<Icon name="phone" size="small" />
+							<span>{heroData.callCta}</span>
+						</a>
 					</div>
+					<ul
+						className="flex flex-wrap font-mono hero__credentials reveal"
+						style={{ '--d': '420ms' } as React.CSSProperties}>
+						{heroData.credentials.map((item) => (
+							<li key={item} className="flex items-center">
+								<Icon name="check" size="small" className="background--citron" />
+								<span>{item}</span>
+							</li>
+						))}
+					</ul>
 				</div>
-				<div className="flex flex-column hero__content__right">
-					<div className="hero__content__right__image">
-						<img src={HERO_BACKGROUND} alt="" />
-					</div>
-					<div className="flex flex-column hero__content__right__states">
-						<h4 className="flex font-mono hero__content__right__states__title">
-							{language == 'en' ? 'States Served' : 'Đã Phục Vụ Các Tiểu Bang'}
-						</h4>
-						<div className="flex flex-column font-mono gap-4 font-heading text--obsidian hero__content__right__states__list">
-							{states.map((state, index) => (
-								<span
-									className="font-mono"
-									key={`state-${state.name}-${index}`}>
-									{state.name}
-								</span>
-							))}
+
+				<div
+					className="hero__visual reveal"
+					style={{ '--d': '200ms' } as React.CSSProperties}>
+					<img
+						className="hero__visual__image"
+						src={HERO_IMAGE}
+						alt=""
+						width={1376}
+						height={768}
+						fetchPriority="high"
+					/>
+					<div className="hero__states">
+						<p className="font-mono uppercase hero__states__title">
+							{language === 'vn' ? 'Tiểu Bang Phục Vụ' : 'States Served'}
+						</p>
+						<div className="hero__states__window" aria-hidden="true">
+							<div className="hero__states__list">
+								{[...states, ...states].map((state, index) => (
+									<span key={`state-${state.abbreviation}-${index}`}>{state.name}</span>
+								))}
+							</div>
 						</div>
+						<p className="font-mono hero__states__summary">{heroData.statesSummary}</p>
 					</div>
 				</div>
 			</div>
-			<div className="flex flex-row justify-between relative hero__content__trust_badges">
+
+			<ul className="hero__badges">
 				{heroData.trust_badges.map((badge, index) => (
-					<div
-						className="text--obsidian flex flex-row hero__content__trust_badges__item"
-						key={index}>
-						<Icon key={index} name={badge.icon} size="large" />
-						<div className="font-mono">
-							<h4>{badge.headline}</h4>
-							<p>{badge.text}</p>
+					<li
+						className="flex hero__badges__item reveal"
+						style={{ '--d': `${500 + index * 80}ms` } as React.CSSProperties}
+						key={badge.id}>
+						<span className="hero__badges__item__icon">
+							<Icon name={badge.icon} size="small" className="background--citron" />
+						</span>
+						<div>
+							<h2 className="font-heading hero__badges__item__headline">{badge.headline}</h2>
+							<p className="font-mono hero__badges__item__text">{badge.text}</p>
 						</div>
-					</div>
+					</li>
 				))}
-			</div>
-			<div className="flex flex-row indicator">
-				<Icon name="arrow-small-down" size="medium" />
-			</div>
+			</ul>
 		</section>
 	);
 };

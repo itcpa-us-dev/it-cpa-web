@@ -4,7 +4,7 @@ import HomeLayout from './ui/layout/HomeLayout';
 import Home from './pages/Home';
 import { useEffect, useLayoutEffect } from 'react';
 import { setHeadbarState } from './store/slice/displaySlice';
-import { useAppDispatch } from './store';
+import { useAppDispatch, useAppSelector } from './store';
 import PrivacyPolicy from './pages/Policy/PrivacyPolicy';
 import TermsOfService from './pages/Policy/TermsOfService';
 import NotFound from './pages/NotFound';
@@ -35,6 +35,12 @@ const router = createBrowserRouter([
 
 function App() {
 	const dispatch = useAppDispatch();
+	const language = useAppSelector((state) => state.theme.language);
+
+	// Tell browsers and screen readers which language the page is in
+	useEffect(() => {
+		document.documentElement.lang = language === 'vn' ? 'vi' : 'en';
+	}, [language]);
 
 	// The build saves each page's HTML for search engines (scripts/prerender.mjs)
 	// and keeps it hidden until React has rendered over it. Reveal the page now.

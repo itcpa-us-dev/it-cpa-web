@@ -1,72 +1,79 @@
-import { useInView } from 'react-intersection-observer';
 import IVYTRUONG from '../../assets/images/ivy-transparent.webp';
 import TONYHOANG from '../../assets/images/tony-transparent.webp';
 import { pageData } from '../../data';
 import { useAppSelector } from '../../store';
+import { useReveal } from '../../utils/Reveal';
 import './_About.scss';
 
 const About = () => {
+	const { ref, inView } = useReveal();
 	const language = useAppSelector((state) => state.theme.language);
-	const aboutData = language === 'vn' ? pageData.vn.about : pageData.en.about;
+	const data = language === 'vn' ? pageData.vn : pageData.en;
+	const aboutData = data.about;
+	const [ivyLink, tonyLink] = data.footer.principals;
 
-	const { ref, inView } = useInView({
-		threshold: 0.2,
-		triggerOnce: true,
-	});
+	const people = [
+		{ key: 'ivy', person: aboutData.ivy, image: IVYTRUONG, width: 1023, height: 1390, linkedin: ivyLink?.href },
+		{ key: 'tony', person: aboutData.tony, image: TONYHOANG, width: 842, height: 1264, linkedin: tonyLink?.href },
+	];
+
 	return (
 		<section
 			id="about"
-			className={`flex flex-column relative about ${inView ? 'about--shown' : ''}`}
-			ref={ref}>
-			<div className="font-heading absolute about__header">
-				<h1 className="text--alabaster about__header__label">{aboutData.label}</h1>
-			</div>
-			<div className="about__content">
-				<div className="about__content__title">
-					<p className="font-mono uppercase font-weight-200 text--obsidian about__content__title__header">
-						{aboutData.label}
-					</p>
-					<div className="about__content__title__titles">
-						<h1 className="font-heading text--obsidian" style={{ animationDelay: '0ms' }}>{aboutData.title1}</h1>
-						<h1 className="font-heading text--obsidian" style={{ animationDelay: '100ms' }}>{aboutData.title2}</h1>
-					</div>
-				</div>
-			</div>
-			<div className="flex flex-row justify-center about__people">
-				<div className="flex flex-column relative about__people__person about__people__person--ivy">
-					<img className="absolute about__people__person__image about__people__person__image--ivy prevent-select" src={IVYTRUONG} alt="Ivy Truong, CPA" />
-					<p className="font-mono text--citron about__people__person__title">
-						{aboutData.ivy.title}
-					</p>
-					<div className="flex flex-row items-center about__people__person__info">
-						<h1 className="font-heading text--obsidian relative about__people__person__info__name">
-							{aboutData.ivy.name}
-						</h1>
-						<span className="font-mono flex text--obsidian flex-row justify-center font-weight-200 about__people__person__info__designation">
-							{aboutData.ivy.designation}
-						</span>
-					</div>
-					<p className="font-heading text--obsidian about__people__person__description">
-						{aboutData.ivy.description}
-					</p>
-				</div>
-				<div className="flex flex-column relative about__people__person about__people__person--tony">
-					<img className="absolute about__people__person__image about__people__person__image--tony prevent-select" src={TONYHOANG} alt="Tony Hoang, EA" />
-					<p className="font-mono text--citron about__people__person__title">
-						{aboutData.tony.title}
-					</p>
-					<div className="flex flex-row items-center about__people__person__info">
-						<h1 className="font-heading text--obsidian relative about__people__person__info__name">
-							{aboutData.tony.name}
-						</h1>
-						<span className="font-mono flex text--obsidian flex-row justify-center font-weight-200 about__people__person__info__designation">
-							{aboutData.tony.designation}
-						</span>
-					</div>
-					<p className="font-heading text--obsidian about__people__person__description">
-						{aboutData.tony.description}
-					</p>
-				</div>
+			className={`about ${inView ? 'is-shown' : ''}`}
+			ref={ref}
+			aria-labelledby="about-title">
+			<p className="eyebrow reveal">{aboutData.label}</p>
+			<h2 id="about-title" className="section-title about__title">
+				<span className="reveal" style={{ '--d': '80ms' } as React.CSSProperties}>
+					{aboutData.title1}
+				</span>
+				<span
+					className="section-title__accent reveal"
+					style={{ '--d': '160ms' } as React.CSSProperties}>
+					{aboutData.title2}
+				</span>
+			</h2>
+
+			<div className="about__people">
+				{people.map(({ key, person, image, width, height, linkedin }, index) => (
+					<article
+						key={key}
+						className="about__person reveal"
+						style={{ '--d': `${240 + index * 120}ms` } as React.CSSProperties}>
+						<div className="about__person__photo">
+							<img
+								className="prevent-select"
+								src={image}
+								alt={`${person.name}, ${person.designation}`}
+								width={width}
+								height={height}
+								loading="lazy"
+							/>
+						</div>
+						<div className="about__person__body">
+							<p className="font-mono uppercase text--citron about__person__role">{person.title}</p>
+							<h3 className="flex items-center font-heading about__person__name">
+								<span>{person.name}</span>
+								<span className="font-mono about__person__designation">{person.designation}</span>
+							</h3>
+							<p className="font-heading about__person__description">{person.description}</p>
+							{linkedin && (
+								<a
+									className="font-mono uppercase about__person__link"
+									href={linkedin}
+									target="_blank"
+									rel="noopener noreferrer">
+									LinkedIn ↗
+									<span className="sr-only">
+										{' '}
+										({person.name}, {language === 'vn' ? 'mở trong tab mới' : 'opens in a new tab'})
+									</span>
+								</a>
+							)}
+						</div>
+					</article>
+				))}
 			</div>
 		</section>
 	);

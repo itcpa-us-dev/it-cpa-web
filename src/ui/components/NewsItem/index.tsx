@@ -1,5 +1,3 @@
-import { NavLink } from 'react-router-dom';
-import StringUtil from '../../../utils/String';
 import Icon from '../Icon';
 import './NewsItem.scss';
 
@@ -9,49 +7,47 @@ type NewsItemProps = {
 	readTime: string;
 	complexity: string | number;
 	summary: string;
-	link: string;
+	ctaLabel: string;
+	onCta: () => void;
+	className?: string;
 	style?: React.CSSProperties;
 };
 
+/**
+ * Topic card for the Insights section. The full articles aren't published yet,
+ * so instead of a dead link the card offers to start a conversation about the topic.
+ */
 const NewsItem = ({
 	title,
 	category,
 	readTime,
 	complexity,
 	summary,
-	link,
+	ctaLabel,
+	onCta,
+	className,
 	style,
 }: NewsItemProps) => {
-	let classes = 'flex news-item';
-	classes = StringUtil.removeDoubleAndTrailingSpace(classes);
-
 	return (
-		<div className={classes} style={style}>
-			<NavLink className="flex flex-column" to={link}>
-				<div className="flex capitalize items-center gap-8 news-item__header">
-					<h4 className="font-mono text--citron font-weight-400 uppercase news-item__header__category">
-						{category}
-					</h4>
-					<div className="flex font-mono news-item__header__time">
-						<Icon name="clock" size="small" />
-						<span className="text--obsidian">{readTime}</span>
-					</div>
-					<div className="flex font-mono news-item__header__complexity">
-						<Icon name="chart-histogram" size="small" />
-						<span className="text--obsidian">{complexity}</span>
-					</div>
-					<Icon
-						className="news-item__header__indicator"
-						name="arrow-small-right"
-						size="medium"
-					/>
-				</div>
-				<div className="text--obsidian news-item__content">
-					<h3 className="font-heading news-item__content__title">{title}</h3>
-					<p className="font-heading news-item__content__summary">{summary}</p>
-				</div>
-			</NavLink>
-		</div>
+		<article className={`flex flex-column news-item ${className ?? ''}`} style={style}>
+			<div className="flex flex-wrap items-center font-mono news-item__meta">
+				<span className="uppercase text--citron news-item__meta__category">{category}</span>
+				<span className="flex items-center news-item__meta__detail">
+					<Icon name="clock" size="small" />
+					<span>{readTime}</span>
+				</span>
+				<span className="flex items-center capitalize news-item__meta__detail">
+					<Icon name="chart-histogram" size="small" />
+					<span>{complexity}</span>
+				</span>
+			</div>
+			<h3 className="font-heading news-item__title">{title}</h3>
+			<p className="font-heading news-item__summary">{summary}</p>
+			<button type="button" className="flex items-center font-mono uppercase news-item__cta" onClick={onCta}>
+				<span>{ctaLabel}</span>
+				<Icon name="arrow-small-right" size="small" className="background--citron" />
+			</button>
+		</article>
 	);
 };
 

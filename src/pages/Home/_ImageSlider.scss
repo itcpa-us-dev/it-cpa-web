@@ -1,53 +1,61 @@
+@use '../../styles/mixins' as *;
+
 .image-slider {
 	width: 100%;
-	height: 250px;
 	padding: 10px 0;
-	z-index: 10;
 	&__content {
+		width: max-content;
 		&__item {
-			width: 500px;
-			height: 224px;
+			width: 420px;
+			height: 220px;
+			flex-shrink: 0;
 			&__title {
-				height: 50px;
-				color: var(--text-alabaster);
-				left: 20px;
-				bottom: -20px;
+				left: 16px;
+				bottom: 14px;
+				font-size: 12px;
+				font-weight: 600;
+				letter-spacing: 0.04em;
+				color: #fafafa;
+				text-shadow: 0 1px 8px rgba(0, 0, 0, 0.6);
 			}
 			&__image {
 				height: 100%;
 				width: 100%;
-				transition: all 250ms ease;
-				filter: saturate(0);
+				object-fit: cover;
+				transition:
+					transform 400ms ease,
+					filter 400ms ease;
+				filter: grayscale(1);
 			}
-			&:hover {
-				& .image-slider__content__item__image {
-					transform: scale(1.2);
-					filter: saturate(1);
-				}
+			&:hover .image-slider__content__item__image {
+				transform: scale(1.08);
+				filter: grayscale(0);
 			}
 		}
 		&:hover {
 			animation-play-state: paused;
 		}
 	}
-}
-.image-slider--right {
-	& .image-slider__content {
-		animation: infinite-scroll 40s linear infinite;
-		animation-direction: reverse;
+	@include respond-down-to('md') {
+		&__content__item {
+			width: 280px;
+			height: 160px;
+		}
 	}
 }
-.image-slider--left {
-	& .image-slider__content {
-		animation: infinite-scroll 40s linear infinite;
-	}
+.image-slider--right .image-slider__content {
+	animation: infinite-scroll 60s linear infinite reverse;
+}
+.image-slider--left .image-slider__content {
+	animation: infinite-scroll 60s linear infinite;
 }
 
 @keyframes infinite-scroll {
-	0% {
-		transform: translate(0);
+	from {
+		transform: translateX(0);
 	}
-	100% {
-		transform: translate(-50%);
+	to {
+		// gap-4 is 16px: shift by exactly one copy of the set (plus half a gap) for a seamless loop
+		transform: translateX(calc(-50% - 8px));
 	}
 }

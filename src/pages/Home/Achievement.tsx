@@ -1,83 +1,72 @@
 import './Home.scss';
-import StringUtil from '../../utils/String';
 import { pageData } from '../../data';
 import { useAppSelector } from '../../store';
 import { CountUp } from 'use-count-up';
-import { useInView } from 'react-intersection-observer';
+import { useReveal } from '../../utils/Reveal';
 
 const Achievement = () => {
-	const { ref, inView } = useInView({
-		threshold: 0.2,
-		triggerOnce: true,
-	});
+	const { ref, inView } = useReveal();
 	const language = useAppSelector((state) => state.theme.language);
-	const data = language === 'vn' ? pageData.vn : pageData.en;
-	const { achievements } = data;
+	const { achievements } = language === 'vn' ? pageData.vn : pageData.en;
 	const strips = 5;
-	let classes = `flex flex-column justify-center align-center relative background--obsidian overflow-hidden achievement ${inView ? 'achievement--shown' : ''}`;
-	classes = StringUtil.removeDoubleAndTrailingSpace(classes);
 
 	return (
-		<section id="achievement" className={classes} ref={ref}>
-			<div className="absolute achievement__background">
+		<section
+			id="achievement"
+			className={`relative background--obsidian overflow-hidden achievement ${inView ? 'is-shown' : ''}`}
+			ref={ref}
+			aria-labelledby="achievement-title">
+			<div className="absolute achievement__background" aria-hidden="true">
 				{Array.from({ length: strips }).map((_, index) => (
 					<div
 						key={index}
-						className="flex absolute background--alabaster achievement__background__strip"
+						className="absolute background--alabaster achievement__background__strip"
 						style={{ left: `${(index / strips) * 100}%` }}></div>
 				))}
 			</div>
-			<div className="flex flex-column relative achievement__content">
-				<div className="flex achievement__content__intro">
-					<div className="achievement__content__intro__left">
-						<span className="font-mono uppercase text--citron achievement__content__intro__left__heading">
+			<div className="relative achievement__content">
+				<div className="achievement__intro">
+					<div>
+						<p className="font-mono uppercase text--citron achievement__eyebrow reveal">
 							{achievements.heading}
-						</span>
-						<div className="font-heading text--alabaster achievement__content__intro__left__titles">
-							<h1 style={{ animationDelay: '0ms' }}>
+						</p>
+						<h2
+							id="achievement-title"
+							className="section-title section-title--on-dark achievement__title">
+							<span className="reveal" style={{ '--d': '80ms' } as React.CSSProperties}>
 								{achievements.titleLine1}
-							</h1>
-							<h1 style={{ animationDelay: '100ms' }}>
+							</span>
+							<span className="reveal" style={{ '--d': '160ms' } as React.CSSProperties}>
 								{achievements.titleLine2}
-							</h1>
-							<h1 style={{ animationDelay: '200ms' }}>
+							</span>
+							<span
+								className="section-title__accent reveal"
+								style={{ '--d': '240ms' } as React.CSSProperties}>
 								{achievements.titleLine3}
-							</h1>
-						</div>
+							</span>
+						</h2>
 					</div>
-					<div className="achievement__content__intro__right">
-						<div className="font-mono text--alabaster achievement__content__intro__right__description">
-							<p>{achievements.description}</p>
-						</div>
-					</div>
+					<p
+						className="font-heading achievement__description reveal"
+						style={{ '--d': '300ms' } as React.CSSProperties}>
+						{achievements.description}
+					</p>
 				</div>
-				<div className="flex flex-row justify-between achievement__content__stats">
+				<dl className="achievement__stats">
 					{achievements.stats.map((item, index) => (
 						<div
 							key={item.id}
-							className="achievement__content__stats__item"
-							style={{ animationDelay: `${index * 200}ms` }}>
-							<div className="text--citron font-mono achievement__content__stats__item__value">
-								{item.sign && (
-									<span className="achievement__content__stats__item__sign">
-										{item.sign}
-									</span>
-								)}
-								{item.value && (
-									<CountUp isCounting end={item.value} duration={5} />
-								)}
-								{item.unit && (
-									<span className="achievement__content__stats__item__unit">
-										{item.unit}
-									</span>
-								)}
-							</div>
-							<p className="font-mono text--alabaster achievement__content__stats__item__label">
-								{item.label}
-							</p>
+							className="achievement__stats__item reveal"
+							style={{ '--d': `${300 + index * 100}ms` } as React.CSSProperties}>
+							<dt className="font-mono achievement__stats__item__label">{item.label}</dt>
+							<dd className="text--citron font-heading achievement__stats__item__value">
+								{item.sign}
+								<CountUp isCounting={inView} end={item.value} duration={2.5} />
+								{item.unit}
+							</dd>
 						</div>
 					))}
-				</div>
+				</dl>
 			</div>
 		</section>
 	);

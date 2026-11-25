@@ -1,127 +1,75 @@
 @use '../../styles/mixins' as *;
+
 .achievement {
 	width: 100%;
+	padding-top: clamp(72px, 10vw, 128px);
+	padding-bottom: clamp(72px, 10vw, 128px);
+
 	&__background {
-		width: 100%;
-		height: 100%;
+		inset: 0;
 		&__strip {
+			top: 0;
 			width: 1px;
 			height: 100%;
-			opacity: 0.1;
-			z-index: 1;
+			opacity: 0.08;
 		}
 	}
-	&__content {
-		&__intro {
-			margin: 100px 0 0 0;
-			&__left,
-			&__right {
-				width: 50%;
+
+	&__intro {
+		display: grid;
+		grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+		gap: 48px;
+		align-items: end;
+	}
+	&__eyebrow {
+		font-size: 12px;
+		letter-spacing: 0.12em;
+	}
+	&__title {
+		margin-top: 16px;
+	}
+	&__description {
+		max-width: 460px;
+		font-size: clamp(17px, 1.4vw, 20px);
+		line-height: 1.6;
+		color: var(--text-alabaster);
+		opacity: 0.85;
+	}
+
+	&__stats {
+		display: grid;
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+		gap: 32px;
+		margin-top: clamp(56px, 8vw, 96px);
+		padding-top: 40px;
+		border-top: 1px solid rgba(255, 255, 255, 0.12);
+		&__item {
+			display: flex;
+			flex-direction: column-reverse; // number on top, label under it (dt stays first for screen readers)
+			gap: 8px;
+			&__value {
+				font-size: clamp(44px, 5vw, 64px);
+				font-weight: 900;
+				line-height: 1;
+				letter-spacing: -0.03em;
 			}
-			&__left {
-				&__heading {
-					letter-spacing: 1.5px;
-					font-size: 12px;
-					opacity: 0;
-				}
-				&__titles {
-					font-size: 34px;
-					line-height: 1;
-					letter-spacing: -5px;
-					margin: 10px 0;
-					& h1 {
-						opacity: 0;
-					}
-				}
-			}
-			&__right {
-				&__description {
-					opacity: 0;
-					margin-top: 30px;
-					font-size: 20px;
-					line-height: 1.5;
-					max-width: 500px;
-				}
-			}
-		}
-		&__stats {
-			margin: 100px 0 100px 0;
-			&__item {
-				margin: 0 40px;
-				opacity: 0;
-				&__value {
-					font-size: 54px;
-					font-weight: 1000;
-				}
-				&__label {
-					font-size: 18px;
-					margin-top: 10px;
-				}
+			&__label {
+				font-size: 14px;
+				line-height: 1.4;
+				color: var(--text-alabaster);
+				opacity: 0.75;
 			}
 		}
 	}
 
-	@include respond-down-to('5xl') {
-		&__content {
-			&__intro {
-				padding: 0 5px;
-			}
+	@include respond-down-to('lg') {
+		&__intro {
+			grid-template-columns: minmax(0, 1fr);
+			gap: 24px;
 		}
-	}
-	@include respond-down-to('sm') {
-		height: 130vh;
-		&__content {
-			&__intro {
-				flex-direction: column;
-				margin: 200px 0 0 0;
-				&__left,
-				&__right {
-					width: 100%;
-				}
-			}
-			&__stats {
-				flex-direction: column;
-				margin: 50px 0 250px 0;
-				&__item {
-					margin: 20px 0;
-				}
-			}
-		}
-	}
-	&.achievement--shown {
-		& .achievement {
-			&__content {
-				&__intro {
-					&__left {
-						&__heading {
-							--translateYStart: -50px;
-							--translateYEnd: 0px;
-							animation: fadeIn 1000ms forwards;
-						}
-						&__titles {
-							& h1 {
-								--translateXStart: -50px;
-								--translateXEnd: 0px;
-								animation: fadeIn 1000ms forwards;
-							}
-						}
-					}
-					&__right {
-						&__description {
-							--translateXStart: 50px;
-							--translateXEnd: 0px;
-							animation: fadeIn 1000ms forwards;
-						}
-					}
-				}
-				&__stats {
-					&__item {
-						--translateYStart: 50px;
-						--translateYEnd: 0px;
-						animation: fadeIn 1000ms forwards;
-					}
-				}
-			}
+		&__stats {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			row-gap: 40px;
 		}
 	}
 }

@@ -36,6 +36,9 @@ const pageData = {
 				'IT CPA & Advisory, PLLC giúp chủ doanh nghiệp và cá nhân tuân thủ luật thuế, tiết kiệm tối đa thuế, và xây dựng nền tảng tài chính vững mạnh mà không căng thẳng.',
 			cta: 'Đặt Lịch Tư Vấn',
 			redirect: 'Khám Phá Dịch Vụ',
+			callCta: 'Gọi (346) 475-5148',
+			credentials: ['Ivy Truong, CPA', 'Tony Hoang, EA', 'Tiếng Việt · English'],
+			statesSummary: 'Phục vụ khách hàng tại cả 50 tiểu bang',
 			trust_badges: [
 				{
 					id: 'trust-badge-1',
@@ -99,6 +102,9 @@ const pageData = {
 			],
 		},
 		services: {
+			hint: 'Chọn một dịch vụ để xem chi tiết',
+			askCta: 'Trao Đổi Về Dịch Vụ Này',
+			askPrefill: 'Tôi quan tâm đến dịch vụ: ',
 			label: 'CHUYÊN MÔN CỦA CHÚNG TÔI',
 			title1: 'Hơn Cả',
 			title2: 'Việc',
@@ -373,6 +379,9 @@ const pageData = {
 					],
 				},
 			],
+			startingAt: 'Chỉ từ',
+			note: 'Giá trên là mức khởi điểm. Phí chính xác tùy thuộc vào tình huống của bạn và được xác nhận bằng văn bản trước khi bắt đầu công việc.',
+			askPrefill: 'Tôi quan tâm đến gói: ',
 			additional_info: {
 				question: 'Không chắc dịch vụ nào phù hợp với bạn?',
 				cta: 'Nói Chuyện Với Cố Vấn Viên',
@@ -398,7 +407,71 @@ const pageData = {
 			},
 			slogan: 'IT CPA & Advisory, PLLC — Chính Xác Trong Mọi Con Số',
 		},
+		process: {
+			label: 'CÁCH CHÚNG TÔI LÀM VIỆC',
+			title1: 'Ba bước',
+			title2: 'đến sự rõ ràng.',
+			steps: [
+				{
+					id: 'step-1',
+					icon: 'comment',
+					title: 'Đặt lịch tư vấn',
+					text: 'Chia sẻ tình huống của bạn qua điện thoại hoặc biểu mẫu bên dưới. Chúng tôi phản hồi trong vòng 24 giờ.',
+				},
+				{
+					id: 'step-2',
+					icon: 'lock',
+					title: 'Gửi tài liệu an toàn',
+					text: 'Tải hồ sơ lên cổng thông tin khách hàng bảo mật, không cần gửi tài liệu nhạy cảm qua email.',
+				},
+				{
+					id: 'step-3',
+					icon: 'check',
+					title: 'Chuẩn bị, xem xét và nộp hồ sơ',
+					text: 'Chúng tôi chuẩn bị mọi thứ, giải thích rõ cho bạn và chỉ nộp khi bạn đồng ý. Sau đó, chúng tôi luôn sẵn sàng hỗ trợ quanh năm.',
+				},
+			],
+		},
+		faq: {
+			label: 'CÂU HỎI THƯỜNG GẶP',
+			title1: 'Giải đáp',
+			title2: 'thắc mắc.',
+			items: [
+				{
+					id: 'faq-1',
+					q: 'Các bạn có làm việc với khách hàng ngoài Texas không?',
+					a: 'Có. Văn phòng của chúng tôi ở Missouri City, TX, và chúng tôi phục vụ cá nhân và doanh nghiệp tại cả 50 tiểu bang. Tài liệu được trao đổi qua cổng thông tin khách hàng bảo mật, nên bạn không cần đến văn phòng.',
+				},
+				{
+					id: 'faq-2',
+					q: 'Tôi có thể làm việc bằng tiếng Việt không?',
+					a: 'Có. Chúng tôi phục vụ khách hàng bằng cả tiếng Việt và tiếng Anh.',
+				},
+				{
+					id: 'faq-3',
+					q: 'Chi phí khai thuế là bao nhiêu?',
+					a: 'Khai thuế cá nhân chỉ từ $200, và kế toán doanh nghiệp chỉ từ $500/tháng (xem Bảng Giá ở trên). Phí chính xác tùy thuộc vào tình huống của bạn và được xác nhận bằng văn bản trước khi bắt đầu công việc.',
+				},
+				{
+					id: 'faq-4',
+					q: 'Tôi nhận được thư từ IRS. Các bạn có thể giúp không?',
+					a: 'Có. Tony Hoang là Enrolled Agent được IRS cấp phép, có quyền đại diện người nộp thuế trước IRS trong các cuộc kiểm toán, thu nợ và kháng cáo. Hãy liên hệ, chúng tôi sẽ giải thích nội dung thư và các lựa chọn của bạn.',
+				},
+				{
+					id: 'faq-5',
+					q: 'Tôi gửi tài liệu cho các bạn bằng cách nào?',
+					a: 'Qua cổng thông tin khách hàng bảo mật (nút Đăng Nhập ở đầu trang). Vui lòng không gửi số An Sinh Xã Hội hoặc tài liệu thuế qua email thông thường.',
+				},
+				{
+					id: 'faq-6',
+					q: 'CPA và EA khác nhau thế nào?',
+					a: 'CPA được cấp phép bởi hội đồng kế toán của tiểu bang, bao gồm kế toán, kiểm toán và thuế. Enrolled Agent (EA) được IRS cấp phép và chuyên sâu về thuế. Có cả hai trong một đội ngũ nghĩa là sổ sách, chiến lược thuế và các vấn đề với IRS của bạn đều được xử lý tại một nơi.',
+				},
+			],
+		},
 		insights: {
+			askCta: 'Hỏi Chúng Tôi Về Chủ Đề Này',
+			askPrefill: 'Tôi muốn trao đổi về: ',
 			label: 'Kho Kiến Thức',
 			title1: 'Phân Tích Kỹ Thuật,',
 			title2: 'Về Khía Cạnh Thuế.',
@@ -484,6 +557,20 @@ const pageData = {
 				type: 'submit',
 				icon: 'arrow-small-right',
 			},
+			topicLabel: 'Tôi cần hỗ trợ về',
+			topicPrefix: 'Chủ đề: ',
+			topics: [
+				'Khai thuế cá nhân',
+				'Kế toán / bảng lương',
+				'Thư hoặc kiểm toán IRS',
+				'Thành lập doanh nghiệp',
+				'Vấn đề khác',
+			],
+			sending: 'Đang gửi…',
+			success: 'Cảm ơn bạn! Tin nhắn đã được gửi. Chúng tôi sẽ phản hồi trong vòng 24 giờ.',
+			error: 'Đã xảy ra lỗi. Vui lòng thử lại hoặc gọi cho chúng tôi theo số (346) 475-5148.',
+			privacyNote: 'Vui lòng không ghi số An Sinh Xã Hội hoặc số tài khoản trong biểu mẫu này.',
+			callLabel: 'Muốn nói chuyện ngay?',
 		},
 		footer: {
 			titles: ['DỊCH VỤ', 'ĐIỀU HƯỚNG', 'NGƯỜI SÁNG LẬP'],
@@ -1245,6 +1332,13 @@ Nếu có bất kỳ điểm không nhất quán nào giữa phiên bản tiến
 		],
 		stickyCta: {
 			bookConsultation: 'Đặt Lịch Tư Vấn',
+			call: 'Gọi Ngay',
+			login: 'Đăng Nhập',
+			skipToContent: 'Chuyển đến nội dung chính',
+			openMenu: 'Mở menu',
+			closeMenu: 'Đóng menu',
+			switchTheme: 'Đổi giao diện sáng/tối',
+			switchLanguage: 'Đổi ngôn ngữ',
 		},
 		notFound: {
 			title1: '4',
@@ -1289,6 +1383,9 @@ Nếu có bất kỳ điểm không nhất quán nào giữa phiên bản tiến
 				'IT CPA & Advisory, PLLC helps business owners and individuals stay compliant, maximize tax savings, and build a stronger financial foundation without the stress.',
 			cta: 'Book a Consultation',
 			redirect: 'Explore Our Services',
+			callCta: 'Call (346) 475-5148',
+			credentials: ['Ivy Truong, CPA', 'Tony Hoang, EA', 'English · Tiếng Việt'],
+			statesSummary: 'Serving clients in all 50 states',
 			trust_badges: [
 				{
 					id: 'trust-badge-1',
@@ -1352,6 +1449,9 @@ Nếu có bất kỳ điểm không nhất quán nào giữa phiên bản tiến
 			],
 		},
 		services: {
+			hint: 'Select a service to see what’s included',
+			askCta: 'Ask About This Service',
+			askPrefill: 'I’m interested in: ',
 			label: 'OUR EXPERTISE',
 			title1: 'More Than',
 			title2: 'Just Tax',
@@ -1636,12 +1736,79 @@ Nếu có bất kỳ điểm không nhất quán nào giữa phiên bản tiến
 					],
 				},
 			],
+			startingAt: 'Starting at',
+			note: 'Prices are starting points. Your exact fee depends on your situation and is confirmed in writing before any work begins.',
+			askPrefill: 'I’m interested in the plan: ',
 			additional_info: {
 				question: 'Not sure which service is right for you?',
 				cta: 'Talk to an Advisor',
 			},
 		},
+		process: {
+			label: 'HOW IT WORKS',
+			title1: 'Three steps',
+			title2: 'to clarity.',
+			steps: [
+				{
+					id: 'step-1',
+					icon: 'comment',
+					title: 'Book a consultation',
+					text: 'Tell us about your situation by phone or with the form below. We respond within 24 hours.',
+				},
+				{
+					id: 'step-2',
+					icon: 'lock',
+					title: 'Share documents securely',
+					text: 'Upload your files through our secure client portal. No emailing sensitive documents.',
+				},
+				{
+					id: 'step-3',
+					icon: 'check',
+					title: 'We prepare, review, and file',
+					text: 'We prepare everything, walk you through it, and file once you approve. Then we stay available year-round.',
+				},
+			],
+		},
+		faq: {
+			label: 'FAQ',
+			title1: 'Questions,',
+			title2: 'answered.',
+			items: [
+				{
+					id: 'faq-1',
+					q: 'Do you work with clients outside Texas?',
+					a: 'Yes. Our office is in Missouri City, TX, and we work with individuals and businesses in all 50 states. Documents are exchanged through our secure client portal, so you don’t need to visit in person.',
+				},
+				{
+					id: 'faq-2',
+					q: 'Can I work with you in Vietnamese?',
+					a: 'Yes. We serve clients in both English and Vietnamese.',
+				},
+				{
+					id: 'faq-3',
+					q: 'How much will my tax return cost?',
+					a: 'Individual returns start at $200 and business bookkeeping starts at $500/month (see Pricing above). Your exact fee depends on your situation and is confirmed in writing before any work begins.',
+				},
+				{
+					id: 'faq-4',
+					q: 'I received a letter from the IRS. Can you help?',
+					a: 'Yes. Tony Hoang is an IRS Enrolled Agent, licensed to represent taxpayers before the IRS in audits, collections and appeals. Get in touch and we’ll explain what the letter means and what your options are.',
+				},
+				{
+					id: 'faq-5',
+					q: 'How do I send you my documents?',
+					a: 'Through our secure client portal (the Login button at the top of the page). Please don’t send Social Security numbers or tax documents by regular email.',
+				},
+				{
+					id: 'faq-6',
+					q: 'What’s the difference between a CPA and an EA?',
+					a: 'A CPA is licensed by a state board of accountancy and covers accounting, audit and tax. An Enrolled Agent is licensed by the IRS and specializes in tax. Having both on one team means your books, your tax strategy and any IRS issues are handled in one place.',
+				},
+			],
+		},
 		insights: {
+			askCta: 'Ask Us About This',
+			askPrefill: 'I’d like to talk about: ',
 			label: 'The Advisory Vault',
 			title1: 'Latest',
 			title2: 'Insights',
@@ -1745,6 +1912,20 @@ Nếu có bất kỳ điểm không nhất quán nào giữa phiên bản tiến
 				type: 'submit',
 				icon: 'arrow-small-right',
 			},
+			topicLabel: 'I need help with',
+			topicPrefix: 'Topic: ',
+			topics: [
+				'Individual tax return',
+				'Bookkeeping / payroll',
+				'IRS letter or audit',
+				'Starting a business',
+				'Something else',
+			],
+			sending: 'Sending…',
+			success: 'Thank you! Your message was sent. We’ll reply within 24 hours.',
+			error: 'Something went wrong. Please try again, or call us at (346) 475-5148.',
+			privacyNote: 'Please don’t include Social Security or account numbers in this form.',
+			callLabel: 'Prefer to talk now?',
 		},
 		footer: {
 			titles: ['SERVICES', 'NAVIGATION', 'PRINCIPALS'],
@@ -2505,6 +2686,13 @@ If there is any inconsistency between the English and Vietnamese versions of thi
 		],
 		stickyCta: {
 			bookConsultation: 'Book Consultation',
+			call: 'Call Now',
+			login: 'Client Login',
+			skipToContent: 'Skip to main content',
+			openMenu: 'Open menu',
+			closeMenu: 'Close menu',
+			switchTheme: 'Switch light/dark theme',
+			switchLanguage: 'Change language',
 		},
 		notFound: {
 			title1: '4',
@@ -2579,10 +2767,23 @@ const states = [
 	{ name: 'Wyoming', abbreviation: 'WY' },
 ];
 
+// The firm's direct contact details, for tap-to-call and tap-to-email links
+const firmPhone = { display: '(346) 475-5148', href: 'tel:+13464755148' };
+const firmEmail = { display: 'info@itcpa-us.com', href: 'mailto:info@itcpa-us.com' };
+const clientPortalUrl = 'https://itcpa-us.taxdome.com';
+
 const emailAPI = {
 	service_id: 'service_dq2ebcn',
 	template_id: 'template_7wrvfaq',
 	user_id: '48HA0c_1G1YwKYuSn',
 };
 
-export { pageData, states, version, emailAPI };
+export {
+	pageData,
+	states,
+	version,
+	emailAPI,
+	firmPhone,
+	firmEmail,
+	clientPortalUrl,
+};

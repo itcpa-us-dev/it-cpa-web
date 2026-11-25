@@ -7,64 +7,38 @@ import Pricing from './Pricing';
 import ImageSlider from './ImageSlider';
 import Achievement from './Achievement';
 import Insights from './Insights';
-import { ToastContainer } from 'react-toastify';
-import Button from '../../ui/components/Button/Button';
-import Icon from '../../ui/components/Icon';
-import { useAppSelector } from '../../store';
-import { scrollToWithBezier } from '../../utils/Scroll';
+import Process from './Process';
+import Faq from './Faq';
 import { useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
+import { scrollTo } from '../../utils/Scroll';
 
 const Home = () => {
 	const location = useLocation();
-	const scrollTo = (href: string) => {
-		const el = document.querySelector(href);
-		if (el)
-			scrollToWithBezier(
-				window,
-				el ? el.getBoundingClientRect().top + window.scrollY : 0,
-				500,
-				[1, -0.078, 0.419, -0.21],
-			);
-	};
 
+	// Arriving from another page with a section to show (e.g. the 404 page's "Explore Services")
 	useEffect(() => {
-		// Check if a target section ID was passed in navigation state
-		if (location.state && location.state.scrollToId) {
-			const id = location.state.scrollToId;
-			const element = document.getElementById(id);
-
-			if (element) {
-				// Scroll smoothly to the target element
-				element.scrollIntoView({ behavior: 'smooth' });
-			}
-
-			// Optional: Clear state so it doesn't scroll again on manual page reloads
-			window.history.replaceState({}, document.title);
+		const id = location.state?.scrollToId || location.hash.replace('#', '');
+		if (id && document.getElementById(id)) {
+			scrollTo(`#${id}`);
+			if (location.state?.scrollToId) window.history.replaceState({}, document.title);
 		}
 	}, [location]);
-	const language = useAppSelector((state) => state.theme.language);
+
+	// Order follows the questions a new visitor has:
+	// what do you do → can I trust you → what exactly → how does it work → what does it cost → who are you → still unsure → contact
 	return (
 		<div className="home">
 			<Hero />
 			<ImageSlider direction="left" />
 			<Achievement />
 			<Services />
+			<Process />
 			<Pricing />
 			<About />
-			<ImageSlider direction="right" />
 			<Insights />
+			<Faq />
 			<Contact />
-			<ToastContainer />
-			<Button
-				className="button button--citron-contrast button--icon-right home--consultation"
-				type="button"
-				onClick={() => scrollTo('#contact')}>
-				<span>
-					{language === 'vn' ? 'Đặt lịch tư vấn' : 'Book Consultation'}
-				</span>
-				<Icon name="arrow-small-right" size="small" />
-			</Button>
 		</div>
 	);
 };

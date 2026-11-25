@@ -3,36 +3,32 @@ import { NavLink } from 'react-router-dom';
 import ThemeSwitch from '../ThemeSwitch';
 import LanguageSwitch from '../LanguageSwitch';
 import { useAppSelector } from '../../../store';
-import { pageData } from '../../../data';
+import { pageData, clientPortalUrl } from '../../../data';
 import { scrollTo } from '../../../utils/Scroll';
 import HamburgerButton from '../Button/Hamburger';
-import Button from '../Button/Button';
-import StringUtil from '../../../utils/String';
+import Icon from '../Icon';
 
 const Navbar = () => {
-	let classes =
-		'flex flex-row mx-auto max-w-[1440px] items-center fixed top-0 left-0 right-0 navbar';
-	classes = StringUtil.removeDoubleAndTrailingSpace(classes);
 	const language = useAppSelector((state) => state.theme.language);
 	const data = language === 'vn' ? pageData.vn : pageData.en;
-	const gotoPortal = () => {
-		window.open('https://itcpa-us.taxdome.com', '_blank');
-	};
+
 	return (
-		<nav className={classes}>
+		<nav
+			className="flex flex-row mx-auto items-center fixed top-0 left-0 right-0 navbar"
+			aria-label={language === 'vn' ? 'Điều hướng chính' : 'Main navigation'}>
 			<div className="flex flex-row flex-grow mx-auto justify-between items-center background--transparent navbar__container">
-				<div className={` navbar__logo prevent-select`}>
+				<div className="navbar__logo prevent-select">
 					<NavLink
-						to="#hero"
-						className="flex flex-row font-mono gap-3 navbar__logo__link"
-						onClick={() => scrollTo('#hero')}>
+						to="/"
+						aria-label="IT CPA & Advisory, PLLC"
+						className="flex flex-row items-center font-mono gap-3 navbar__logo__link"
+						onClick={(e) => {
+							e.preventDefault();
+							scrollTo('#hero');
+						}}>
 						<div>
-							<span className="navbar__logo__text navbar__logo__text--1">
-								IT
-							</span>
-							<span className="navbar__logo__text navbar__logo__text--2">
-								CPA
-							</span>
+							<span className="navbar__logo__text navbar__logo__text--1">IT</span>
+							<span className="navbar__logo__text navbar__logo__text--2">CPA</span>
 						</div>
 						<div>
 							<span className="navbar__logo__text navbar__logo__text--3">
@@ -41,32 +37,42 @@ const Navbar = () => {
 						</div>
 					</NavLink>
 				</div>
-				<ul className="flex flex-row gap-8 font-mono uppercase navbar__list">
-					{Object.entries(data.navbar).map(([key, value], index) => (
-						<li
-							className="font-mono navbar__list__item"
-							style={{ animationDelay: `${(index + 1) * 100}ms` }}
-							key={key}>
-							<NavLink
-								to={`#${key}`}
-								className="navbar__list__item__link"
-								onClick={() => scrollTo(`#${key === 'home' ? 'hero' : key}`)}>
-								{value}
-							</NavLink>
-						</li>
-					))}
+				<ul className="flex flex-row font-mono uppercase navbar__list">
+					{Object.entries(data.navbar).map(([key, value]) => {
+						const target = key === 'home' ? 'hero' : key;
+						return (
+							<li className="font-mono navbar__list__item" key={key}>
+								<a
+									href={`#${target}`}
+									className="navbar__list__item__link"
+									onClick={(e) => {
+										e.preventDefault();
+										scrollTo(`#${target}`);
+									}}>
+									{value}
+								</a>
+							</li>
+						);
+					})}
 				</ul>
-				<div className="flex flex-row font-mono gap-8 navbar__actions">
+				<div className="flex flex-row items-center font-mono navbar__actions">
 					<LanguageSwitch id="select-language" />
 					<ThemeSwitch id="select-theme" />
-					<div className="navbar__actions__button">
-						<Button
-							className="flex flex-row flex-center button button--contrast"
-							id="login-button"
-							onClick={gotoPortal}>
-							{language === 'en' ? 'Login' : 'Đăng Nhập'}
-						</Button>
-					</div>
+					<a
+						className="navbar__actions__login"
+						href={clientPortalUrl}
+						target="_blank"
+						rel="noopener noreferrer">
+						<Icon name="user" size="small" />
+						<span>{data.stickyCta.login}</span>
+					</a>
+					<button
+						type="button"
+						className="button button--citron button--icon-right navbar__actions__cta"
+						onClick={() => scrollTo('#contact')}>
+						<span>{data.stickyCta.bookConsultation}</span>
+						<Icon name="arrow-small-right" size="small" />
+					</button>
 					<HamburgerButton className="navbar__hamburger" />
 				</div>
 			</div>

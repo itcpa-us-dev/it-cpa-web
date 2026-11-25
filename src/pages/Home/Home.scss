@@ -5,53 +5,14 @@
 @use 'ImageSlider';
 @use 'Achievement';
 @use 'Services';
+@use 'Process';
 @use 'Contact';
 @use 'About';
 @use 'Insights';
+@use 'Faq';
 @use 'Pricing';
 
 .home {
-	overflow: hidden;
+	overflow-x: clip; // clip (not hidden) so the FAQ heading can stay sticky
 	background-color: var(--background-alabaster);
-}
-
-.home--consultation {
-	position: fixed;
-	height: 50px;
-	bottom: 30px;
-	right: 50px;
-	z-index: 100;
-	transform-origin: center;
-	animation: 2000ms ease-in-out 0s infinite normal none running pulse-shadow;
-	& i {
-		transform: rotate(-45deg);
-	}
-
-	@include respond-down-to('md') {
-		border-radius: 50%;
-		width: 60px;
-		height: 60px;
-		right: 30px;
-		align-items: center;
-		justify-content: center;
-		padding: 0;
-		& span {
-			display: none;
-		}
-		& i {
-			margin: 0 !important;
-			mask-image: url('../../assets/svg/phone.svg');
-			transform: rotate(0deg);
-		}
-	}
-}
-
-@keyframes pulse-shadow {
-	0%,
-	100% {
-		box-shadow: 0 0 5px 0px #ff6a3d;
-	}
-	50% {
-		box-shadow: 0 0 0 10px #ff6a3d00;
-	}
 }

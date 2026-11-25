@@ -1,0 +1,69 @@
+@use './../../../styles/mixins' as *;
+
+.sticky-cta {
+	position: fixed;
+	right: 32px;
+	bottom: 32px;
+	z-index: 90;
+	display: flex;
+	gap: 10px;
+	transition:
+		transform 300ms ease,
+		opacity 300ms ease;
+
+	&__call {
+		display: none; // desktop visitors see the number in the hero and contact section
+	}
+	&__book {
+		height: 52px;
+		padding: 0 24px;
+		font-weight: 600;
+		text-transform: uppercase;
+		letter-spacing: 0.04em;
+		box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+	}
+
+	&--hidden {
+		opacity: 0;
+		transform: translateY(24px);
+		pointer-events: none;
+	}
+
+	// Phones: full-width bottom bar with two equal buttons
+	@include respond-down-to('md') {
+		left: 0;
+		right: 0;
+		bottom: 0;
+		gap: 8px;
+		padding: 10px 12px calc(10px + env(safe-area-inset-bottom));
+		background-color: color-mix(in srgb, var(--background-alabaster) 94%, transparent);
+		backdrop-filter: blur(10px);
+		-webkit-backdrop-filter: blur(10px);
+		border-top: 1px solid var(--border-graphite);
+
+		&__call,
+		&__book {
+			display: flex;
+			flex: 1;
+			height: 48px;
+			gap: 8px;
+			padding: 0 10px;
+			font-size: 13px;
+			letter-spacing: 0.02em;
+			white-space: nowrap;
+			box-shadow: none;
+		}
+		&__call {
+			color: var(--text-obsidian);
+			font-weight: 600;
+			text-transform: uppercase;
+			letter-spacing: 0.04em;
+		}
+		& .sticky-cta__call i {
+			background-color: var(--text-obsidian);
+		}
+		&__book i {
+			display: none;
+		}
+	}
+}

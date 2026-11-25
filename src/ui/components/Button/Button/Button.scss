@@ -193,3 +193,20 @@
 		}
 	}
 }
+
+/* --- ORANGE BUTTONS: always dark text and icon on orange, in both themes (light text on orange is hard to read) --- */
+.button.button--citron,
+.button.button--citron-contrast {
+	color: #1a1a1a;
+	& i {
+		background-color: #1a1a1a;
+	}
+	@media (hover: hover) {
+		&:hover {
+			color: var(--text-citron);
+			& i {
+				background-color: var(--background-citron);
+			}
+		}
+	}
+}
