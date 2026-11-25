@@ -6,7 +6,8 @@
 	align-items: center;
 	justify-content: center;
 	cursor: pointer;
-	padding: 5px 10px;
+	height: 40px;
+	padding: 0 10px;
 	transition: $transition-medium;
 	&:hover {
 		& i {
@@ -22,9 +23,10 @@
 		transition: $transition-medium;
 	}
 	&__dropdown {
-		padding: 10px;
-		bottom: -110px;
+		padding: 6px;
+		top: calc(100% + 6px);
 		right: 0;
+		z-index: 300;
 		box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 		display: none;
 		background-color: var(--background-alabaster);
@@ -32,13 +34,14 @@
 			display: block;
 			--opacityStart: 0;
 			--opacityEnd: 1;
-			--tranlateYStart: -130px;
-			--translateYEnd: -110px;
-			animation: dropdownFadeIn 250ms ease;
+			animation: dropdownFadeIn 200ms ease;
 		}
 		&__item {
-			width: 150px;
+			width: 160px;
 			padding: 10px;
+			align-items: center;
+			cursor: pointer;
+			text-align: left;
 			transition: all linear 250ms;
 			&--selected {
 				& .language-switch__dropdown__item__label {
@@ -67,11 +70,11 @@
 
 @keyframes dropdownFadeIn {
 	0% {
-		opacity: var(--opacityStart);
-		bottom: var(--tranlateYStart);
+		opacity: 0;
+		transform: translateY(-6px);
 	}
 	100% {
-		opacity: var(--opacityEnd);
-		bottom: var(--translateYEnd);
+		opacity: 1;
+		transform: translateY(0);
 	}
 }

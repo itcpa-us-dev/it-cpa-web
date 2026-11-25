@@ -1,189 +1,245 @@
 @use '../../styles/mixins' as *;
+
 .contact {
-	padding: 250px 400px;
-	&__left {
-		width: 50%;
-		&__header {
-			border-bottom: 1px solid var(--border-graphite);
-			padding-bottom: 50px;
-			& h4 {
-				font-size: 14px;
-				opacity: 0;
-			}
-			&__titles {
-				& h1 {
-					line-height: 0.8;
-					font-size: 120px;
-					letter-spacing: -6px;
-					opacity: 0;
-				}
-			}
-			& p {
-				font-size: 18px;
-				line-height: 1.5;
-				max-width: 400px;
-				margin: 40px 0;
-				opacity: 0;
+	display: grid;
+	grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+	gap: clamp(40px, 6vw, 96px);
+	align-items: start;
+	padding-top: clamp(72px, 9vw, 120px);
+	padding-bottom: clamp(80px, 10vw, 140px);
+
+	&__title {
+		margin-top: 16px;
+		font-size: clamp(48px, 7vw, 104px);
+		&__accent {
+			color: var(--text-citron);
+		}
+	}
+	&__lead {
+		margin-top: 24px;
+	}
+
+	&__call {
+		margin-top: 40px;
+		padding: 24px 0;
+		border-top: 1px solid var(--border-graphite);
+		border-bottom: 1px solid var(--border-graphite);
+		&__label {
+			font-size: 12px;
+			letter-spacing: 0.08em;
+			color: hsl(var(--muted-foreground));
+		}
+		&__number {
+			gap: 14px;
+			margin-top: 10px;
+			width: fit-content;
+			font-size: clamp(26px, 2.6vw, 36px);
+			font-weight: 800;
+			letter-spacing: -0.02em;
+			color: var(--text-obsidian);
+			transition: color 200ms ease;
+			&:hover {
+				color: var(--text-citron);
 			}
 		}
-		&__contact {
-			margin: 50px 0;
-			&__method {
-				margin: 20px 0;
-				opacity: 0;
-				&__icon-wrapper {
-					padding: 10px;
-					border: 1px solid var(--border-graphite);
-					margin: 0 20px 0 0;
+		&__icon {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: 44px;
+			height: 44px;
+			border: 1px solid var(--border-citron);
+		}
+	}
+
+	&__methods {
+		display: grid;
+		gap: 18px;
+		margin-top: 28px;
+	}
+	&__method {
+		gap: 16px;
+		&__icon {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-shrink: 0;
+			width: 40px;
+			height: 40px;
+			border: 1px solid var(--border-graphite);
+		}
+		&__label {
+			display: block;
+			font-size: 11px;
+			letter-spacing: 0.08em;
+			color: hsl(var(--muted-foreground));
+		}
+		&__value {
+			display: block;
+			margin-top: 2px;
+			font-size: 16px;
+			font-weight: 600;
+			color: var(--text-obsidian);
+			& a {
+				text-decoration: underline;
+				text-decoration-color: var(--border-graphite);
+				text-underline-offset: 3px;
+				&:hover {
+					color: var(--text-citron);
+					text-decoration-color: var(--border-citron);
 				}
 			}
 		}
 	}
-	&__right {
-		max-width: 800px;
+
+	// The form card
+	&__card {
+		padding: clamp(24px, 3.5vw, 48px);
 		border: 1px solid var(--border-graphite);
-		padding: 50px;
-		opacity: 0;
-		&__header {
-			&__label {
-				font-size: 12px;
-				margin: 0 0 10px 0;
-				opacity: 0;
-			}
-			&__content {
-				max-width: 600px;
-				margin-bottom: 30px;
-				& p {
-					margin: 10px 0;
-					opacity: 0;
-				}
-			}
+		background-color: var(--background-alabaster);
+		box-shadow: 0 24px 60px rgba(0, 0, 0, 0.06);
+		&__label {
+			font-size: 12px;
+			letter-spacing: 0.08em;
+			color: var(--text-citron);
 		}
-		&__form {
-			height: 620px;
-			&__field {
-				opacity: 0;
-				margin: 20px 0;
-				& input,
-				& textarea {
-					margin: 20px 0 0 0;
-					border-bottom: 1px solid var(--border-graphite);
-					padding-bottom: 20px;
-					color: var(--text-obsidian);
-				}
-				& input:placeholder-shown {
-					color: hsl(var(--muted-foreground));
-					font-size: 20px;
-				}
-				& textarea {
-					resize: none;
-					min-height: 200px;
-					max-width: 100%;
-				}
-				& textarea:placeholder-shown {
-					color: hsl(var(--muted-foreground));
-					font-size: 20px;
-				}
-				&__button {
-					width: 100%;
-					margin: auto 0 10px 0;
-					opacity: 0;
+		&__headline {
+			margin-top: 10px;
+			font-size: 22px;
+			font-weight: 800;
+			letter-spacing: -0.02em;
+			color: var(--text-obsidian);
+		}
+		&__description {
+			margin-top: 8px;
+			font-size: 15px;
+			line-height: 1.6;
+			color: hsl(var(--muted-foreground));
+		}
+	}
 
-					& span {
-						font-weight: bold;
-						text-transform: uppercase;
-					}
-				}
-			}
+	&__form {
+		display: grid;
+		gap: 24px;
+		margin-top: 28px;
+	}
+
+	&__topics {
+		border: none;
+		&__list {
+			gap: 8px;
+			margin-top: 10px;
 		}
 	}
-	@include respond-down-to('5xl') {
-		padding: 200px 50px;
+	&__topic {
+		position: relative;
+		padding: 8px 14px;
+		font-size: 14px;
+		color: var(--text-obsidian);
+		border: 1px solid var(--border-graphite);
+		cursor: pointer;
+		transition:
+			border-color 150ms ease,
+			background-color 150ms ease;
+		&:hover {
+			border-color: var(--text-obsidian);
+		}
+		&--selected {
+			border-color: var(--border-citron);
+			background-color: rgba(255, 106, 61, 0.1);
+		}
+		// The real radio is visually hidden; show its keyboard focus on the chip
+		&:has(input:focus-visible) {
+			outline: 2px solid var(--border-citron);
+			outline-offset: 2px;
+		}
 	}
-	@include respond-down-to('lg') {
-		padding: 200px 50px;
+
+	&__row {
+		display: grid;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 24px;
+	}
+
+	&__field {
+		display: flex;
 		flex-direction: column;
-	}
-	@include respond-down-to('md') {
-		padding: 150px 10px;
-		&__left {
-			width: 100%;
-			&__header {
-				&__titles {
-					& h1 {
-						line-height: 1.2;
-						font-size: 80px;
-					}
-				}
+		&__label {
+			font-size: 12px;
+			letter-spacing: 0.04em;
+			color: var(--text-obsidian);
+		}
+		& input,
+		& textarea {
+			margin-top: 8px;
+			padding: 12px 0;
+			font-size: 17px;
+			color: var(--text-obsidian);
+			border-bottom: 1px solid var(--border-graphite);
+			transition: border-color 150ms ease;
+			&::placeholder {
+				color: hsl(var(--muted-foreground));
+				opacity: 0.8;
+			}
+			&:hover {
+				border-bottom-color: hsl(var(--muted-foreground));
 			}
 		}
-		&__right {
-			width: 100%;
+		& textarea {
+			resize: vertical;
+			min-height: 140px;
+			line-height: 1.55;
 		}
 	}
 
-	&--shown {
-		& .contact {
-			&__left {
-				&__header {
-					& h4 {
-						--translateYStart: -100px;
-						--translateYEnd: 0;
-						animation: fadeIn 400ms 100ms forwards;
-					}
-					&__titles {
-						& h1 {
-							--translateYStart: 100px;
-							--translateYEnd: 0;
-							animation: fadeIn 400ms 200ms forwards;
-						}
-					}
-					& p {
-						--translateYStart: 50px;
-						--translateYEnd: 0;
-						animation: fadeIn 400ms 400ms forwards;
-					}
-				}
-				&__contact {
-					&__method {
-						--translateYStart: 50px;
-						--translateYEnd: 0;
-						animation: fadeIn 400ms forwards;
-					}
-				}
-			}
-			&__right {
-				--opacityStart: 0;
-				--opacityEnd: 1;
-				animation: fadeIn 400ms 500ms forwards;
-				&__header {
-					&__label {
-						--translateYStart: -50px;
-						--translateYEnd: 0;
-						animation: fadeIn 400ms 600ms forwards;
-					}
-					&__content {
-						& p {
-							--translateYStart: 50px;
-							--translateYEnd: 0;
-							animation: fadeIn 400ms 700ms forwards;
-						}
-					}
-				}
-				&__form {
-					&__field {
-						--translateYStart: 450px;
-						--translateYEnd: 0;
-						animation: fadeIn 800ms forwards;
+	&__privacy {
+		gap: 8px;
+		margin-top: 10px;
+		font-size: 12px;
+		color: hsl(var(--muted-foreground));
+		& i {
+			flex-shrink: 0;
+		}
+	}
 
-						&__button {
-							--translateYStart: 150px;
-							--translateYEnd: 0;
-							animation: fadeIn 800ms 1000ms forwards;
-						}
-					}
-				}
-			}
+	&__submit {
+		width: 100%;
+		height: 54px;
+		font-size: 14px;
+		font-weight: 700;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+		&:disabled {
+			cursor: progress;
+			opacity: 0.7;
+		}
+	}
+
+	&__status {
+		gap: 10px;
+		align-items: flex-start;
+		padding: 14px 16px;
+		font-size: 15px;
+		line-height: 1.5;
+		color: var(--text-obsidian);
+		border-left: 3px solid var(--border-citron);
+		background-color: rgba(255, 106, 61, 0.08);
+		& i {
+			flex-shrink: 0;
+			margin-top: 2px;
+		}
+		& a {
+			font-weight: 700;
+			text-decoration: underline;
+		}
+	}
+
+	@include respond-down-to('lg') {
+		grid-template-columns: minmax(0, 1fr);
+	}
+	@include respond-down-to('sm') {
+		&__row {
+			grid-template-columns: minmax(0, 1fr);
 		}
 	}
 }

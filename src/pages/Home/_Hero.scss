@@ -1,225 +1,219 @@
 @use '../../styles/mixins' as *;
 @use '../../styles/variables' as *;
 
-#hero {
-	margin: 150px 0 0 0;
-}
 .hero {
-	&__trusted {
-		width: 100%;
-		height: 100px;
+	padding-top: clamp(112px, 14vh, 150px);
+	padding-bottom: 48px;
+
+	&__grid {
+		display: grid;
+		grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+		gap: clamp(40px, 5vw, 80px);
 		align-items: center;
-		opacity: 0;
-		transform-origin: left;
-		& i {
-			margin-right: 10px;
-			background-color: var(--background-citron);
+	}
+
+	&__trusted {
+		gap: 10px;
+		font-size: 12px;
+		letter-spacing: 0.08em;
+		color: hsl(var(--muted-foreground));
+	}
+
+	&__title {
+		margin-top: 20px;
+		font-family: 'Inter Tight', var(--font-heading);
+		font-weight: 900;
+		font-size: clamp(44px, 5.4vw, 88px);
+		line-height: 1.02;
+		letter-spacing: -0.035em;
+		word-spacing: 0.04em;
+		color: var(--text-obsidian);
+		& > span {
+			display: block;
 		}
-		& span {
-			font-weight: 100;
+		&__accent {
+			display: inline-block;
+			padding: 0 0.2em 0.06em;
+			color: var(--text-citron);
+			background-color: var(--background-obsidian);
+		}
+	}
+
+	&__lead {
+		margin-top: 24px;
+		max-width: 560px;
+		font-size: clamp(17px, 1.3vw, 19px);
+		line-height: 1.6;
+		color: hsl(var(--muted-foreground));
+	}
+
+	&__cta {
+		margin-top: 32px;
+		gap: 12px;
+		& .button {
+			height: 52px;
+			padding: 0 24px;
+			font-size: 14px;
+			font-weight: 600;
+			letter-spacing: 0.03em;
+			gap: 10px;
+		}
+		&__primary {
+			text-transform: uppercase;
+		}
+		&__secondary {
+			color: var(--text-obsidian);
+		}
+	}
+	// Extra specificity: beats the dark-theme .button--hollow icon colour, which would hide the phone icon
+	& .hero__cta .hero__cta__secondary i {
+		background-color: var(--text-obsidian);
+	}
+	& .hero__cta .hero__cta__secondary:hover i {
+		background-color: var(--text-alabaster);
+	}
+
+	&__credentials {
+		margin-top: 28px;
+		gap: 10px 24px;
+		font-size: 13px;
+		color: var(--text-obsidian);
+		& li {
+			gap: 8px;
+		}
+	}
+
+	&__visual {
+		position: relative;
+		&__image {
+			width: 100%;
+			aspect-ratio: 4 / 5;
+			max-height: 620px;
+			object-fit: cover;
+			filter: grayscale(100%);
+		}
+	}
+
+	// Small card floating over the image's lower-left corner
+	&__states {
+		position: absolute;
+		left: -32px;
+		bottom: 32px;
+		width: 240px;
+		padding: 18px 20px;
+		background-color: var(--background-alabaster);
+		border: 1px solid var(--border-graphite);
+		box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+		&__title {
+			font-size: 11px;
+			letter-spacing: 0.1em;
 			color: hsl(var(--muted-foreground));
 		}
-	}
-	&__content {
-		&__left,
-		&__right {
-			width: 50%;
+		&__window {
+			height: 96px;
+			margin: 10px 0;
+			overflow: hidden;
+			mask-image: linear-gradient(transparent, #000 25%, #000 75%, transparent);
 		}
-		&__left__titles {
-			margin-top: 10px;
-			& h1 {
-				opacity: 0;
-			}
-		}
-		&__left__subtitle {
-			margin-top: 20px;
-			& p {
-				font-size: 18px;
-				font-weight: 300;
-				color: var(--text-obsidian);
-				line-height: 1.6;
-				max-width: 600px;
-				opacity: 0;
-			}
-		}
-		&__left__cta {
-			margin: 50px 0;
-			& .button {
-				margin-right: 20px;
-				opacity: 0;
-				&:first-of-type {
-					& i {
-						transform: rotate(45deg);
-					}
-				}
-			}
-		}
-		&__right {
-			padding-left: 150px;
-			&__image,
-			&__states {
-				max-width: 70%;
-			}
-			&__image {
-				& img {
-					margin: 10px 0 30px 0;
-				}
-			}
-			&__states {
-				padding: 0 0 0 20px;
-				max-height: 400px;
-				overflow-y: hidden;
-				border-left: 1px solid var(--border-graphite);
-				&__title {
-					font-size: 16px;
-					height: 100px;
-					padding: 10px 0;
-					align-items: center;
-					font-weight: 400;
-					margin-bottom: 25px;
-					color: hsl(var(--muted-foreground));
-					background-color: var(--background-alabaster);
-					z-index: 1;
-				}
-				&__list {
-					animation: infinite-scrolling 10000ms linear infinite;
-					z-index: 0;
-					& span {
-						font-family: 'Inter Tight', var(--font-heading);
-						font-size: 24px;
-						font-weight: 700;
-						letter-spacing: -1px;
-					}
-				}
-			}
-		}
-		&__trust_badges {
-			padding: 20px 100px;
-			margin-top: 50px;
-			border-top: 1px solid var(--border-graphite);
-			&__item {
-				opacity: 0;
-				& i {
-					margin-right: 10px;
-					background-color: var(--background-citron);
-				}
-				& div {
-					& p {
-						font-size: 14px;
-						line-height: 2;
-					}
-				}
-			}
-		}
-	}
-	@include respond-down-to('5xl') {
-		&__content {
+		&__list {
+			display: flex;
 			flex-direction: column;
-			&__left,
-			&__right {
-				width: 100%;
+			animation: hero-states-scroll 60s linear infinite;
+			& span {
+				font-family: 'Inter Tight', var(--font-heading);
+				font-size: 22px;
+				font-weight: 800;
+				line-height: 32px;
+				letter-spacing: -0.02em;
+				color: var(--text-obsidian);
 			}
-			&__right {
-				padding-left: 0;
-				&__image {
-					max-width: 100%;
-					& img {
-						height: auto;
-					}
-				}
+		}
+		&__summary {
+			font-size: 12px;
+			color: var(--text-citron);
+		}
+	}
+
+	&__badges {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 24px;
+		margin-top: clamp(48px, 7vh, 80px);
+		padding-top: 32px;
+		border-top: 1px solid var(--border-graphite);
+		&__item {
+			gap: 14px;
+			align-items: flex-start;
+			&__icon {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				flex-shrink: 0;
+				width: 40px;
+				height: 40px;
+				border: 1px solid var(--border-graphite);
 			}
-			&__trust_badges {
-				padding: 0;
-				&__item {
-					align-items: center;
-					flex-direction: column;
-					margin: 0 20px;
-					padding: 20px 0;
-					text-align: center;
-					& h4 {
-						margin: 10px 0;
-					}
-				}
+			&__headline {
+				font-size: 16px;
+				font-weight: 700;
+				color: var(--text-obsidian);
 			}
+			&__text {
+				margin-top: 4px;
+				font-size: 13px;
+				line-height: 1.5;
+				color: hsl(var(--muted-foreground));
+			}
+		}
+	}
+
+	// Tablets and below: one column, image becomes a short banner under the copy
+	@include respond-down-to('lg') {
+		&__grid {
+			grid-template-columns: minmax(0, 1fr);
+		}
+		&__visual {
+			&__image {
+				aspect-ratio: 16 / 9;
+				max-height: 360px;
+			}
+		}
+		&__states {
+			left: 16px;
+			bottom: 16px;
+		}
+	}
+
+	@include respond-down-to('md') {
+		&__badges {
+			grid-template-columns: minmax(0, 1fr);
+			gap: 20px;
 		}
 	}
 
 	@include respond-down-to('sm') {
-		&__content {
-			&__trust_badges {
-				flex-direction: column;
-			}
-			&__right {
-				padding-left: 0;
-			}
-			&__left {
-				&__titles {
-					& h1 {
-						font-size: 80px;
-					}
-				}
-				&__subtitle {
-					font-size: 18px;
-				}
-				&__cta {
-					& button {
-						font-size: 12px;
-					}
-					& i {
-						width: 24px;
-					}
-				}
-			}
+		&__cta .button {
+			flex: 1 1 100%;
 		}
-	}
-	&.hero--shown {
-		.hero__trusted {
-			--scaleStart: 0.5;
-			--scaleEnd: 1;
-			animation: fadeIn 500ms ease forwards;
-		}
-		.hero__content__left {
-			&__titles {
-				--translateXStart: -100px;
-				--translateXEnd: 0px;
-				& h1 {
-					animation: fadeIn 400ms ease forwards;
-				}
+		&__states {
+			width: auto;
+			right: 16px;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			padding: 12px 16px;
+			&__window {
+				display: none;
 			}
-			&__subtitle {
-				--translateXStart: 100px;
-				--translateXEnd: 0px;
-				& p {
-					animation: fadeIn 400ms ease forwards;
-				}
-			}
-			&__cta {
-				& .button {
-					&:first-of-type {
-						--translateXStart: -50px;
-						--translateXEnd: 0px;
-					}
-					&:last-of-type {
-						--translateXStart: 50px;
-						--translateXEnd: 0px;
-					}
-					animation: fadeIn 400ms ease forwards;
-				}
-			}
-		}
-		& .hero__content__trust_badges__item {
-			--translateYStart: 50px;
-			--translateYEnd: 0px;
-			animation: fadeIn 400ms 1000ms ease forwards;
 		}
 	}
 }
 
-@keyframes infinite-scrolling {
-	0% {
+@keyframes hero-states-scroll {
+	from {
 		transform: translateY(0);
 	}
-	100% {
+	to {
 		transform: translateY(-50%);
 	}
 }

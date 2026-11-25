@@ -1,66 +1,64 @@
 @use './../../../styles/variables' as *;
 @use './../../../styles/mixins' as *;
 @use './../../../styles/animations' as *;
+
 .nav-menu {
-	width: 100%;
-	height: 100vh;
-	background-color: var(--background-graphite);
-	padding: 15% 10% 0 5%;
-	overflow: hidden;
-	transition: $transition-medium;
-	z-index: 200;
+	position: fixed;
+	inset: 0;
+	padding: 112px clamp(20px, 6vw, 80px) 32px;
+	background-color: var(--background-alabaster);
+	overflow-y: auto;
+	z-index: 99; // just under the header, so the close (X) button stays on top
 	&__list {
 		font-family: var(--font-heading);
-		letter-spacing: -2px;
+		letter-spacing: -0.03em;
 		width: 100%;
+		max-width: 640px;
 		&__item {
 			opacity: 0;
-			&__link__text {
-				font-weight: 1000;
-				font-size: 60px;
-				color: var(--text-obsidian);
-				transition: $transition-medium;
+			border-bottom: 1px solid var(--border-graphite);
+			& > a {
+				display: block;
+				padding: 14px 0;
 			}
-
-			&:hover {
-				& .nav-menu__list__item__link__text {
-					color: var(--text-citron);
+			&__link__text {
+				font-weight: 800;
+				font-size: clamp(28px, 7vw, 48px);
+				color: var(--text-obsidian);
+				transition: color 200ms ease;
+			}
+			&:hover .nav-menu__list__item__link__text {
+				color: var(--text-citron);
+			}
+			&:last-of-type {
+				border-bottom: none;
+				margin-top: 32px;
+			}
+			&__actions {
+				gap: 12px;
+				&__item {
+					width: 100%;
+					height: 52px;
+					gap: 10px;
+					font-size: 15px;
+					font-weight: 600;
+					letter-spacing: 0.04em;
+					text-transform: uppercase;
+					color: var(--text-obsidian);
 				}
 			}
 		}
 	}
-	&__list {
-		height: 100%;
-	}
-	&__list__item:last-of-type {
-		margin-top: 10%;
-		& button {
-			width: 100%;
-			margin: 10px 0;
-			height: 50px;
-			text-transform: uppercase;
-		}
-	}
-	& button.nav-menu__list__item__actions__item--login,
-	& button.nav-menu__list__item__actions__item--book-consultation {
-		font-weight: 700;
-		font-size: 20px;
-		color: var(--text-obsidian);
-		background-color: var(--background-citron);
-	}
-	& button.nav-menu__list__item__actions__item--login:hover,
-	& button.nav-menu__list__item__actions__item--book-consultation:hover {
-		color: var(--text-obsidian);
-		background-color: var(--background-alabaster);
-	}
 	&--shown {
 		& .nav-menu__list__item {
-			--translateXStart: -50px;
+			--translateXStart: -24px;
 			--translateXEnd: 0px;
 			animation: fadeIn 250ms ease forwards;
 		}
 	}
-	@include respond-down-to('sm') {
-		padding: 25% 5% 0 5%;
-	}
+}
+
+// Icons inside the hollow buttons: match the text in both themes
+.nav-menu .nav-menu__list__item__actions__item i {
+	background-color: var(--text-obsidian);
 }

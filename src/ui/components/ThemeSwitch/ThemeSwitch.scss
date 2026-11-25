@@ -3,9 +3,14 @@
 .theme-switch {
 	display: flex;
 	width: 40px;
+	height: 40px;
 	cursor: pointer;
 	padding: 8px;
-	margin-right: 10px;
+	// The real checkbox is invisible, so show the keyboard focus ring on the box around it
+	&:has(.theme-switch__checkbox:focus-visible) {
+		outline: 2px solid var(--border-citron);
+		outline-offset: 3px;
+	}
 	overflow: hidden;
 	position: relative;
 

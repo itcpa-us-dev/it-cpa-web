@@ -2,9 +2,8 @@
 // THEME VARIABLES (CSS Custom Properties)
 // ==========================================
 
+// Fonts are loaded by a <link> in index.html.
 :root {
-	@import url('https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap');
-
 	--background: 0 0% 98%;
 	--foreground: 0 0% 10.2%;
 	--card: 0 0% 100%;

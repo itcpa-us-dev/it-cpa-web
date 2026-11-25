@@ -6,11 +6,16 @@
 	left: 0;
 	right: 0;
 	z-index: 100;
-	transition: background-color 300ms ease;
+	border-bottom: 1px solid transparent;
+	transition:
+		background-color 300ms ease,
+		border-color 300ms ease;
 }
 
+// Once the page scrolls, give the header a solid-ish backdrop so text under it doesn't clash
 .home-layout__header.home-layout__header--scrolled {
-	backdrop-filter: blur(10px);
-	border: 1px solid;
-	border-color: var(--border-graphite);
+	background-color: color-mix(in srgb, var(--background-alabaster) 88%, transparent);
+	backdrop-filter: blur(12px);
+	-webkit-backdrop-filter: blur(12px);
+	border-bottom-color: var(--border-graphite);
 }

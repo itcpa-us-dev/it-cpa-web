@@ -1,0 +1,83 @@
+@use '../../styles/mixins' as *;
+
+.faq {
+	display: grid;
+	grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+	gap: clamp(32px, 6vw, 96px);
+	padding-top: clamp(72px, 9vw, 120px);
+	padding-bottom: clamp(72px, 9vw, 120px);
+
+	&__intro {
+		align-self: start;
+		position: sticky;
+		top: 112px;
+	}
+	&__title {
+		margin-top: 16px;
+	}
+
+	&__list {
+		border-top: 1px solid var(--border-graphite);
+	}
+
+	&__item {
+		border-bottom: 1px solid var(--border-graphite);
+		&__question {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: 24px;
+			padding: 24px 0;
+			font-size: clamp(17px, 1.5vw, 20px);
+			font-weight: 700;
+			line-height: 1.35;
+			color: var(--text-obsidian);
+			cursor: pointer;
+			list-style: none;
+			&::-webkit-details-marker {
+				display: none;
+			}
+			&:hover {
+				color: var(--text-citron);
+			}
+		}
+		// Plus that becomes a minus when open
+		&__toggle {
+			position: relative;
+			flex-shrink: 0;
+			width: 16px;
+			height: 16px;
+			&::before,
+			&::after {
+				content: '';
+				position: absolute;
+				left: 0;
+				right: 0;
+				top: 50%;
+				height: 2px;
+				margin-top: -1px;
+				background-color: currentColor;
+				transition: transform 250ms ease;
+			}
+			&::after {
+				transform: rotate(90deg);
+			}
+		}
+		&[open] &__toggle::after {
+			transform: rotate(0deg);
+		}
+		&__answer {
+			padding: 0 40px 24px 0;
+			font-size: 16px;
+			line-height: 1.65;
+			color: hsl(var(--muted-foreground));
+		}
+	}
+
+	@include respond-down-to('lg') {
+		grid-template-columns: minmax(0, 1fr);
+		&__intro {
+			position: static;
+		}
+	}
+}

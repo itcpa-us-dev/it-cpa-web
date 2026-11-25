@@ -1,60 +1,55 @@
 import { useAppSelector } from '../../store';
-import StringUtil from '../../utils/String';
 import { pageData } from '../../data';
 import './Home.scss';
 import NewsItem from '../../ui/components/NewsItem';
-import { useInView } from 'react-intersection-observer';
+import { useReveal } from '../../utils/Reveal';
+import { useGoToContact } from '../../utils/Contact';
 
 const Insights = () => {
-	const { ref, inView } = useInView({
-		triggerOnce: true,
-		threshold: 0.2,
-	});
-	let classes = `flex flex-column insights ${inView ? 'insights--shown' : ''}`;
-	classes = StringUtil.removeDoubleAndTrailingSpace(classes);
+	const { ref, inView } = useReveal();
 	const language = useAppSelector((state) => state.theme.language);
-	const insightsContent =
-		language === 'vn' ? pageData.vn.insights : pageData.en.insights;
+	const insights = (language === 'vn' ? pageData.vn : pageData.en).insights;
+	const goToContact = useGoToContact();
 
 	return (
-		<section id="insights" className={classes} ref={ref}>
-			<div className="flex flex-row insights__header">
-				<div className="flex flex-column insights__header__left">
-					<div className="font-mono uppercase insights__header__left__label">
-						<p className="text--muted">{insightsContent.label}</p>
-					</div>
-					<div className="font-heading  insights__header__left__titles">
-						<h1
-							className="font-heading text--obsidian font-weight-1000"
-							style={{ animationDelay: '0ms' }}>
-							{insightsContent.title1}
-						</h1>
-						<h1
-							className="font-heading text--obsidian font-weight-1000"
-							style={{ animationDelay: '100ms' }}>
-							{insightsContent.title2}
-						</h1>
-					</div>
+		<section
+			id="insights"
+			className={`insights ${inView ? 'is-shown' : ''}`}
+			ref={ref}
+			aria-labelledby="insights-title">
+			<div className="insights__header">
+				<div>
+					<p className="eyebrow reveal">{insights.label}</p>
+					<h2 id="insights-title" className="section-title insights__title">
+						<span className="reveal" style={{ '--d': '80ms' } as React.CSSProperties}>
+							{insights.title1}
+						</span>
+						<span
+							className="section-title__accent reveal"
+							style={{ '--d': '160ms' } as React.CSSProperties}>
+							{insights.title2}
+						</span>
+					</h2>
 				</div>
-				<div className="flex flex-row font-heading text--muted insights__header__right">
-					<p>{insightsContent.description}</p>
-				</div>
+				<p className="section-lead reveal" style={{ '--d': '240ms' } as React.CSSProperties}>
+					{insights.description}
+				</p>
 			</div>
-			<div className="flex insights__content">
-				{insightsContent.items.map((item, index) => {
-					return (
-						<NewsItem
-							key={index}
-							title={item.title}
-							category={item.category}
-							readTime={item.readTime}
-							complexity={item.complexity}
-							summary={item.summary}
-							link={item.link}
-							style={{ animationDelay: `${index * 200}ms` }}
-						/>
-					);
-				})}
+			<div className="insights__grid">
+				{insights.items.map((item, index) => (
+					<NewsItem
+						key={item.id}
+						className="reveal"
+						title={item.title}
+						category={item.category}
+						readTime={item.readTime}
+						complexity={item.complexity}
+						summary={item.summary}
+						ctaLabel={insights.askCta}
+						onCta={() => goToContact(`${insights.askPrefill}${item.title}`)}
+						style={{ '--d': `${240 + index * 80}ms` } as React.CSSProperties}
+					/>
+				))}
 			</div>
 		</section>
 	);

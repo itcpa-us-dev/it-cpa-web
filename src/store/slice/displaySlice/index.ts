@@ -5,6 +5,8 @@ const initialState = {
 	language: localStorage.getItem('language') || 'en',
 	currentSegment: null as string | null,
 	currentEntity: 'individual' as string | null,
+	// Text to drop into the contact form's message box (set by "Ask about this" buttons)
+	contactPrefill: null as string | null,
 };
 
 const displaySlice = createSlice({
@@ -38,6 +40,9 @@ const displaySlice = createSlice({
 		clearCurrentEntity(state) {
 			state.currentEntity = null;
 		},
+		setContactPrefill(state, action: { payload: string | null }) {
+			state.contactPrefill = action.payload;
+		},
 	},
 });
 
@@ -48,5 +53,6 @@ export const {
 	setCurrentEntity,
 	clearCurrentEntity,
 	setHeadbarState,
+	setContactPrefill,
 } = displaySlice.actions;
 export default displaySlice.reducer;

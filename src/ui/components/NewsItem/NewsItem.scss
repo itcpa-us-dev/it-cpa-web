@@ -1,55 +1,65 @@
-@use './../../../styles/variables' as *;
-@use './../../../styles/mixins' as *;
-
 .news-item {
-	width: 700px;
-	padding: 20px;
+	padding: 28px;
 	border: 1px solid var(--border-graphite);
-	margin: 20px;
-	transition: $transition-medium;
-	opacity: 0;
-	&__header {
-		margin: 0 0 20px 0;
-		&__category {
-			letter-spacing: 2px;
-		}
-		&__time,
-		&__complexity {
-			display: flex;
-			align-items: center;
-			gap: 4px;
-		}
-		&__indicator {
-			margin-left: auto;
-			transform: rotate(-45deg);
-		}
-	}
-	&__content {
-		&__title {
-			font-size: 24px;
-			margin: 0 0 10px 0;
-		}
-		&__summary {
-			font-size: 16px;
-			color: var(--text-secondary);
-		}
-	}
+	background-color: var(--background-alabaster);
+	transition: border-color 200ms ease;
+
 	&:hover {
 		border-color: var(--border-citron);
-		& .news-item__header {
-			&__indicator {
-				transform: translate(10px, -10px) rotate(-45deg);
-				background-color: var(--background-citron);
-			}
+	}
+
+	&__meta {
+		gap: 8px 20px;
+		font-size: 12px;
+		&__category {
+			letter-spacing: 0.1em;
+		}
+		&__detail {
+			gap: 6px;
+			color: hsl(var(--muted-foreground));
 		}
 	}
 
-	@include respond-down-to('sm') {
-		&__header {
-			flex-wrap: wrap;
+	&__title {
+		margin-top: 18px;
+		font-size: clamp(20px, 1.8vw, 24px);
+		font-weight: 800;
+		line-height: 1.25;
+		letter-spacing: -0.02em;
+		color: var(--text-obsidian);
+	}
+
+	// Show the first three lines; the full text stays in the page for search engines
+	&__summary {
+		margin-top: 12px;
+		font-size: 15px;
+		line-height: 1.6;
+		color: hsl(var(--muted-foreground));
+		display: -webkit-box;
+		-webkit-line-clamp: 3;
+		line-clamp: 3;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+	}
+
+	&__cta {
+		gap: 8px;
+		margin-top: auto;
+		padding-top: 24px;
+		width: fit-content;
+		font-size: 13px;
+		font-weight: 600;
+		letter-spacing: 0.06em;
+		color: var(--text-obsidian);
+		cursor: pointer;
+		& i {
+			transition: transform 200ms ease;
 		}
-		&__content {
-			flex-wrap: wrap;
+		&:hover {
+			color: var(--text-citron);
+			& i {
+				transform: translateX(4px);
+			}
 		}
 	}
 }
